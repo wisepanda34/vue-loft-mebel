@@ -1,0 +1,247 @@
+<template>
+  <section class='filter'>
+
+  <form class='filter__form' method="GET" action="#">
+
+    <div class='filter__select'>
+      <p class='filter__titles'>Chapter</p>
+      <div class='filter__select-wrapper'>
+        <select name="select-1" required>
+          <option value="Kitchen" >Kitchen</option>
+          <option value="Bedroom" >Bedroom</option>
+          <option value="Living rooms">Living rooms</option>
+        </select>
+        <select name="select-2" required >
+          <option value="Cushioned furniture">Cushioned furniture</option>
+          <option value="cabinet furniture" >cabinet furniture</option>
+          <option value="glass furniture" >glass furniture</option>
+        </select>
+        <select name="select-3" required>
+          <option value="Sofa">Sofa</option>
+          <option value="soft corner furniture" >soft corner furniture</option>
+          <option value="folding sofa">folding sofa</option>
+        </select>
+      </div>
+    </div>
+  </form>
+
+  <div class='filter__price'>
+    <p class='filter__titles'>Price</p>
+<!--    <vue-range-slider-->
+<!--        v-model="sliderValues"-->
+<!--        :min="0"-->
+<!--        :max="100"-->
+<!--        :step="1"-->
+<!--        :interval="true"-->
+<!--       -->
+<!--    />-->
+  </div>
+
+  <div class='filter__color'>
+    <p class='filter__titles'>Color</p>
+    <ul class='filter__color-list'>
+      <li class="filter__color-item">
+        <input type="radio" name="color" data-colorname="red" checked value="#900000" id='0' />
+        <label for="0" id='red-label'></label>
+      </li>
+      <li class="filter__color-item">
+        <input type="radio" name="color" data-colorname="yellow" value="#ffea02" id='1' />
+        <label for="1" id='yellow-label'></label>
+      </li>
+      <li class="filter__color-item">
+        <input type="radio" name="color" data-colorname="green" value="#03DBCB" id='2' />
+        <label for="2" id='green-label'></label>
+      </li>
+      <li class="filter__color-item">
+        <input type="radio" name="color" data-colorname="gray" value="#808080" id='3' />
+        <label for="3" id='gray-label'></label>
+      </li>
+      <li class="filter__color-item">
+        <input type="radio" name="color" data-colorname="brown" value="#a52a2a" id='4' />
+        <label for="4" id='brown-label'></label>
+      </li>
+      <li class="filter__color-item">
+        <input type="radio" name="color" data-colorname="black" value="#000" id='5' />
+        <label for="5" id='black-label'></label>
+      </li>
+    </ul>
+  </div>
+
+  <div class='filter__series'>
+    <p class='filter__titles'>Brend</p>
+    <ul class='filter__series-list'>
+
+      <li class='filter__series-item'>
+        <input type='checkbox' name='checkbox-Dins' id='Dins' />
+        <label for='checkbox-Dins'>Dins</label>
+      </li>
+
+      <li class='filter__series-item'>
+        <input type='checkbox' name='checkbox-Koosken' id='Koosken' />
+        <label for='checkbox-Koosken'>Koosken</label>
+      </li>
+
+      <li class='filter__series-item'>
+        <input type='checkbox' name='checkbox-Ebby' id='Ebby' />
+        <label for='checkbox-Ebby'>Ebby</label>
+      </li>
+
+      <li class='filter__series-item'>
+        <input type='checkbox' name='checkbox-Redgio' id='Redgio' />
+        <label for='checkbox-Redgio'>Redgio</label>
+
+      </li>
+
+    </ul>
+    <div class='filter__show'>Show more</div>
+  </div>
+</section >
+</template>
+
+<script>
+import VueRangeSlider from 'vue-range-slider'
+
+export default {
+  name: "Filter",
+  components: {
+    VueRangeSlider
+  },
+  data() {
+    return {
+      sliderValues: [20, 80]
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.filter{
+  max-width: 263px;
+  height: 591px;
+  padding: 0 10px;
+  background: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+
+  &__form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+  }
+  &__titles{
+    font-size: 14px;
+    line-height: 16px;
+    color: #414141;
+    text-align: left;
+    margin: 25px 0 15px 0;
+  }
+
+  &__select-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    select{
+      outline: none;
+      max-width: 223px;
+      height: 26px;
+      background: #F8F8F8;
+      border-radius: 3px;
+      font-size: 12px;
+      color: #686868;;
+    }
+  }
+  &__price{
+    margin-bottom: 50px;
+    padding: 0 20px;
+  }
+  &__color,&__series,&__price{
+    padding: 0 20px;
+
+  }
+
+  &__color-list,&__series-list{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    text-align: left;
+    padding-inline-start: 0;
+
+  }
+  &__color-item{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    input{
+      display: none;
+    }
+    label{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border: 1px solid #DDDDDD;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input:checked + label {
+      border: 2px solid #880707;
+    }
+    #red-label{
+      background: red;
+    }
+    #yellow-label{
+      background: yellow;
+    }
+    #green-label{
+      background: green;
+    }
+    #gray-label{
+      background: #808080;
+    }
+    #brown-label{
+      background: #a52a2a;
+    }
+    #black-label{
+      background: #000;
+    }
+  }
+
+  &__series-list{
+    flex-direction: column;
+
+  }
+  &__series-item{
+
+    input{
+      vertical-align: middle;
+      border: 1px solid #245462;
+      border-radius: 3px;
+      width: 15px;
+      height: 15px;
+      margin: 0;
+    }
+    label{
+      margin: 0 auto 0 10px;
+      font-size: 12px;
+      line-height: 14px;
+      color: #414141;
+    }
+  }
+  &__show{
+    font-size: 12px;
+    line-height: 14px;
+    color: #245462;
+    cursor: pointer;
+    &:hover{
+      color: #4199b4;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+
+}
+</style>

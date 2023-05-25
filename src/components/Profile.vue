@@ -5,7 +5,13 @@
 
         <div class='profile__personal '>
           <h4>Personal data</h4>
-          <div class='profile__personal-grid' >
+          <form
+              @submit.prevent="handleSubmit"
+              class='profile__personal-grid'
+              :class="{
+                'disabled_class': loading
+              }"
+          >
 
             <div class='profile__personal-grid-name' >
               <label for='input_name'>Name
@@ -55,9 +61,13 @@
               </label>
             </div>
 
+            <button
+                type="submit"
+                class='profile__personal-btn'
+                :disabled="loading"
+            >Change</button>
+          </form>
 
-          </div>
-          <button class='profile__personal-btn'>Change</button>
         </div>
 
         <div class='profile__orders'>
@@ -90,7 +100,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
 name: "Profile",
@@ -105,13 +115,34 @@ name: "Profile",
           street:'',
           house:'',
           flat:''
-      }
+      },
+      loading: false
     }
   },
   computed:{
   ...mapGetters({
-    user:'userData/getUserData'
-  })
+      getUserData:'user/getUserData'
+    })
+  },
+  mounted() {
+    this.userData = this.getUserData
+  },
+  methods:{
+    ...mapActions({
+      updateUserData: 'user/updateUserData'
+    }),
+    async handleSubmit () {
+      if (this.loading) return
+      console.log('submit')
+      this.loading = true
+      try {
+        await this.updateUserData(this.userData)
+      } catch (e) {
+        console.log(e)
+      } finally {
+        this.loading = false
+      }
+    }
   }
 }
 </script>
@@ -265,6 +296,10 @@ name: "Profile",
       }
     }
   }
+}
+
+.disabled_class {
+  opacity: 0.5;
 }
 @media (max-width: 992px) {
   .profile{

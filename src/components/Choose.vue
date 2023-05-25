@@ -34,6 +34,9 @@ export default {
     display: flex;
     justify-content: space-between;
   }
+  &__block{
+    width: 100%;
+  }
   &__options{
     display: flex;
     justify-content: end;

@@ -1,5 +1,5 @@
 <template>
-  <router-link class='card' to="/cardPage">
+  <router-link class='card' to="/cardPage" >
     <div class='card__pic'>
       <div class='card__heart'>&#9825;</div>
       <img :src="item.img" alt="img" />
@@ -14,18 +14,27 @@
       <div class='card__descr-size'>
         <div><span>width</span><p>{{item.width}} sm</p></div>&#9587;<div><span>deep</span><p>{{item.deep}} sm</p></div>&#9587;<div><span>height</span><p>{{item.height}} sm</p></div>
       </div>
-      <button class='card__descr-btn'>Add to cart</button>
+      <button class='card__descr-btn' @click.prevent="handleAddToCart(item)">Add to cart</button>
     </div>
   </router-link>
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "OneCard",
   props:{
     item:{
       type: Object,
       default:()=>{}
+    }
+  },
+  methods: {
+    // mapActions связывает функцию handleAddToCart с функцией addToCart в actions в модуле cartList
+    ...mapActions('cartList', ['addToCart']),
+    handleAddToCart(card) {
+      this.addToCart(card);
     }
   }
 }
@@ -98,6 +107,10 @@ export default {
       align-items: center;
     }
     &-btn{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
       width: 223px;
       height: 40px;
       background: #245462;

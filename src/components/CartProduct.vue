@@ -16,7 +16,7 @@
           </div>
       </div>
 
-      <div class='cartProduct__delete'>&#9587;</div>
+      <div class='cartProduct__delete' @click.prevent="handlerRemoveProduct(item)">&#9587;</div>
     </div>
   </router-link>
 </template>
@@ -28,6 +28,11 @@ export default {
     item:{
       type: Object,
       default:()=>{}
+    }
+  },
+  methods: {
+    handlerRemoveProduct(item) {
+      this.$store.dispatch('cartList/removeFromCart', item.id);
     }
   }
 }

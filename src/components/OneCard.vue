@@ -1,7 +1,7 @@
 <template>
   <router-link class='card' to="/cardPage" >
     <div class='card__pic'>
-      <div class='card__heart'>&#9825;</div>
+      <div :class="['card__heart ', item.like ? 'yellow' : '']"  @click.prevent="handleAddToFavorites(item,true)">&#9825;</div>
       <img :src="item.img" alt="img" />
     </div>
     <div class='card__info'>
@@ -21,7 +21,6 @@
 
 <script>
 import {mapActions} from "vuex";
-
 export default {
   name: "OneCard",
   props:{
@@ -35,7 +34,23 @@ export default {
     ...mapActions('cartList', ['addToCart']),
     handleAddToCart(card) {
       this.addToCart(card);
-    }
+    },
+    ...mapActions('favorites',['addToFavorites']),
+    handleAddToFavorites(card, like) {
+      const isFavorite = this.isCardInFavorites(card);
+      if (isFavorite) {
+        this.removeFromFavorites(card);
+      } else {
+        const newCard = { ...card, like };
+        this.addToFavorites(newCard);
+      }
+    },
+    isCardInFavorites(card){
+      return this.$store.getters['favorites/getFavorites'].some((favorites)=>favorites.id===card.id)
+    },
+    removeFromFavorites(card) {
+      this.$store.dispatch("favorites/removeFromFavorites", card);
+    },
   }
 }
 </script>
@@ -72,6 +87,11 @@ export default {
     top: 2px;
     right: 6px;
     cursor: pointer;
+
+  }
+  &__heart-yellow{
+    background: yellow;
+
   }
   &__info{
     // flex:0 0 15%;
@@ -126,5 +146,8 @@ export default {
 
   }
 
+}
+.yellow{
+  background: yellow;
 }
 </style>

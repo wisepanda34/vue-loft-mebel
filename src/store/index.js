@@ -7,6 +7,8 @@ import savings from "@/store/savings";
 import menuList from "@/store/menuList";
 import cartList from "@/store/cartList";
 import user from "@/store/user";
+import clients from "@/store/clients";
+import favorites from "@/store/favorites";
 
 export default createStore({
   state() {
@@ -31,6 +33,8 @@ export default createStore({
     savings,
     menuList,
     cartList,
-    user
+    user,
+    clients,
+    favorites
   }
 })

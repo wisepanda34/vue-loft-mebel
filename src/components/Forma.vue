@@ -1,5 +1,5 @@
 <template>
-  <form class='form'>
+  <form class='form' @submit="handleSubmit">
 
     <div class='form__inputs'>
       <div class='form__name'>
@@ -9,17 +9,17 @@
       </div>
 
       <div class='form__phone'>
-        <label for='input_number'>Your phone
-          <input name='input_number' type='number' />
+        <label for='input_phone'>Your phone
+          <input name='input_phone' type='tel' pattern="[0-9]*"/>
         </label>
       </div>
 
     </div>
 
 
-    <div class='form__textarea'>
+    <div class='form__textarea' >
       <label>Message
-        <textarea  minLength="5" maxLength="100" />
+        <textarea name="textarea_message" minLength="5" maxLength="100" />
       </label>
     </div>
 
@@ -32,8 +32,22 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
-  name: "Forma"
+  name: "Forma",
+  methods:{
+    ...mapActions('clients',['addNewClient']),
+    handleSubmit(event){
+      event.preventDefault();
+      const name=event.target.elements.input_name.value;
+      const phone=event.target.elements.input_phone.value;
+      const message=event.target.elements.textarea_message.value;
+      const newClient={name,phone,message};
+      this.addNewClient(newClient);
+      event.target.reset();
+    }
+  }
 }
 </script>
 

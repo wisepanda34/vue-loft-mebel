@@ -33,6 +33,9 @@ a{
 .flex{
     display: flex;
 }
+.no-scroll{
+    overflow: hidden;
+}
 .center{
     text-align: center;
 }

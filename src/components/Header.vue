@@ -2,9 +2,9 @@
   <div class="header">
     <div class="container">
 
-      <Navbar/>
+      <Navbar class="header__navbar"/>
       <div class="header__main">
-        <div class='header__burger'>
+        <div class='header__burger' @click="activeMenu">
           <span></span>
           <span></span>
           <span></span>
@@ -18,16 +18,34 @@
         </div>
       </div>
 
+      <menu-transform class="header__menuTransform" :class="{'menuTransform-active':isMenuActive}" @close-menu="closeMenu"/>
+
     </div>
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue";
+import MenuTransform from "@/components/MenuTransform.vue";
 
 export default {
   name: "Header",
-  components: {Navbar},
+  components: {Navbar,MenuTransform},
+  data(){
+    return{
+      isMenuActive: false,
+    }
+  },
+  methods: {
+    activeMenu() {
+      this.isMenuActive = true;
+      document.body.classList.add('no-scroll');
+    },
+    closeMenu() {
+      this.isMenuActive = false;
+      document.body.classList.remove('no-scroll');
+    }
+  }
 }
 </script>
 
@@ -89,6 +107,9 @@ export default {
     margin-top: 20px;
     order:4;
   }
+  &__menuTransform{
+    display: none;
+  }
 }
 @media (max-width:992px){
   .header{
@@ -115,6 +136,7 @@ export default {
 
 @media (max-width:767px){
   .header{
+    position: relative;
     height: 100px;
     &__main{
       flex-wrap: wrap;
@@ -125,7 +147,6 @@ export default {
       flex: 0 1 auto;
       margin-right: 18px;
       order:1;
-
     }
     &__logo{
       order: 2;
@@ -143,6 +164,19 @@ export default {
       flex: 0 1 auto;
       gap: 15px
     }
+    &__navbar{
+      display: none;
+    }
+    &__menuTransform{
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 15;
+    }
   }
 }
+
 </style>

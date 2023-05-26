@@ -43,7 +43,7 @@ export default {
     padding: 30px 0;
   }
   &__headline{
-    height: 50px;
+    min-height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: start;

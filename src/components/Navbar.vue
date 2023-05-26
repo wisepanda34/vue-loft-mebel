@@ -1,7 +1,7 @@
 <template>
-  <div class="navbar">
+  <div class="navbar header__navbar menuTransform__navbar">
 
-    <nav class="navbar__nav">
+    <nav class="navbar__nav menuTransform__nav">
       <router-link to="/">Main</router-link>
       <router-link to="/about">About</router-link>
       <router-link to="/contacts">Contacts</router-link>
@@ -25,7 +25,6 @@
 
 export default {
   name: "Navbar",
-
 }
 </script>
 
@@ -45,13 +44,25 @@ export default {
     gap: 20px;
   }
 }
+@media (max-width: 767px) {
+    .navbar{
+      justify-content: flex-start;
+      align-items: center;
+      gap: 30%;
+      padding: 20% 0 0 0;
+
+      &__nav{
+        flex-direction: column;
+        font-size: 20px;
+      }
+      &__delivery{
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+}
 .flex{
   gap: 5px;
-}
-@media (max-width: 767px) {
-  .navbar{
-    display: none;
-  }
 }
 
 </style>

@@ -11,7 +11,7 @@
 
           <div class='cartProduct__info'>
             <div class='cartProduct__info-color'>color: <span>brown</span>  </div>
-            <div class='cartProduct__info-quantity'>quantity: <span>1</span> </div>
+            <div class='cartProduct__info-quantity'>quantity: <span>{{item.amount}}</span> </div>
             <div class='cartProduct__info-size'>size(w/h/d): <span>{{item.width}}x{{item.height}}x{{item.deep}}</span></div>
           </div>
       </div>

@@ -17,8 +17,8 @@ const favorites={
         }
     },
     mutations:{
-        ADD_NEW_FAVORITE(state,favorite){
-            state.favorites.push(favorite);
+        ADD_NEW_FAVORITE(state,newFavorite){
+            state.favorites.push(newFavorite);
         },
         REMOVE_FROM_FAVORITES(state, card) {
             const index = state.favorites.findIndex(

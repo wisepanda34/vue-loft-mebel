@@ -4,9 +4,9 @@
 
         <div class='sortCatalog__burger'>
           <select class='sortCatalog__select' name="select-sort">
+            <option value='by popularity'>by popularity</option>
             <option value='descending price'>descending price</option>
             <option value='ascending price'>ascending price</option>
-            <option value='by popularity'>by popularity</option>
           </select>
           <span></span>
         </div>

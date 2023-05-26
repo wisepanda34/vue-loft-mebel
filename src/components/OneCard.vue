@@ -1,7 +1,7 @@
 <template>
   <router-link class='card' to="/cardPage" >
     <div class='card__pic'>
-      <div :class="['card__heart ', item.like ? 'yellow' : '']"  @click.prevent="handleAddToFavorites(item,true)">&#9825;</div>
+      <div :class="['card__heart', {'yellow':isCardInFavorites(item)}]"  @click.prevent="handleAddToFavorites(item,true)">&#9825;</div>
       <img :src="item.img" alt="img" />
     </div>
     <div class='card__info'>
@@ -30,7 +30,6 @@ export default {
     }
   },
   methods: {
-    // mapActions связывает функцию handleAddToCart с функцией addToCart в actions в модуле cartList
     ...mapActions('cartList', ['addToCart']),
     handleAddToCart(card) {
       this.addToCart(card);
@@ -45,6 +44,7 @@ export default {
         this.addToFavorites(newCard);
       }
     },
+    //обращаемся в store/favorites и с помощью some() проверяем наличие этого card в favorites
     isCardInFavorites(card){
       return this.$store.getters['favorites/getFavorites'].some((favorites)=>favorites.id===card.id)
     },
@@ -73,13 +73,12 @@ export default {
     }
   }
   &__pic{
-    // position: relative;
-    // flex:0 0 70%;
-    // background: rgb(247, 105, 44);
     padding: 30px 0 0 0;
     img{
       width: 200px;
       height: 150px;
+      display: block;
+      margin: 0 auto;
     }
   }
   &__heart{
@@ -87,20 +86,14 @@ export default {
     top: 2px;
     right: 6px;
     cursor: pointer;
-
   }
-  &__heart-yellow{
-    background: yellow;
 
-  }
   &__info{
-    // flex:0 0 15%;
     padding: 20px 20px 10px 20px;
     text-align: left;
     font-size: 16px;
     line-height: 19px;
     font-weight: 500;
-    // background: rgb(245, 240, 196);
 
     &-subtitle{
       font-size: 12px;
@@ -108,8 +101,6 @@ export default {
     }
   }
   &__descr{
-    // flex:0 0 15%;
-    // background: rgb(230, 249, 85);
     text-align: left;
     padding:0 20px 20px 20px;
     font-size: 9px;

@@ -20,13 +20,27 @@ const cartList = {
         }
     },
     mutations: {
-        //это логика самой мутации
-        ADD_TO_CART(state, card) {
-            // const existingCard = state.cartList.find(item => item.id === card.id);
-            // if (existingCard){
-            //     return
-            // }
-            state.cartList.push(card);
+        ADD_TO_CART(state, payload) {
+            const productIdx = state.cartList.findIndex((item) => item.id === payload.id)
+            console.log(productIdx)
+            const productsCopy = [...state.cartList]
+
+            let product = {
+                // id: payload.id,
+                ...payload,
+                amount: 1,
+                // info: payload
+            }
+
+            if (productIdx > -1) {
+                const amount = productsCopy[productIdx].amount + 1
+                console.log(amount)
+                product = {...product, amount}
+                productsCopy.splice(productIdx, 1, product)
+                state.cartList = productsCopy
+                return
+            }
+            state.cartList = [...state.cartList, product]
         },
         REMOVE_FROM_CART(state, cardId) {
             state.cartList = state.cartList.filter(item => item.id !== cardId);

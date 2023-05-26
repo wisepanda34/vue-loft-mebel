@@ -4,6 +4,7 @@
   <Banner/>
   <Cards/>
   <Footer/>
+  <menu-transform/>
 </template>
 
 <script>

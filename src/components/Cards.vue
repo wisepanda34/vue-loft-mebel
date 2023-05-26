@@ -4,7 +4,6 @@
     <div class='container'>
       <div class='cards__wrapper'>
         <OneCard v-for="item in products" :key="item.id" :item="item"/>
-
       </div>
     </div>
   </section>

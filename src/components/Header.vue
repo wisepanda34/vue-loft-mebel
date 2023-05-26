@@ -12,7 +12,7 @@
         <div class="header__logo">Loft <br> Furniture</div>
         <input type="text" class="header__input">
         <div class="header__icons">
-          <a href="#"><img src="@/images/icons/wishlist-icon.svg" alt="i"/></a>
+          <router-link to="/favoritesPage"><img src="@/images/icons/wishlist-icon.svg" alt="i"/></router-link>
           <router-link to="/cart"><img src="@/images/icons/cart.svg" alt="i"/></router-link >
           <router-link to="/account"><img src="@/images/icons/profile-icon.svg" alt="i"/></router-link>
         </div>

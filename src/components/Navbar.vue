@@ -12,10 +12,10 @@
         <img src="@/images/icons/phone-black.svg" alt="i"/>
         <span>+1 (964) 89 99 119</span>
       </a>
-      <a class='navbar__delivery-deliv flex' href='#'>
+      <router-link to="/deliveryPage" class='navbar__delivery-deliv flex' >
         <img src="@/images/icons/delivery-icon-black.svg" alt="i"/>
         <span>Delivery</span>
-      </a>
+      </router-link>
     </div>
 
   </div>

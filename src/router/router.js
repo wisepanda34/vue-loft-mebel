@@ -8,6 +8,7 @@ import CartProduct from "@/components/CartProduct.vue";
 import Catalog from "@/pages/Catalog.vue";
 import CardPage from "@/pages/CardPage.vue";
 import FavoritesPage from "@/pages/FavoritesPage.vue";
+import DeliveryPage from "@/pages/DeliveryPage.vue";
 
 const routes = [
   {
@@ -45,6 +46,10 @@ const routes = [
   {
     path: '/favoritesPage',
     component: FavoritesPage
+  },
+  {
+    path: '/deliveryPage',
+    component: DeliveryPage
   },
 
 

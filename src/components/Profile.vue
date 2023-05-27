@@ -7,65 +7,67 @@
           <h4>Personal data</h4>
           <form
               @submit.prevent="handleSubmit"
-              class='profile__personal-grid'
+              class='profile__form'
               :class="{
                 'disabled_class': loading
               }"
           >
+            <div class="profile__personal-grid">
+              <div class='profile__personal-grid-name' >
+                <label for='input_name'>Name
+                  <my-input name='input_name' v-model="userData.name" />
+                </label>
+              </div>
 
-            <div class='profile__personal-grid-name' >
-              <label for='input_name'>Name
-                <input type='text' name='input_name' v-model="userData.name" />
-              </label>
+              <div class='profile__personal-grid-mail'>
+                <label for='input_mail'>email
+                  <my-input type='email' name='input_mail' v-model="userData.email" />
+                </label>
+              </div>
+
+              <div class='profile__personal-grid-surname'>
+                <label for='input_surname'>Surname
+                  <my-input name='input_surname' v-model="userData.surname" />
+                </label>
+              </div>
+
+              <div class='profile__personal-grid-phone' >
+                <label for='input_phone'>phone
+                  <my-input type='tel' name='input_phone' v-model="userData.phone"/>
+                </label>
+              </div>
+
+              <div class='profile__personal-grid-city'>
+                <label for='input_city'>city
+                  <my-input name='input_city' v-model="userData.city"/>
+                </label>
+              </div>
+
+              <div class='profile__personal-grid-street'>
+                <label for='input_street'>street
+                  <my-input name='input_street' v-model="userData.street"/>
+                </label>
+              </div>
+
+              <div class='profile__personal-grid-build'>
+                <label for='input_build'>build
+                  <my-input name='input_house' v-model="userData.house"/>
+                </label>
+              </div>
+
+              <div class='profile__personal-grid-apart'>
+                <label for='input_apart'>apart
+                  <my-input name='input_flat' v-model="userData.flat"/>
+                </label>
+              </div>
+
             </div>
 
-            <div class='profile__personal-grid-mail'>
-              <label for='input_mail'>email
-                <input type='email' name='input_mail' v-model="userData.email" />
-              </label>
-            </div>
-
-            <div class='profile__personal-grid-surname'>
-              <label for='input_surname'>Surname
-                <input type='text' name='input_surname' v-model="userData.surname" />
-              </label>
-            </div>
-
-            <div class='profile__personal-grid-phone' >
-              <label for='input_phone'>phone
-                <input type='tel' name='input_phone' v-model="userData.phone"/>
-              </label>
-            </div>
-
-            <div class='profile__personal-grid-city'>
-              <label for='input_city'>city
-                <input type='text' name='input_city' v-model="userData.city"/>
-              </label>
-            </div>
-
-            <div class='profile__personal-grid-street'>
-              <label for='input_street'>street
-                <input type='text' name='input_street' v-model="userData.street"/>
-              </label>
-            </div>
-
-            <div class='profile__personal-grid-build'>
-              <label for='input_build'>build
-                <input type='text' name='input_house' v-model="userData.house"/>
-              </label>
-            </div>
-
-            <div class='profile__personal-grid-apart'>
-              <label for='input_apart'>apart
-                <input type='text' name='input_flat' v-model="userData.flat"/>
-              </label>
-            </div>
-
-            <button
+            <my-button
                 type="submit"
                 class='profile__personal-btn'
                 :disabled="loading"
-            >Change</button>
+            >Change</my-button>
           </form>
 
         </div>
@@ -101,9 +103,11 @@
 
 <script>
 import {mapActions, mapGetters} from "vuex";
-
+import MyInput from "@/components/UI/MyInput.vue";
+import MyButton from "@/components/UI/MyButton.vue";
 export default {
 name: "Profile",
+  components:{MyButton, MyInput},
   data(){
     return {
       userData:{
@@ -183,10 +187,6 @@ name: "Profile",
         width: 100%;
         height: 38px;
         color: #686868;
-        padding:0 10px;
-        outline: none;
-        background: #FCFCFC;
-        box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.07);
         border: none;
       }
       &-name{
@@ -242,25 +242,14 @@ name: "Profile",
     &-btn{
       width: 101px;
       height: 40px;
-      font-size: 13px;
-      line-height: 15px;
-      color: #FFFFFF;
-      background: #245462;
-      border:none;
       display: block;
       margin: 20px 0 0 auto;
-      transition: all 0.2s ease;
-      cursor: pointer;
-
-      &:hover{
-        background: #1d4652;
-      }
-
     }
   }
 
   &__orders{
     flex: 0 1 50%;
+    padding-bottom: 20px;
     &-grid{
       display: grid;
       grid-template-columns: 4fr 1fr 1fr 1fr;
@@ -305,6 +294,114 @@ name: "Profile",
   .profile{
     &__wrapper{
       flex-direction: column;
+    }
+  }
+}
+@media (max-width: 575px){
+  .profile{
+    &__personal{
+      width: 100%;
+
+      &-grid{
+        display: grid;
+        grid-template-columns:1fr 1fr;
+        column-gap:10px;
+        row-gap: 10px;
+
+        &-name{
+          grid-column-start: 1;
+          grid-column-end: 3;
+          grid-row-start: 1;
+          grid-row-end: 2;
+        }
+        &-surname{
+          grid-column-start: 1;
+          grid-column-end: 3;
+          grid-row-start: 2;
+          grid-row-end: 3;
+        }
+        &-mail{
+          grid-column-start: 1;
+          grid-column-end: 3;
+          grid-row-start: 3;
+          grid-row-end: 4;
+        }
+        &-phone{
+          grid-column-start: 1;
+          grid-column-end: 3;
+          grid-row-start: 4;
+          grid-row-end: 5;
+        }
+        &-city{
+          grid-column-start: 1;
+          grid-column-end: 3;
+          grid-row-start: 5;
+          grid-row-end: 6;
+        }
+        &-street{
+          grid-column-start: 1;
+          grid-column-end: 3;
+          grid-row-start: 6;
+          grid-row-end: 7;
+        }
+        &-build{
+          grid-column-start: 1;
+          grid-column-end: 2;
+          grid-row-start: 7;
+          grid-row-end: 8;
+        }
+        &-apart{
+          grid-column-start: 2;
+          grid-column-end: 3;
+          grid-row-start: 7;
+          grid-row-end: 8;
+        }
+
+      }
+      &-btn{
+        width: 101px;
+        height: 40px;
+        display: block;
+        margin: 20px 0 0 auto;
+      }
+    }
+
+    &__orders{
+      flex: 0 1 50%;
+      &-grid{
+        display: grid;
+        grid-template-columns: 4fr 1fr 1fr 1fr;
+        grid-template-rows: 40px auto;
+        grid-auto-rows: auto;
+        border-collapse: collapse;
+
+        div{
+          border: 1px solid rgba(243, 243, 243, 1);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 12px;
+          line-height: 147.69%;
+          color: #686868;
+
+        }
+
+        &-product{
+          // grid-column: 1/2;
+
+        }
+      }
+      &-btn{
+        display: block;
+        font-size: 12px;
+        line-height: 14px;
+        color: #245462;
+        margin-top: 20px;
+        text-align: end;
+        &:hover{
+          color: #4bbbdd;
+        }
+      }
     }
   }
 }

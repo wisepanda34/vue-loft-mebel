@@ -1,19 +1,20 @@
 <template>
   <Header/>
-  <h1>Page of the card</h1>
+  <DeliveryOrder/>
   <Footer/>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import DeliveryOrder from "@/components/DeliveryOrder.vue";
 
 export default {
-  name: "CardPage",
-  components: {Footer, Header}
+  name: "DeliveryPage",
+  components: {DeliveryOrder, Footer, Header}
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

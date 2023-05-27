@@ -94,7 +94,7 @@ const cart = {
                 {
                     id: 'qw9',
                     titleCard: "Benflit gray",
-                    category: "magazine table",
+                    category: "table",
                     img: '/images/img/table-Benflit.jpg',
                     price: 159,
                     width: 450,
@@ -105,7 +105,7 @@ const cart = {
                 {
                     id: 'qw10',
                     titleCard: "Tiffany Woodline creem",
-                    category: "write table",
+                    category: "table",
                     img: '/images/img/table-Tiffany.jpg',
                     price: 219,
                     width: 1100,
@@ -127,7 +127,7 @@ const cart = {
                 {
                     id: 'qw12',
                     titleCard: "Light-3 white",
-                    category: "cupdoard",
+                    category: "cupboard",
                     img: '/images/img/closet-Light.jpg',
                     price: 459,
                     width: 1200,

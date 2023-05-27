@@ -1,27 +1,49 @@
 <template>
-
   <div class='sortCatalog'>
-
         <div class='sortCatalog__burger'>
-          <select class='sortCatalog__select' name="select-sort">
-            <option value='by popularity'>by popularity</option>
-            <option value='descending price'>descending price</option>
-            <option value='ascending price'>ascending price</option>
-          </select>
+
+          <my-select
+              class="select-sort"
+              v-model="selectedSort"
+              :options="sortOptions"
+          />
           <span></span>
         </div>
-
   </div>
-
 </template>
-
 <script>
+import MySelect from "@/components/UI/MySelect.vue";
+
 export default {
-  name: "SortCatalog"
+  name: "SortCatalog",
+  components: {MySelect},
+  data(){
+    return{
+      selectedSort:'by popularity',
+      sortOptions:[
+        {value:'popular', name:'by popularity'},
+        {value:'descending', name:'descending price'},
+        {value:'ascending', name:'ascending price'},
+      ]
+    }
+  },
+  mounted() {
+    // Установка первой опции по умолчанию
+    if (!this.selectedSort && this.sortOptions.length > 0) {
+      this.selectedSort = this.sortOptions[0].value;
+    }
+  },
+
 }
 </script>
 
 <style lang="scss" scoped>
+.select-sort{
+  text-align: end;
+  option{
+    margin-right: 20px;
+  }
+}
 .sortCatalog{
   padding: 30px 0;
 
@@ -71,6 +93,7 @@ export default {
     appearance: none;
   }
 }
+
 @media (max-width: 992px) {
   .sortCatalog{
     &__wrapper{

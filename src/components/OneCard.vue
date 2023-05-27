@@ -14,15 +14,17 @@
       <div class='card__descr-size'>
         <div><span>width</span><p>{{item.width}} sm</p></div>&#9587;<div><span>deep</span><p>{{item.deep}} sm</p></div>&#9587;<div><span>height</span><p>{{item.height}} sm</p></div>
       </div>
-      <button class='card__descr-btn' @click.prevent="handleAddToCart(item)">Add to cart</button>
+      <my-button class='card__descr-btn' @click.prevent="handleAddToCart(item)">Add to cart</my-button>
     </div>
   </router-link>
 </template>
 
 <script>
 import {mapActions} from "vuex";
+import MyButton from "@/components/UI/MyButton.vue";
 export default {
   name: "OneCard",
+  components: {MyButton},
   props:{
     item:{
       type: Object,
@@ -118,21 +120,7 @@ export default {
       align-items: center;
     }
     &-btn{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 16px;
-      width: 223px;
-      height: 40px;
-      background: #245462;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
 
-      &:hover{
-        background: rgb(28, 73, 86);
-      }
     }
 
   }

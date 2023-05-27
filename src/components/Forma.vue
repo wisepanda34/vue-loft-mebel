@@ -4,13 +4,13 @@
     <div class='form__inputs'>
       <div class='form__name'>
         <label for='input_name'>Your name
-          <input type='text' name='input_name' />
+          <my-input class="form__input" name='input_name'/>
         </label>
       </div>
 
       <div class='form__phone'>
         <label for='input_phone'>Your phone
-          <input name='input_phone' type='tel' pattern="[0-9]*"/>
+          <my-input class="form__input form__input-phone" name='input_phone' type='tel' pattern="[0-9]*"/>
         </label>
       </div>
 
@@ -24,8 +24,8 @@
     </div>
 
     <div class='form__buttons'>
-      <input class='form__buttons-attach' type="file" multiple />
-      <input class='form__buttons-submit' type="submit" value="SEND" />
+      <my-button class='form__attach' type="file" multiple>Attach file</my-button>
+      <my-button class='form__submit' type="submit">Send</my-button>
     </div>
 
   </form>
@@ -33,9 +33,11 @@
 
 <script>
 import {mapActions} from "vuex";
+import MyButton from "@/components/UI/MyButton.vue";
 
 export default {
   name: "Forma",
+  components: {MyButton},
   methods:{
     ...mapActions('clients',['addNewClient']),
     handleSubmit(event){
@@ -61,9 +63,15 @@ export default {
     display: flex;
     gap:10px;
   }
-
+  &__input{
+    display: block;
+    outline: none;
+    width: 207px;
+    height: 38px;
+    border: 1px solid #c4c4c4;
+    border-radius: 3px;
+  }
   &__name,&__phone,&__textarea{
-
     label{
       display: block;
       margin-bottom: 0.25rem;
@@ -72,25 +80,11 @@ export default {
       font-size: 12px;
       line-height: 14px;
     }
-    input{
-      display: block;
-      outline: none;
-      width: 207px;
-      height: 38px;
-      background: #FCFCFC;
-      border: 1px solid #c4c4c4;
-      box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.07);
-    }
   }
-  &__phone{
-
-    input{
-      width: 240px;
-    }
+  &__input-phone{
+    width: 240px;
   }
-
   &__textarea{
-
     textarea{
       display: block;
       width: 100%;
@@ -101,30 +95,29 @@ export default {
       border: 1px solid #c4c4c4;
       box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.07);
       box-sizing: border-box;
+      border-radius: 3px;
     }
   }
   &__buttons{
+    display: flex;
+    gap: 20px;
     margin-top: 15px;
-    &-attach{
-      display: inline-block;
-      width: 149px;
-      height: 40px;
-      box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.07);
-
-    }
-    &-submit{
-      width: 106px;
-      height: 40px;
-      background: #245462;
-      color: #fff;
-      cursor: pointer;
-      border: 1px solid #245462;
-      transition: all 0.3s ease;
-      &:hover{
-        background: #1e4b58;
-      }
+  }
+  &__attach{
+    width: 149px;
+    height: 40px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+    color: #414141;
+    &:hover{
+      background: lightgray;
     }
   }
+  &__submit{
+    width: 106px;
+    height: 40px;
+  }
+
 }
 @media (max-width: 767px) {
   .form{
@@ -134,15 +127,14 @@ export default {
       display: block;
       width: 100%;
     }
-    &__name,&__phone{
-      input{
-        width:  100%;
-      }
+    &__input{
+      width:  100%;
     }
-    &__textarea{
-      textarea{
-        box-sizing: content-box;
-      }
+    &__buttons{
+      justify-content: center;
+    }
+    &__attach{
+      width: 106px;
     }
   }
 }

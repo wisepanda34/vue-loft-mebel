@@ -15,7 +15,7 @@
 
         </ul>
 
-        <div class="menu__burger"><span>&#8285;</span></div>
+        <div class="menu__points"><span>&#8285;</span></div>
       </div>
     </div>
 
@@ -54,13 +54,31 @@ export default {
     min-height: 85px;
      flex: 0 1 auto;
      display: flex;
-
      gap:50px;
-     margin: 0 20px 0 0;
     flex-wrap: nowrap;
     justify-content: stretch;
     align-items: center;
     overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #245462 lightgray;
+    padding:0 10px;
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: lightgray;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #8ba0a2;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #94bcc0;
+    }
   }
   &__item{
      display: inline-flex;
@@ -72,6 +90,8 @@ export default {
      display: flex;
      gap: 10px;
      padding: 14px 10px 10px 10px;
+    border-radius: 2px;
+
      cursor: pointer;
      transition: all 0.2s ease-in;
     span{
@@ -80,20 +100,22 @@ export default {
       color: #414141;
     }
     &:hover{
-     background: #245462;
+     background: #94bcc0;
+      box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.11);
     }
   }
   &__icon{}
   &__title{
     font-size: 16px;
   }
-  &__burger{
+  &__points{
     flex: 0 0 62px;
-    padding: 15px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     span{
       cursor: pointer;
       font-size: 20px;
-      padding: 0 10px;
     }
   }
 }
@@ -107,7 +129,8 @@ export default {
 @media (max-width:767px){
   .menu{
     &__list{
-       gap:7px;
+      gap: 12px;
+      justify-content: space-between;
       align-items: baseline;
     }
     &__link{
@@ -125,6 +148,9 @@ export default {
     &__title{
       font-size: 9px;
       text-align: center;
+    }
+    &__points{
+      display: none;
     }
   }
 }

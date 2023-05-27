@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "m-button"
+  name: "my-button"
 }
 </script>
 

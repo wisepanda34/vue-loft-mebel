@@ -10,7 +10,7 @@
           <span></span>
         </div>
         <div class="header__logo">Loft <br> Furniture</div>
-        <input type="text" class="header__input">
+        <my-input class="header__input"/>
         <div class="header__icons">
           <router-link to="/favoritesPage"><img src="@/images/icons/wishlist-icon.svg" alt="i"/></router-link>
           <router-link to="/cart"><img src="@/images/icons/cart.svg" alt="i"/></router-link >
@@ -27,16 +27,27 @@
 <script>
 import Navbar from "@/components/Navbar.vue";
 import MenuTransform from "@/components/MenuTransform.vue";
+import MyInput from "@/components/UI/MyInput.vue";
 
 export default {
   name: "Header",
-  components: {Navbar,MenuTransform},
+  components: {Navbar,MenuTransform,MyInput},
   data(){
     return{
       isMenuActive: false,
+      windowWidth: window.innerWidth,
     }
   },
+  mounted() {
+    window.addEventListener("resize", this.handleWindowResize);
+  },
+  beforeUnmount() {
+    window.removeEventListener("resize", this.handleWindowResize);
+  },
   methods: {
+    handleWindowResize() {
+      this.windowWidth = window.innerWidth;
+    },
     activeMenu() {
       this.isMenuActive = true;
       document.body.classList.add('no-scroll');
@@ -50,6 +61,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .header{
   height: 138px;
   padding-bottom: 10px;
@@ -90,11 +102,11 @@ export default {
     flex: 1 1 auto;
     height: 50px;
     margin: 20px 30px 0 30px;
-    padding: 0 30px 0 40px;
-    outline: none;
-    border: 1px solid rgba(230, 230, 230, 1);
+    padding: 0 30px 0 40px!important;
+    border: 1px solid rgba(230, 230, 230, 1)!important;
+    font-size: 16px;
     order: 3;
-
+    background-color: #fff!important;
     background-image: url('@/images/icons/search-icon.svg') ;
     background-repeat: no-repeat; /*Убираем повтор изображения*/
     background-position: 14px; /*Позиционируем*/

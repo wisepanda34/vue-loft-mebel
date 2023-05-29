@@ -16,15 +16,17 @@
       </div>
       <my-button class='card__descr-btn' @click.prevent="handleAddToCart(item)">Add to cart</my-button>
     </div>
+
   </router-link>
 </template>
 
 <script>
 import {mapActions} from "vuex";
 import MyButton from "@/components/UI/MyButton.vue";
+import BaseModal from "@/components/UI/BaseModal.vue";
 export default {
   name: "OneCard",
-  components: {MyButton},
+  components: {BaseModal, MyButton},
   props:{
     item:{
       type: Object,

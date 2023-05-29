@@ -4,6 +4,7 @@
   <Banner/>
   <Cards/>
   <Footer/>
+
 </template>
 
 <script>

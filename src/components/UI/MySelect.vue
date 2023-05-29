@@ -43,9 +43,7 @@ export default {
 .select{
   outline: none;
   border: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+
   width: 166px;
 }
 

@@ -33,6 +33,11 @@ export default {
       this.selectedSort = this.sortOptions[0].value;
     }
   },
+  watch:{
+    selectedSort(newValue){
+
+    }
+  }
 
 }
 </script>
@@ -40,6 +45,9 @@ export default {
 <style lang="scss" scoped>
 .select-sort{
   text-align: end;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   option{
     margin-right: 20px;
   }

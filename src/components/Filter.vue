@@ -43,16 +43,13 @@
     </div>
     <div class='filter__price'>
       <p class='filter__subtitle'>Price</p>
-<!--          <vue-range-slider-->
-<!--              v-model="sliderValues"-->
-<!--              :min="0"-->
-<!--              :max="100"-->
-<!--              :step="1"-->
-<!--              :interval="true"-->
-<!--          />-->
+
+
+
+
     </div>
     <div class='filter__color'>
-      <p class='filter__subtitles'>Color</p>
+      <p class='filter__subtitle'>Color</p>
       <ul class='filter__color-list'>
         <li class="filter__color-item">
           <input type="radio" name="color" data-colorname="red" checked value="#900000" id='0' />
@@ -114,18 +111,16 @@
 </template>
 
 <script>
-import VueRangeSlider from 'vue-range-slider';
 import MySelect from "@/components/UI/MySelect.vue";
 
 export default {
   name: "Filter",
-  components: { MySelect, VueRangeSlider },
+  components: { MySelect },
   data() {
     return {
-      sliderValues: [20, 80],
 
     }
-  }
+  },
 }
 </script>
 

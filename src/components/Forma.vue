@@ -34,10 +34,11 @@
 <script>
 import {mapActions} from "vuex";
 import MyButton from "@/components/UI/MyButton.vue";
+import MyInput from "@/components/UI/MyInput.vue";
 
 export default {
   name: "Forma",
-  components: {MyButton},
+  components: {MyInput, MyButton},
   methods:{
     ...mapActions('clients',['addNewClient']),
     handleSubmit(event){
@@ -107,7 +108,7 @@ export default {
     width: 149px;
     height: 40px;
     background: #FFFFFF;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
     color: #414141;
     &:hover{
       background: lightgray;

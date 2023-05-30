@@ -43,8 +43,6 @@ export default {
 .select{
   outline: none;
   border: none;
-
   width: 166px;
 }
-
 </style>

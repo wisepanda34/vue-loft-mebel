@@ -14,7 +14,7 @@
         <div class='bonus__footline'>
           <div class='bonus__cash'><img src='@/images/icons/cashback.svg' alt="i" class='bonus__icon' />We return up to 7% to the bonus account</div>
           <div class='bonus__cash'>
-            <!--            <dollar-sign-icon size="1.5x" class='bonus__icon'></dollar-sign-icon>-->
+            <font-awesome-icon class="currency-icon" icon="dollar-sign" />
             1 bonus = 1 dollar</div>
           <div class='bonus__cash'><img src='@/images/icons/gift.svg' alt="i" class='bonus__icon' />Pay with bonuses up to 20% of the purchase</div>
         </div>
@@ -25,18 +25,30 @@
 </template>
 
 <script>
-import { DollarSignIcon } from 'vue-feather-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+// Регистрация иконки доллара в библиотеке
+library.add(faDollarSign);
 export default {
+
   name: "Bonus",
   components: {
-    DollarSignIcon
+    FontAwesomeIcon
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.currency-icon {
+  height: 18px;
+  color: #000;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+}
 .bonus{
-  min-height: 106px;
   &__wrapper{
     display: flex;
     flex-direction: column;
@@ -57,13 +69,11 @@ export default {
       font-size: 12px;
       line-height: 14px;
       color: #414141;
-
     }
     div{
       display: inline-block;
       margin-right: 20px;
       margin-top: 5px;
-
     }
     span{
       color: #245462;
@@ -100,57 +110,31 @@ export default {
 
 @media (max-width: 992px) {
   .bonus{
-
-    &__wrapper{
-
-    }
-    &__headline{
-
-    }
     &__footline{
       flex-direction: column;
       gap: 10px;
       padding: 10px 0 10px 30%;
       align-items: start;
     }
-    &__icon{
-
-    }
   }
 }
 @media (max-width: 767px) {
   .bonus{
-
-    &__wrapper{
-
-    }
-    &__headline{
-
-    }
     &__footline{
       padding: 10px 0 10px 20%;
-    }
-    &__icon{
-
     }
   }
 }
 @media (max-width: 576px) {
   .bonus{
-
-    &__wrapper{
-
-    }
     &__headline{
       min-height: 50px;
       flex-direction: column;
+      align-items: center;
       padding-bottom: 20px;
     }
     &__footline{
-      padding: 10px 0 10px 0;
-    }
-    &__icon{
-
+      padding: 10px 0 10px 5%;
     }
   }
 }

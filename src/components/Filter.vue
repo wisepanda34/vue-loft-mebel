@@ -19,21 +19,14 @@
 
         <my-select
             v-model="selectedType"
+            :options="typeOptions"
             class="filter__select"
-        >
-          <option value="Cushioned furniture">Cushioned furniture</option>
-          <option value="cabinet furniture" >cabinet furniture</option>
-          <option value="glass furniture" >glass furniture</option>
-        </my-select>
+        />
         <my-select
-            name="select-form"
+            v-model='selectedKind'
+            :options='kindOptions'
             class="filter__select"
-            required
-        >
-          <option value="Sofa">Sofa</option>
-          <option value="soft corner furniture" >soft corner furniture</option>
-          <option value="folding sofa">folding sofa</option>
-        </my-select>
+        />
 
     </div>
     <div class='filter__price'>
@@ -125,6 +118,19 @@ export default {
         {value:'', name:'all'},
         {value:'sort furniture', name:'sort furniture'},
         {value:'class furniture', name:'class furniture'},
+      ],
+      selectedKind:'',
+      kindOptions:[
+        {value:'', name:'all'},
+        {value:'sofa', name:'sofa'},
+        {value:'bar stool', name:'bar stool'},
+        {value:'bed', name:'bed'},
+        {value:'bufet', name:'bufet'},
+        {value:'commode', name:'commode'},
+        {value:'table', name:'table'},
+        {value:'cupboard', name:'cupboard'},
+        {value:'kids sofa', name:'kids sofa'},
+        {value:'bookcase', name:'bookcase'},
       ]
     }
   },

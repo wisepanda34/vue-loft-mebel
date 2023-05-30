@@ -61,9 +61,7 @@ export default {
       return this.products
     },
     sortedAndFilteredProducts() {
-
       const currentFilter = this.selectedFilter
-      console.log(this.selectedFilter)
       if (currentFilter === 'kitchen') {
         return this.sortedProducts.filter(item=>item.category.toLowerCase().includes(currentFilter.toLowerCase()))
       } if (currentFilter === 'living room') {
@@ -78,7 +76,6 @@ export default {
   methods:{
     onFilterSelected(filterValue){
       this.selectedFilter=filterValue;
-      console.log(this.selectedFilter)
     }
   }
 }

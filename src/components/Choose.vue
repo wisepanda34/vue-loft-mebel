@@ -3,38 +3,21 @@
     <div class="container">
       <div class="choose__wrapper">
         
-        <Filter class="choose__filter"/>
+        <Filter class="choose__filter" @filter-selected="onFilterSelected"/>
         
         <div class="choose__block">
           <div class="choose__options">
             <my-button class="choose__btn">Filter</my-button>
-
-            <div class='sortCatalog'>
-              <div class='sortCatalog__burger'>
-                <my-select
-                    class="select-sort"
-                    v-model="selectedSort"
-                    :options="sortOptions"
-                />
-                <span></span>
-              </div>
-            </div>
-
-            <div class='sortCatalog'>
-              <div class='sortCatalog__burger'>
-                <my-select
-                    class="select-sort"
-                    v-model="selectedFilter"
-                    :options="filterOptions"
-                />
-                <span></span>
-              </div>
-            </div>
-
+            <my-select
+                class="choose__select"
+                v-model="selectedSort"
+                :options="sortOptions"
+            />
           </div>
-          <CardsCatalog
-              :items="sortedAndFilteredProducts"
-          />
+          <div class="choose__cards">
+            <OneCard v-for="item in sortedAndFilteredProducts" :key="item.id" :item="item"/>
+          </div>
+
         </div>
       </div>
     </div>
@@ -46,11 +29,11 @@
 import Filter from "@/components/Filter.vue";
 import MySelect from "@/components/UI/MySelect.vue";
 import MyButton from "@/components/UI/MyButton.vue";
-import CardsCatalog from "@/components/CardsCatalog.vue";
 import {mapGetters} from "vuex";
+import OneCard from "@/components/OneCard.vue";
 export default {
   name: "Choose",
-  components: {CardsCatalog, MyButton, MySelect, Filter},
+  components: {OneCard, MyButton, MySelect, Filter},
   data() {
     return {
       selectedSort: '',
@@ -59,11 +42,7 @@ export default {
         {value:'descending', name:'descending price'},
         {value:'ascending', name:'ascending price'},
       ],
-      selectedFilter: '',
-      filterOptions:[
-        {value:'', name:'all'},
-        {value:'bar stool', name:'Type Stool'}
-      ]
+      selectedFilter:'',
     }
   },
   computed: {
@@ -82,14 +61,26 @@ export default {
       return this.products
     },
     sortedAndFilteredProducts() {
+
       const currentFilter = this.selectedFilter
-      if (currentFilter === 'bar stool') {
+      console.log(this.selectedFilter)
+      if (currentFilter === 'kitchen') {
+        return this.sortedProducts.filter(item=>item.category.toLowerCase().includes(currentFilter.toLowerCase()))
+      } if (currentFilter === 'living room') {
+        return this.sortedProducts.filter(item=>item.category.toLowerCase().includes(currentFilter.toLowerCase()))
+      }if (currentFilter === 'bedroom') {
         return this.sortedProducts.filter(item=>item.category.toLowerCase().includes(currentFilter.toLowerCase()))
       }
 
       return this.sortedProducts
     }
   },
+  methods:{
+    onFilterSelected(filterValue){
+      this.selectedFilter=filterValue;
+      console.log(this.selectedFilter)
+    }
+  }
 }
 </script>
 
@@ -98,10 +89,12 @@ export default {
   padding: 20px 0;
   &__wrapper{
     display: flex;
-    justify-content: space-between;
+  }
+  &__filter{
+    flex:0 0 auto;
   }
   &__block{
-    width: 100%;
+    flex:1 1 auto;
   }
   &__options{
     display: flex;
@@ -120,29 +113,48 @@ export default {
       background: #e0dfdf;
     }
   }
-  &__sort{
-
+  &__select{
+    text-align: center;
   }
   &__cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 20px 0;
+  }
+}
+@media (max-width: 1100px) {
+  .choose{
+    &__cards {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 }
 @media (max-width: 850px) {
   .choose{
     &__wrapper{
     }
+    &__filter{
+      display: none;
+    }
     &__block{
       width: 100%;
-
     }
     &__options{
       justify-content: space-between;
       gap: 25px;
     }
-    &__filter{
-      display: none;
-    }
     &__btn{
       display: block;
+    }
+    &__cards {
+      justify-content: space-around;
+    }
+  }
+}
+@media (max-width: 550px) {
+  .choose {
+    &__cards {
+      grid-template-columns: 1fr;
     }
   }
 }

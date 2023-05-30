@@ -6,7 +6,8 @@ const cart = {
                 {
                     id: 'qw1',
                     titleCard: "Valencia Beige",
-                    category: "bar stool",
+                    typeProduct: "bar stool",
+                    category:'kitchen',
                     img: '/images/img/chair-Beige.jpg',
                     price: 28,
                     width: 42,
@@ -17,7 +18,8 @@ const cart = {
                 {
                     id: 'qw2',
                     titleCard: "Tolics-2 whire Gloss",
-                    category: "bar stool",
+                    typeProduct: "bar stool",
+                    category:'kitchen',
                     img: '/images/img/chair-white-Gloss.jpg',
                     price: 35,
                     width: 43,
@@ -28,7 +30,8 @@ const cart = {
                 {
                     id: 'qw3',
                     titleCard: "Dins Velwet yellow",
-                    category: "sofa",
+                    typeProduct: "sofa",
+                    category:'living room',
                     img: '/images/img/sofa-yellow.jpg',
                     price: 529,
                     width: 2100,
@@ -39,7 +42,8 @@ const cart = {
                 {
                     id: 'qw4',
                     titleCard: "Koosken Navy blue",
-                    category: "sofa",
+                    typeProduct: "sofa",
+                    category:'living room',
                     img: '/images/img/sofa-Koosken.jpg',
                     price: 450,
                     width: 1950,
@@ -50,7 +54,8 @@ const cart = {
                 {
                     id: 'qw5',
                     titleCard: "Sherona barhat gray",
-                    category: "bed",
+                    typeProduct: "bed",
+                    category:'bedroom',
                     img: '/images/img/bed-Sherona.jpg',
                     price: 459,
                     width: 2050,
@@ -61,7 +66,8 @@ const cart = {
                 {
                     id: 'qw6',
                     titleCard: "Avinghon-1",
-                    category: "bufet",
+                    typeProduct: "bufet",
+                    category:'kitchen',
                     img: '/images/img/bufet-Avinghon.jpg',
                     price: 399,
                     width: 1200,
@@ -72,7 +78,8 @@ const cart = {
                 {
                     id: 'qw7',
                     titleCard: "Stella oak sonoma",
-                    category: "commode",
+                    typeProduct: "commode",
+                    category:'bedroom',
                     img: '/images/img/commode-Stella.jpg',
                     price: 229,
                     width: 1200,
@@ -83,7 +90,8 @@ const cart = {
                 {
                     id: 'qw8',
                     titleCard: "Ravenna-1 light",
-                    category: "commode",
+                    typeProduct: "commode",
+                    category:'bedroom',
                     img: '/images/img/commode-Ravenna.jpg',
                     price: 350,
                     width: 1200,
@@ -94,7 +102,8 @@ const cart = {
                 {
                     id: 'qw9',
                     titleCard: "Benflit gray",
-                    category: "table",
+                    typeProduct: "table",
+                    category:'living room',
                     img: '/images/img/table-Benflit.jpg',
                     price: 159,
                     width: 450,
@@ -105,7 +114,8 @@ const cart = {
                 {
                     id: 'qw10',
                     titleCard: "Tiffany Woodline creem",
-                    category: "table",
+                    typeProduct: "table",
+                    category:'living room',
                     img: '/images/img/table-Tiffany.jpg',
                     price: 219,
                     width: 1100,
@@ -116,7 +126,8 @@ const cart = {
                 {
                     id: 'qw11',
                     titleCard: "Valencia Beige",
-                    category: "cupboard",
+                    typeProduct: "cupboard",
+                    category:'living room',
                     img: '/images/img/closet-Beige.jpg',
                     price: 369,
                     width: 1200,
@@ -127,7 +138,8 @@ const cart = {
                 {
                     id: 'qw12',
                     titleCard: "Light-3 white",
-                    category: "cupboard",
+                    typeProduct: "cupboard",
+                    category:'living room',
                     img: '/images/img/closet-Light.jpg',
                     price: 459,
                     width: 1200,
@@ -138,7 +150,8 @@ const cart = {
                 {
                     id: 'qw13',
                     titleCard: "Villy pink",
-                    category: "kids sofa",
+                    typeProduct: "kids sofa",
+                    category:'bedroom',
                     img: '/images/img/sofa-Villy.jpg',
                     price: 399,
                     width: 1100,
@@ -149,7 +162,8 @@ const cart = {
                 {
                     id: 'qw14',
                     titleCard: "Saint-Paolo Velvet Brown",
-                    category: "kids sofa",
+                    typeProduct: "kids sofa",
+                    category:'bedroom',
                     img: '/images/img/sofa-Saint-Paolo.jpg',
                     price: 419,
                     width: 1300,
@@ -160,7 +174,8 @@ const cart = {
                 {
                     id: 'qw15',
                     titleCard: "Valencia Beige",
-                    category: "bookcase",
+                    typeProduct: "bookcase",
+                    category:'living room',
                     img: '/images/img/bookcase-Beige.jpg',
                     price: 360,
                     width: 1600,

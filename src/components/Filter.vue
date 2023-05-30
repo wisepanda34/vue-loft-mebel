@@ -12,19 +12,14 @@
       <p class='filter__subtitle'>Chapter</p>
 
         <my-select
-            name="select-place"
+            v-model="selectedFilter"
+            :options="filterOptions"
             class="filter__select"
+        />
 
-            required
-        >
-          <option value="Kitchen" >Kitchen</option>
-          <option value="Bedroom" >Bedroom</option>
-          <option value="Living rooms">Living rooms</option>
-        </my-select>
         <my-select
-            name="select-type"
+            v-model="selectedType"
             class="filter__select"
-            required
         >
           <option value="Cushioned furniture">Cushioned furniture</option>
           <option value="cabinet furniture" >cabinet furniture</option>
@@ -118,9 +113,26 @@ export default {
   components: { MySelect },
   data() {
     return {
-
+      selectedFilter: '',
+      filterOptions:[
+        {value:'', name:'all'},
+        {value:'kitchen', name:'kitchen'},
+        {value:'living room', name:'living room'},
+        {value:'bedroom', name:'bedroom'}
+      ],
+      selectedType:'',
+      typeOptions:[
+        {value:'', name:'all'},
+        {value:'sort furniture', name:'sort furniture'},
+        {value:'class furniture', name:'class furniture'},
+      ]
     }
   },
+  watch:{
+    selectedFilter(newVal){
+      this.$emit('filter-selected',newVal)
+    }
+  }
 }
 </script>
 

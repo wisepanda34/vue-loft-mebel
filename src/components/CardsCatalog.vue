@@ -1,7 +1,7 @@
 <template>
-  <section class='cardsCatalog'>
+  <section class='cards'>
 
-      <div class='cardsCatalog__wrapper'>
+      <div class='cards__wrapper'>
         <OneCard v-for="item in items" :key="item.id" :item="item"/>
       </div>
 
@@ -13,7 +13,7 @@ import OneCard from "@/components/OneCard.vue"
 import {mapGetters} from "vuex";
 
 export default {
-  name: "CardsCatalog",
+  name: "cards",
   components: {OneCard},
   props: {
     items: {
@@ -29,8 +29,8 @@ export default {
 
 
 <style lang="scss" scoped>
-.cardsCatalog {
-  &__wrapper {
+.cards {
+  &__cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 20px 0;
@@ -38,25 +38,25 @@ export default {
 }
 
 @media (max-width: 1100px) {
-  .cardsCatalog {
-    &__wrapper {
+  &__cards {
+    &__cards {
       grid-template-columns: 1fr 1fr;
     }
   }
 }
 
 @media (max-width: 850px) {
-  .cardsCatalog {
+  &__cards {
 
-    &__wrapper {
+    &__cards {
       justify-content: space-around;
     }
   }
 }
 
 @media (max-width: 550px) {
-  .cardsCatalog {
-    &__wrapper {
+  .choose {
+    &__cards {
       grid-template-columns: 1fr;
     }
   }

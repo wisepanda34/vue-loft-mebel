@@ -2,13 +2,13 @@
   <select
       class="select"
       :value="modelValue"
-      @input="changeOption($event.target.value)"
+      @change="changeOption($event.target.value)"
   >
 <!--    <option disabled value="">Change item</option>-->
     <option
         v-for="option in options"
-        :key="option.name"
-        :value="option.name"
+        :key="option.value"
+        :value="option.value"
     >{{option.name}}</option>
 
   </select>
@@ -18,22 +18,22 @@
 export default {
   name: "my-select",
   props:{
-    modelValue:{
-      type:String
+    modelValue: {
+      type: String,
     },
-    options:{
+    options: {
       type: Array,
       default:()=>[]
     }
   },
   mounted() {
-    if (!this.modelValue && this.options.length > 0) {
+    if (this.options.length > 0) {
       this.changeOption(this.options[0].value);
     }
   },
   methods:{
-    changeOption(event){
-      this.$emit('update:modelValue', event)
+    changeOption(value){
+      this.$emit('update:modelValue',value)
     }
   }
 }

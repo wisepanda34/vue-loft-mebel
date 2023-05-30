@@ -19,7 +19,7 @@ export default {
   components: {MySelect},
   data(){
     return{
-      selectedSort:'by popularity',
+      selectedSort:'',
       sortOptions:[
         {value:'popular', name:'by popularity'},
         {value:'descending', name:'descending price'},

@@ -1,7 +1,5 @@
 <template>
-  <Header/>
   <Choose/>
-  <Footer/>
 </template>
 
 <script>
@@ -11,7 +9,7 @@ import Choose from "@/components/Choose.vue";
 
 export default {
   name: "Catalog",
-  components: {Choose, Footer, Header}
+  components: {Choose}
 }
 </script>
 

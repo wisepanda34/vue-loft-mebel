@@ -1,17 +1,14 @@
 <template>
-  <Header/>
   <DeliveryOrder/>
-  <Footer/>
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
+
 import DeliveryOrder from "@/components/DeliveryOrder.vue";
 
 export default {
   name: "DeliveryPage",
-  components: {DeliveryOrder, Footer, Header}
+  components: {DeliveryOrder, }
 }
 </script>
 

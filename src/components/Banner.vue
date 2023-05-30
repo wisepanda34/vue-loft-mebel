@@ -70,7 +70,6 @@ export default {
 <style lang="scss" scoped>
 
 .banner{
-   min-height: 450px;
   &__wrapper{
     position: relative;
   }
@@ -137,8 +136,6 @@ export default {
 }
 @media(max-width:992px){
   .banner{
-    min-height: 126px;
-
     &__slide{
       height: 330px;
   }

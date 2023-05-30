@@ -2,7 +2,7 @@
   <section class='cardsCatalog'>
 
       <div class='cardsCatalog__wrapper'>
-        <OneCard v-for="item in products" :key="item.id" :item="item"/>
+        <OneCard v-for="item in items" :key="item.id" :item="item"/>
       </div>
 
   </section>
@@ -15,13 +15,14 @@ import {mapGetters} from "vuex";
 export default {
   name: "CardsCatalog",
   components: {OneCard},
+  props: {
+    items: {
+      type: Array,
+      default: () => []
+    }
+  },
   data() {
     return {}
-  },
-  computed:{
-    ...mapGetters({
-      products: 'products/getProducts'
-    })
   }
 }
 </script>

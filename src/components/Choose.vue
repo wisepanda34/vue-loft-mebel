@@ -2,13 +2,39 @@
   <section class="choose">
     <div class="container">
       <div class="choose__wrapper">
+        
         <Filter class="choose__filter"/>
+        
         <div class="choose__block">
           <div class="choose__options">
             <my-button class="choose__btn">Filter</my-button>
-            <SortCatalog class="choose__sort"/>
+
+            <div class='sortCatalog'>
+              <div class='sortCatalog__burger'>
+                <my-select
+                    class="select-sort"
+                    v-model="selectedSort"
+                    :options="sortOptions"
+                />
+                <span></span>
+              </div>
+            </div>
+
+            <div class='sortCatalog'>
+              <div class='sortCatalog__burger'>
+                <my-select
+                    class="select-sort"
+                    v-model="selectedFilter"
+                    :options="filterOptions"
+                />
+                <span></span>
+              </div>
+            </div>
+
           </div>
-          <CardsCatalog />
+          <CardsCatalog
+              :items="sortedAndFilteredProducts"
+          />
         </div>
       </div>
     </div>
@@ -18,12 +44,52 @@
 
 <script>
 import Filter from "@/components/Filter.vue";
-import SortCatalog from "@/components/SortCatalog.vue";
+import MySelect from "@/components/UI/MySelect.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import CardsCatalog from "@/components/CardsCatalog.vue";
+import {mapGetters} from "vuex";
 export default {
   name: "Choose",
-  components: {CardsCatalog, MyButton, SortCatalog, Filter}
+  components: {CardsCatalog, MyButton, MySelect, Filter},
+  data() {
+    return {
+      selectedSort: '',
+      sortOptions:[
+        {value:'', name:'by popularity'},
+        {value:'descending', name:'descending price'},
+        {value:'ascending', name:'ascending price'},
+      ],
+      selectedFilter: '',
+      filterOptions:[
+        {value:'', name:'all'},
+        {value:'bar stool', name:'Type Stool'}
+      ]
+    }
+  },
+  computed: {
+    ...mapGetters({
+      products: 'products/getProducts'
+    }),
+    sortedProducts() {
+      if (this.selectedSort === 'ascending') {
+        return [...this.products].sort((a,b)=>a.price - b.price)
+      }
+
+      if (this.selectedSort === 'descending') {
+        return [...this.products].sort((a,b)=>b.price - a.price)
+      }
+
+      return this.products
+    },
+    sortedAndFilteredProducts() {
+      const currentFilter = this.selectedFilter
+      if (currentFilter === 'bar stool') {
+        return this.sortedProducts.filter(item=>item.category.toLowerCase().includes(currentFilter.toLowerCase()))
+      }
+
+      return this.sortedProducts
+    }
+  },
 }
 </script>
 

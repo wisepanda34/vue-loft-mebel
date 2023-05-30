@@ -77,7 +77,7 @@ export default {
   &__wrapper{
     display: flex;
     justify-content: space-between;
-    padding: 25px 0;
+    padding:25px 0 15px 0;
     font-size: 14px;
     line-height: 1.27;
     color: #414141;

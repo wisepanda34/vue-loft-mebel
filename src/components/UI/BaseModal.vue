@@ -1,6 +1,7 @@
 <template>
   <!--  tabindex="-1"  фокусировка на элементе, для срабатывания esc-->
   <div class="modal"
+       v-if="isModalOpen"
        ref="modalElement"
        @click.self="close"
        tabindex="-1"
@@ -18,7 +19,13 @@
 <script>
 export default {
   name: "BaseModal",
-  emits:['close'],
+  props:{
+    isModalOpen:{
+      type: Boolean,
+      required: true
+    }
+  },
+  // emits:['close'],
   mounted() {
     this.$refs.modalElement.focus();
   },
@@ -27,8 +34,6 @@ export default {
       this.$emit('close');
     }
   },
-
-
 }
 </script>
 

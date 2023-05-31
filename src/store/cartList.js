@@ -22,7 +22,7 @@ const cartList = {
     mutations: {
         ADD_TO_CART(state, payload) {
             const productIdx = state.cartList.findIndex((item) => item.id === payload.id)
-            console.log(productIdx)
+            // console.log(productIdx)
             const productsCopy = [...state.cartList]
 
             let product = {
@@ -34,7 +34,7 @@ const cartList = {
 
             if (productIdx > -1) {
                 const amount = productsCopy[productIdx].amount + 1
-                console.log(amount)
+                // console.log(amount)
                 product = {...product, amount}
                 productsCopy.splice(productIdx, 1, product)
                 state.cartList = productsCopy

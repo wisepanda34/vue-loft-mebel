@@ -5,24 +5,41 @@
     <Footer/>
   </div>
 
-  <BaseModal v-if="isVoiceModalOpen" @close="isVoiceModalOpen=false"/>
+  <BaseModal
+      v-if="isVoiceModalOpen"
+      :isModalOpen="isVoiceModalOpen"
+      @close="closeVoiceModal"
+  />
 </template>
 
 <script>
+import {mapGetters,mapActions} from "vuex";
 import BaseModal from "@/components/UI/BaseModal.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 
+
   export default {
     components: {Footer, Header, BaseModal},
-    data(){
-      return{
-        isVoiceModalOpen: true,
+
+    // emits:['close'],
+
+    computed: {
+      ...mapGetters('modal',["getIsVoiceModalOpen"]),
+      isVoiceModalOpen:{
+        get(){
+          return this.getIsVoiceModalOpen
+        }
       }
     },
+    watch: {
+    },
+    methods:{
+      ...mapActions("modal", ["closeVoiceModal"])
+    },
     mounted() {
-      this.$store.dispatch('showCtx')
-    }
+      this.$store.dispatch('showCtx');
+    },
   }
 </script>
 

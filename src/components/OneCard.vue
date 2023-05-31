@@ -16,7 +16,7 @@
         <div class='card__descr-size'>
           <div><span>width</span><p>{{item.width}} sm</p></div>&#9587;<div><span>deep</span><p>{{item.deep}} sm</p></div>&#9587;<div><span>height</span><p>{{item.height}} sm</p></div>
         </div>
-        <my-button class='card__descr-btn' @click.prevent="handleAddToCart(item)" @click="$emit(isVoiceModalOpen=true)">Add to cart</my-button>
+        <my-button class='card__descr-btn' @click.prevent="handleAddToCartAndOpenVoiceModal(item)" >Add to cart</my-button>
       </div>
 
     </router-link>
@@ -28,6 +28,7 @@
 import {mapActions} from "vuex";
 import MyButton from "@/components/UI/MyButton.vue";
 import BaseModal from "@/components/UI/BaseModal.vue";
+
 export default {
   name: "OneCard",
   components: {BaseModal, MyButton},
@@ -39,10 +40,12 @@ export default {
   },
   methods: {
     ...mapActions('cartList', ['addToCart']),
-    handleAddToCart(card) {
-      this.addToCart(card);
-    },
+    ...mapActions('modal',['openVoiceModal']),
     ...mapActions('favorites',['addToFavorites']),
+    handleAddToCartAndOpenVoiceModal(card) {
+      this.addToCart(card);
+      this.openVoiceModal();
+    },
     handleAddToFavorites(card, like) {
       const isFavorite = this.isCardInFavorites(card);
       if (isFavorite) {

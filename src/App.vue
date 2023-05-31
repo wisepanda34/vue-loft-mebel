@@ -1,11 +1,11 @@
 <template>
   <div class="appPage">
     <Header/>
-    <router-view class="appPage__router"/>
+    <router-view />
     <Footer/>
   </div>
 
-<!--  <BaseModal/>-->
+  <BaseModal v-if="isVoiceModalOpen" @close="isVoiceModalOpen=false"/>
 </template>
 
 <script>
@@ -15,7 +15,11 @@ import Footer from "@/components/Footer.vue";
 
   export default {
     components: {Footer, Header, BaseModal},
-
+    data(){
+      return{
+        isVoiceModalOpen: true,
+      }
+    },
     mounted() {
       this.$store.dispatch('showCtx')
     }
@@ -28,7 +32,7 @@ import Footer from "@/components/Footer.vue";
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  &__router{
+  router-view{
     flex: 1 1 auto;
   }
 }

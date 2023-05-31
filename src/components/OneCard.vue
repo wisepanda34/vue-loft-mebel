@@ -1,6 +1,7 @@
 <template>
 
     <router-link class='card' to="/cardPage" >
+
       <div class='card__pic'>
         <div :class="['card__heart', {'yellow':isCardInFavorites(item)}]"  @click.prevent="handleAddToFavorites(item,true)">&#9825;</div>
         <img :src="item.img" alt="img" />
@@ -15,7 +16,7 @@
         <div class='card__descr-size'>
           <div><span>width</span><p>{{item.width}} sm</p></div>&#9587;<div><span>deep</span><p>{{item.deep}} sm</p></div>&#9587;<div><span>height</span><p>{{item.height}} sm</p></div>
         </div>
-        <my-button class='card__descr-btn' @click.prevent="handleAddToCart(item)">Add to cart</my-button>
+        <my-button class='card__descr-btn' @click.prevent="handleAddToCart(item)" @click="$emit(isVoiceModalOpen=true)">Add to cart</my-button>
       </div>
 
     </router-link>

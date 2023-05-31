@@ -5,7 +5,7 @@
 
       <div class='saving__wrapper'>
 
-        <div class='saving__item' v-for="item in savingDB" :key='item.subtitle'>
+        <div class='saving__item' v-for="item in savings" :key='item.subtitle'>
           <h6>{{ item.subtitle }}</h6>
           <p>{{ item.descr }}</p>
         </div>
@@ -24,7 +24,6 @@
 <script>
 
 import {mapGetters} from "vuex";
-import savings from "@/store/savings";
 
 export default {
   name: "Saving",

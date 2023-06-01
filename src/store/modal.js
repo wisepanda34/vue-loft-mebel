@@ -2,23 +2,23 @@ const modal = {
     namespaced: true,
     state(){
         return{
-            isVoiceModalOpen: false
+            modalTexts: '',
         }
     },
     getters:{
-        getIsVoiceModalOpen: state=>state.isVoiceModalOpen
+        getModalText: state=>state.modalTexts
     },
     actions:{
-        openVoiceModal({commit}){
-            commit('SET_MODAL_OPEN',true)
+        openVoiceModal({commit},payload){
+            commit('SET_MODAL_TEXTS', payload)
         },
         closeVoiceModal({commit}){
-            commit('SET_MODAL_OPEN',false)
+            commit('SET_MODAL_TEXTS','')
         }
     },
     mutations:{
-        SET_MODAL_OPEN(state,isOpen){
-            state.isVoiceModalOpen=isOpen
+        SET_MODAL_TEXTS(state, modalTexts) {
+            state.modalTexts = modalTexts;
         }
     }
 }

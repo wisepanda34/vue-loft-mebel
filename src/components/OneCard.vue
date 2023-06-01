@@ -16,7 +16,9 @@
         <div class='card__descr-size'>
           <div><span>width</span><p>{{item.width}} sm</p></div>&#9587;<div><span>deep</span><p>{{item.deep}} sm</p></div>&#9587;<div><span>height</span><p>{{item.height}} sm</p></div>
         </div>
-        <my-button class='card__descr-btn' @click.prevent="handleAddToCartAndOpenVoiceModal(item)" >Add to cart</my-button>
+        <my-button class='card__descr-btn'
+           @click.prevent="handleAddToCartAndOpenVoiceModal(item)"
+        >Add to cart</my-button>
       </div>
 
     </router-link>
@@ -39,12 +41,17 @@ export default {
     }
   },
   methods: {
-    ...mapActions('cartList', ['addToCart']),
-    ...mapActions('modal',['openVoiceModal']),
-    ...mapActions('favorites',['addToFavorites']),
+    ...mapActions({
+      addToCart:'cartList/addToCart',
+      addToFavorites:'favorites/addToFavorites',
+      openVoiceModal: 'modal/openVoiceModal'
+    }),
+
     handleAddToCartAndOpenVoiceModal(card) {
+
       this.addToCart(card);
-      this.openVoiceModal();
+      this.openVoiceModal('That product was added to cart!');
+
     },
     handleAddToFavorites(card, like) {
       const isFavorite = this.isCardInFavorites(card);

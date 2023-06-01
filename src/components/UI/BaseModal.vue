@@ -1,22 +1,25 @@
 <template>
   <!--  tabindex="-1"  фокусировка на элементе, для срабатывания esc-->
+
   <div class="modal"
-       v-if="isModalOpen"
+       v-if="getModalText.length>0"
        ref="modalElement"
-       @click.self="close"
+       @click.self="closeVoiceModal"
        tabindex="-1"
-       @keydown.esc="close"
+       @keydown.esc="closeVoiceModal"
   >
     <div class="modal__white">
       <div class="modal__delete">
-        <span @click="close">&#9587;</span>
+        <span @click="closeVoiceModal">&#9587;</span>
       </div>
-      <div class="modal__content">Added into the cart</div>
+      <div  class="modal__content">{{getModalText}}</div>
     </div>
   </div>
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+
 export default {
   name: "BaseModal",
   props:{
@@ -25,14 +28,26 @@ export default {
       required: true
     }
   },
-  // emits:['close'],
-  mounted() {
-    this.$refs.modalElement.focus();
+  emits:['close'],
+  computed:{
+    ...mapGetters({
+      getModalText: 'modal/getModalText'
+    })
+  },
+  watch:{
+    getModalText(value){
+      //код внутри $nextTick будет выполнен, когда Vue обновит DOM
+      this.$nextTick(()=>{
+        if(value){
+          this.$refs.modalElement.focus();
+        }
+      })
+    }
   },
   methods:{
-    close(){
-      this.$emit('close');
-    }
+    ...mapActions({
+      closeVoiceModal: 'modal/closeVoiceModal'
+    }),
   },
 }
 </script>

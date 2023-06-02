@@ -13,54 +13,11 @@
               }"
           >
             <div class="profile__personal-grid">
-              <div class='profile__personal-grid-name' >
-                <label for='input_name'>Name
-                  <my-input name='input_name' v-model="userData.name" />
+              <div v-for="field in Object.keys(userData)" :class='`profile__personal-grid-${field}`' >
+                <label :for='`input_${field}`'>{{ field }}
+                  <my-input  :name='`input_${field}`' v-model="userData[field]" />
                 </label>
               </div>
-
-              <div class='profile__personal-grid-mail'>
-                <label for='input_mail'>email
-                  <my-input type='email' name='input_mail' v-model="userData.email" />
-                </label>
-              </div>
-
-              <div class='profile__personal-grid-surname'>
-                <label for='input_surname'>Surname
-                  <my-input name='input_surname' v-model="userData.surname" />
-                </label>
-              </div>
-
-              <div class='profile__personal-grid-phone' >
-                <label for='input_phone'>phone
-                  <my-input type='tel' name='input_phone' v-model="userData.phone"/>
-                </label>
-              </div>
-
-              <div class='profile__personal-grid-city'>
-                <label for='input_city'>city
-                  <my-input name='input_city' v-model="userData.city"/>
-                </label>
-              </div>
-
-              <div class='profile__personal-grid-street'>
-                <label for='input_street'>street
-                  <my-input name='input_street' v-model="userData.street"/>
-                </label>
-              </div>
-
-              <div class='profile__personal-grid-build'>
-                <label for='input_build'>build
-                  <my-input name='input_house' v-model="userData.house"/>
-                </label>
-              </div>
-
-              <div class='profile__personal-grid-apart'>
-                <label for='input_apart'>apart
-                  <my-input name='input_flat' v-model="userData.flat"/>
-                </label>
-              </div>
-
             </div>
 
             <my-button
@@ -129,7 +86,12 @@ name: "Profile",
     })
   },
   mounted() {
-    this.userData = this.getUserData
+    Object.keys(this.getUserData).forEach(key=>{ //name
+      const userValue = this.getUserData[key]    //Guest
+      // ниже логика для вывода тех полей в форме, которые указаны в data()
+      if(userValue) this.userData[key]=userValue
+      console.log('userValue >>',userValue)
+    })
   },
   methods:{
     ...mapActions({

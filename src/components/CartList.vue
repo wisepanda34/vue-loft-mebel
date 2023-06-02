@@ -5,7 +5,7 @@
 
         <div class='cartlist__heading'>
           <div>Your cart</div>
-          <div><span>{{cartList.length}}</span> items</div>
+          <div><span>{{this.count}}</span> items</div>
         </div>
 
         <ul class='cartlist__list' v-for="item in cartList" :key="cartList.id" >
@@ -18,10 +18,10 @@
           <div class='cartlist__act-total'>
             The total cost: &nbsp;&nbsp;  <span>{{ this.sum }}&nbsp;&#36;</span>
           </div>
-          <button class='cartlist__act-btn btn' type='button'>Checkout</button>
+          <router-link to="/checkOut" class='cartlist__act-btn btn'>Checkout</router-link>
         </div>
 
-        <h3 style="color: red">Recomendations</h3>
+        <h3 style="color: red">Recommendations</h3>
 
       </div>
     </div>
@@ -35,14 +35,12 @@ export default {
   name: "CartList",
   components:{ CartProduct},
   data(){
-    return{
-
-       sum:0,
-   }
   },
   computed:{
     ...mapGetters({
-      cartList: 'cartList/getCartList'
+      cartList: 'cartList/getCartList',
+      sum: 'cartList/getTotalSum',
+      count: 'cartList/getCountOfProducts'
     })
   }
 }

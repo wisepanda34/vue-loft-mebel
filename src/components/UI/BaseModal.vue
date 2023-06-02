@@ -22,12 +22,6 @@ import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "BaseModal",
-  props:{
-    isModalOpen:{
-      type: Boolean,
-      required: true
-    }
-  },
   emits:['close'],
   computed:{
     ...mapGetters({

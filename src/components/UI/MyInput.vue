@@ -1,10 +1,33 @@
 <template>
-  <input type="text" class="input">
+<!-- v-model="value"  =  :value="modelValue" @input="handleInput"  -->
+  <input
+      v-model="value"
+      type="text"
+      class="input"
+  >
 </template>
 
 <script>
 export default {
-  name: "my-input"
+  name: "my-input",
+  props:['modelValue'],
+  emits:['update:modelValue'],
+  computed:{
+    value:{
+      get(){
+        return this.modelValue
+      },
+      set(value){
+        this.$emit('update:modelValue', value)
+      }
+    }
+  },
+  methods:{
+    // handleInput(e){
+    //   this.$emit('update/modelValue', e.target.value)
+    // }
+  }
+
 }
 </script>
 

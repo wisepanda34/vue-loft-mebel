@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "CartProduct",
   props:{
@@ -31,8 +33,12 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      openVoiceModal:'modal/openVoiceModal'
+    }),
     handlerRemoveProduct(item) {
       this.$store.dispatch('cartList/removeFromCart', item.id);
+      this.openVoiceModal('Product was removed from cart!')
     }
   }
 }
@@ -94,7 +100,7 @@ export default {
   }
   &__delete{
     flex:0 0 57px;
-    height: 100%;
+    min-height: 120px;
     background: #f5f2f2;
     display: flex;
     justify-content: center;

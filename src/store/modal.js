@@ -19,6 +19,9 @@ const modal = {
     mutations:{
         SET_MODAL_TEXTS(state, modalTexts) {
             state.modalTexts = modalTexts;
+            setTimeout(() => {
+                state.modalTexts = '';
+            }, 1000);
         }
     }
 }

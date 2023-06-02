@@ -9,6 +9,7 @@ import Catalog from "@/pages/Catalog.vue";
 import CardPage from "@/pages/CardPage.vue";
 import FavoritesPage from "@/pages/FavoritesPage.vue";
 import DeliveryPage from "@/pages/DeliveryPage.vue";
+import CheckOut from "@/pages/CheckOut.vue";
 
 const routes = [
   {
@@ -50,6 +51,10 @@ const routes = [
   {
     path: '/deliveryPage',
     component: DeliveryPage
+  },
+  {
+    path: '/checkOut',
+    component: CheckOut
   },
 
 

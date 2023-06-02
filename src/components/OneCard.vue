@@ -46,12 +46,9 @@ export default {
       addToFavorites:'favorites/addToFavorites',
       openVoiceModal: 'modal/openVoiceModal'
     }),
-
     handleAddToCartAndOpenVoiceModal(card) {
-
       this.addToCart(card);
       this.openVoiceModal('That product was added to cart!');
-
     },
     handleAddToFavorites(card, like) {
       const isFavorite = this.isCardInFavorites(card);

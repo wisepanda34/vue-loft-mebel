@@ -1,14 +1,24 @@
 
-
 const cartList = {
     namespaced:true,
     state(){
         return{
-            cartList:[]
+            cartList:[],
+
         }
     },
     getters:{
-        getCartList: state=>state.cartList
+        getCartList: state=>state.cartList,
+        getTotalSum: state => {
+            return state.cartList.reduce((total, item) => {
+                return total + item.price * item.amount;
+            }, 0);
+        },
+        getCountOfProducts: state=>{
+            return state.cartList.reduce((count,item)=>{
+                return count + item.amount;
+            },0)
+        }
     },
     actions: {
         //это логика вызова мутации 'ADD_TO_CART' из компонента

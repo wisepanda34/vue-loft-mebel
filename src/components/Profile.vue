@@ -97,6 +97,8 @@ name: "Profile",
     ...mapActions({
       updateUserData: 'user/updateUserData'
     }),
+    //это логика для исключения повторной генерации события handleSubmit
+    // в момент отправления данных из формы в хранилище
     async handleSubmit () {
       if (this.loading) return
       console.log('submit')

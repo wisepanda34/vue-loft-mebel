@@ -1,35 +1,52 @@
 <template>
   <div class="checkOut">
     <div class="container">
-      <h1>Placing an order</h1>
+      <div class="checkOut__wrapper">
+        <h1 class="checkOut__title center">Placing an order</h1>
 
-      <form class="checkOut__form form">
-
-        <div class="checkOut__block">
-          <div class="checkOut__block_head">
-            <h3 class="checkOut__block_title">1 Your contact details</h3>
-            <font-awesome-icon class="checkOut__block_edit" icon="pen-to-square" />
+        <form
+            @submit.prevent="handleSubmit"
+            class='checkOut__form form'
+            :class="{
+                'disabled_class': loading
+              }"
+        >
+          <div class="checkOut__block">
+            <h3 class="checkOut__form_subtitle">1 Your contact details</h3>
+            <div class="checkOut__form_grid">
+              <div v-for="field in Object.keys(userData)" :class='`checkOut__form_grid_${field}`' >
+                <label :for='`input_${field}`'>{{ field }}
+                  <my-input class="checkOut__form_input input"  :name='`input_${field}`' v-model="userData[field]" />
+                </label>
+              </div>
+            </div>
           </div>
-          <div class="checkOut__block_client">client</div>
+          <div class="checkOut__block">
+            <h3 class="checkOut__form_subtitle">2 Delivery</h3>
+            <div class="checkOut__form_delivery">
+              <label v-for="option in optionsDelivery" :key="option.value">
+                <input type="radio" :value="option.value" v-model="selectedDelivery" class="checkOut__form_radio">
+                {{ option.label }}
+              </label>
+            </div>
+          </div>
+          <div class="checkOut__block">
+            <h3 class="checkOut__form_subtitle">3 Payment</h3>
+            <div class="checkOut__form_payment ">
+              <label v-for="option in optionsPayment" :key="option.value">
+                <input type="radio" :value="option.value" v-model="selectedPayment" class="checkOut__form_radio">
+                {{ option.label }}
+              </label>
+            </div>
+          </div>
+          <my-button
+              type="submit"
+              class='checkOut__form_btn btn'
+              :disabled="loading"
+          >Change</my-button>
 
-        </div>
-
-
-        <br><br>
-        <div class="checkOut__block">
-          <h3 class="checkOut__block-title">2 Delivery</h3>
-        </div>
-
-        <div class="checkOut__block">
-          <h3 class="checkOut__block-title">3 Payment</h3>
-        </div>
-
-        <div class="checkOut__block">
-          <h3 class="checkOut__block-title">4 Contact details of the recipient of the order</h3>
-        </div>
-
-      </form>
-
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -39,30 +56,130 @@ import DeliveryOrder from "@/components/DeliveryOrder.vue";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
+import {mapActions, mapGetters} from "vuex";
+import MyInput from "@/components/UI/MyInput.vue";
+import MyButton from "@/components/UI/MyButton.vue";
 // Регистрация иконки доллара в библиотеке
 library.add(faPenToSquare);
 export default {
   name: "CheckOut",
-  components: {DeliveryOrder, FontAwesomeIcon}
+  components: {DeliveryOrder, FontAwesomeIcon,MyButton, MyInput},
+  data(){
+    return {
+      userData:{
+        name: '',
+        surname: '',
+        email: '',
+        phone:'',
+      },
+      loading: false,
+      optionsDelivery: [
+        { label: 'pickup', value: 'pickup' },
+        { label: 'delivery by our company', value: 'company' },
+        { label: 'delivery by FedEX', value: 'FedEX' }
+      ],
+      selectedDelivery: '',
+      optionsPayment:[
+        { label: 'bank transfer', value: 'bank transfer' },
+        { label: 'cash payment', value: 'cash payment' },
+        { label: 'credit', value: 'credit' },
+        { label: 'leasing', value: 'leasing' },
+      ],
+      selectedPayment:'',
+    }
+  },
+  computed:{
+    ...mapGetters({
+      getUserData:'user/getUserData'
+    })
+  },
+  mounted() {
+    const getUserDataKeys = Object.keys(this.getUserData)//name
+    const thisUserDataKeys = Object.keys(this.userData)
+
+    getUserDataKeys.forEach(key=>{
+      if(thisUserDataKeys.includes(key)){
+        const userValue = this.getUserData[key]    //Guest
+        // ниже логика для вывода тех полей в форме, которые указаны в data()
+        if(userValue){
+          this.userData[key]=userValue
+          console.log('userValue >>',userValue)
+        }
+      }
+    })
+  },
+  methods: {
+    ...mapActions({
+      updateUserData: 'user/updateUserData'
+    }),
+    //это логика для исключения повторной генерации события handleSubmit
+    // в момент отправления данных из формы в хранилище
+    async handleSubmit() {
+      if (this.loading) return
+      console.log('submit')
+      this.loading = true
+      try {
+        // await this.updateUserData(this.userData)
+        console.log('submit order')
+      } catch (e) {
+        console.log(e)
+      } finally {
+        this.loading = false
+      }
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
   .checkOut{
-    &__wrapper{}
-    &__form{}
-    &__block{
+    &__wrapper{
+      display: flex;
+      flex-direction: column;
+      padding: 3% 0;
+    }
+    &__form{
 
-      &_head{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      &__subtitle{
+        margin: 30px 0 20px 0;
       }
-      &_title{}
-      &_edit{
+      &_grid{
+        padding: 20px 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      &_input{
+        width: 100%;
+        height: 38px;
+        color: #686868;
+      }
+      &_delivery, &_payment{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 0 0 20px;
+      }
+      &_btn{
+        width: 150px;
+        height: 50px;
+        margin: 30px auto;
+      }
+    }
+  }
+  @media (max-width: 576px) {
+    .checkOut{
+      &__title{
         font-size: 20px;
-        color: teal;
+      }
+      &__form{
+        &_subtitle{
+          font-size: 16px;
+        }
+        &_grid{
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
       }
     }
   }

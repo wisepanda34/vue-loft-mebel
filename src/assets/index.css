@@ -44,6 +44,10 @@ p{
 .flex{
     display: flex;
 }
+.fdcolumn{
+    display: flex;
+    flex-direction: column;
+}
 .no-scroll{
     overflow: hidden;
 }

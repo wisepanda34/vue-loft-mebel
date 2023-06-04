@@ -41,9 +41,9 @@ export default {
   mounted() {
     window.addEventListener("resize", this.handleWindowResize);
   },
-  beforeUnmount() {
-    window.removeEventListener("resize", this.handleWindowResize);
-  },
+  // beforeUnmount() {
+  //   window.removeEventListener("resize", this.handleWindowResize);
+  // },
   methods: {
     handleWindowResize() {
       this.windowWidth = window.innerWidth;

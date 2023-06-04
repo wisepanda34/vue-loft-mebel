@@ -15,7 +15,7 @@ const services = {
                 },
                 {
                     subtitle: 'Attentive service',
-                    descr: 'Qualified managers 	online store will answer all questions on the range and provided	opportunities, as well as help to place an order and control the implementation of client wishes when ordering furniture.',
+                    descr: 'Qualified managers 	online store will answer all questions on the range and provided	opportunities, as well as help to place an orders and control the implementation of client wishes when ordering furniture.',
                     icon: '/images/icons/support.svg'
                 },
                 {

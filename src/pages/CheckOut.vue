@@ -2,10 +2,10 @@
   <div class="checkOut">
     <div class="container">
       <div class="checkOut__wrapper">
-        <h1 class="checkOut__title center">Placing an order</h1>
+        <h1 class="checkOut__title center">Placing an orders</h1>
 
         <form
-            @submit.prevent="handleSubmit"
+            @submit.prevent="handleSubmitOrder"
             class='checkOut__form form'
             :class="{
                 'disabled_class': loading
@@ -14,13 +14,14 @@
           <div class="checkOut__block">
             <h3 class="checkOut__form_subtitle">1 Your contact details</h3>
             <div class="checkOut__form_grid">
-              <div v-for="field in Object.keys(userData)" :class='`checkOut__form_grid_${field}`' >
+              <div v-for="field in Object.keys(order.userData)" :class='`checkOut__form_grid_${field}`' >
                 <label :for='`input_${field}`'>{{ field }}
-                  <my-input class="checkOut__form_input input"  :name='`input_${field}`' v-model="userData[field]" />
+                  <my-input class="checkOut__form_input input"  :name='`input_${field}`' v-model="order.userData[field]" />
                 </label>
               </div>
             </div>
           </div>
+
           <div class="checkOut__block">
             <h3 class="checkOut__form_subtitle">2 Delivery</h3>
             <div class="checkOut__form_delivery">
@@ -30,6 +31,7 @@
               </label>
             </div>
           </div>
+
           <div class="checkOut__block">
             <h3 class="checkOut__form_subtitle">3 Payment</h3>
             <div class="checkOut__form_payment ">
@@ -43,7 +45,7 @@
               type="submit"
               class='checkOut__form_btn btn'
               :disabled="loading"
-          >Change</my-button>
+          >Submit order</my-button>
 
         </form>
       </div>
@@ -53,25 +55,26 @@
 
 <script>
 import DeliveryOrder from "@/components/DeliveryOrder.vue";
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import {mapActions, mapGetters} from "vuex";
 import MyInput from "@/components/UI/MyInput.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 // Регистрация иконки доллара в библиотеке
-library.add(faPenToSquare);
+// library.add(faPenToSquare);
 export default {
   name: "CheckOut",
-  components: {DeliveryOrder, FontAwesomeIcon,MyButton, MyInput},
+  // FontAwesomeIcon,
+  components: {DeliveryOrder, MyButton, MyInput},
   data(){
     return {
-      userData:{
-        name: '',
-        surname: '',
-        email: '',
-        phone:'',
+      order: {
+        userData:{ name: '', surname: '',  email: '', phone:''},
+        deliveryOrder:'',
+        paymentOrder:''
       },
+
       loading: false,
       optionsDelivery: [
         { label: 'pickup', value: 'pickup' },
@@ -95,14 +98,14 @@ export default {
   },
   mounted() {
     const getUserDataKeys = Object.keys(this.getUserData)//name
-    const thisUserDataKeys = Object.keys(this.userData)
+    const thisUserDataKeys = Object.keys(this.order.userData)
 
     getUserDataKeys.forEach(key=>{
       if(thisUserDataKeys.includes(key)){
         const userValue = this.getUserData[key]    //Guest
-        // ниже логика для вывода тех полей в форме, которые указаны в data()
+        // ниже логика для вывода тех полей в форме, которые указаны в userData()
         if(userValue){
-          this.userData[key]=userValue
+          this.order.userData[key]=userValue
           console.log('userValue >>',userValue)
         }
       }
@@ -110,17 +113,20 @@ export default {
   },
   methods: {
     ...mapActions({
-      updateUserData: 'user/updateUserData'
+      addNewOrder: 'orders/addNewOrder'
     }),
     //это логика для исключения повторной генерации события handleSubmit
     // в момент отправления данных из формы в хранилище
-    async handleSubmit() {
+
+    async handleSubmitOrder() {
       if (this.loading) return
       console.log('submit')
       this.loading = true
       try {
-        // await this.updateUserData(this.userData)
-        console.log('submit order')
+        this.order.deliveryOrder=this.selectedDelivery
+        this.order.paymentOrder=this.selectedPayment
+        await this.addNewOrder(this.order)
+        console.log('submit orders>>',this.order)
       } catch (e) {
         console.log(e)
       } finally {

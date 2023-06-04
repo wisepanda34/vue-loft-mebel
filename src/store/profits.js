@@ -10,7 +10,7 @@ const profits = {
                 },
                 {
                     title: 'Direct deliveries',
-                    descr: 'From leading furniture factories reduce the time fulfillment of your order, even if we are talking about the manufacture of items according to individual project.',
+                    descr: 'From leading furniture factories reduce the time fulfillment of your orders, even if we are talking about the manufacture of items according to individual project.',
                     icon: '/images/icons/direct_delivery.svg'
                 },
                 {

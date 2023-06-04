@@ -9,7 +9,7 @@ const savings ={
             },
             {
                 subtitle: 'Forces.',
-                descr: 'We will buy in bulk or order at the factory, saving you from long discussions of the order with the contractor. We supervise all stages of work on	order.'
+                descr: 'We will buy in bulk or orders at the factory, saving you from long discussions of the orders with the contractor. We supervise all stages of work on	orders.'
             },
             {
                 subtitle: 'Money.',

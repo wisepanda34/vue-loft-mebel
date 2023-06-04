@@ -10,6 +10,7 @@ import user from "@/store/user";
 import clients from "@/store/clients";
 import favorites from "@/store/favorites";
 import modal from "@/store/modal";
+import orders from "@/store/orders";
 
 export default createStore({
   state() {
@@ -37,6 +38,7 @@ export default createStore({
     user,
     clients,
     favorites,
-    modal
+    modal,
+    orders
   }
 })

@@ -101,7 +101,7 @@ export default {
     }
     &:hover{
      background: #94bcc0;
-      box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.11);
+      box-shadow: 0 1px 9px rgba(0, 0, 0, 0.11);
     }
   }
   &__icon{}

@@ -1,7 +1,7 @@
 <template>
   <div class="menuTransform">
     <div class="menuTransform__menu">
-      <Navbar class="menuTransform__navbar"/>
+      <Navbar class="menuTransform__navbar" @choose-menu="$emit('close-menu')"/>
       <div class="menuTransform__delete" @click="$emit('close-menu')">&#9587;</div>
     </div>
   </div>

@@ -2,17 +2,17 @@
   <div class="navbar header__navbar menuTransform__navbar">
 
     <nav class="navbar__nav menuTransform__nav">
-      <router-link to="/">Main</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/contacts">Contacts</router-link>
+      <router-link to="/" @click="chooseMenu">Main</router-link>
+      <router-link to="/about" @click="chooseMenu">About</router-link>
+      <router-link to="/contacts" @click="chooseMenu">Contacts</router-link>
     </nav>
 
     <div class='navbar__delivery'>
-      <a class='navbar__delivery-phone flex' href='tel: 19648999119'>
+      <a class='navbar__delivery-phone flex' @click="chooseMenu" href='tel: 19648999119'>
         <img src="@/images/icons/phone-black.svg" alt="i"/>
         <span>+1 (964) 89 99 119</span>
       </a>
-      <router-link to="/deliveryPage" class='navbar__delivery-deliv flex' >
+      <router-link to="/deliveryPage" @click="chooseMenu" class='navbar__delivery-deliv flex' >
         <img src="@/images/icons/delivery-icon-black.svg" alt="i"/>
         <span>Delivery</span>
       </router-link>
@@ -25,6 +25,11 @@
 
 export default {
   name: "Navbar",
+  methods:{
+    chooseMenu(){
+      this.$emit('close-menu')
+    }
+  }
 }
 </script>
 

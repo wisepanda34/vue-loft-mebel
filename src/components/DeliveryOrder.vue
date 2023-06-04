@@ -39,7 +39,6 @@ export default {
   }
   &__phone{
     display: block;
-    display: flex;
     justify-content: center;
     span{
       font-weight: 700;

@@ -20,9 +20,9 @@ export default {
     MapComponent: null
   }),
   methods: {
-    onLoad(frame) {
-      this.MapComponent = frame.contentWindow
-    }
+    // onLoad(frame) {
+    //   this.MapComponent = frame.contentWindow
+    // }
   }
 }
 </script>

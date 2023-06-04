@@ -4,8 +4,8 @@
       <div class='cartlist__wrapper'>
 
         <div class='cartlist__heading'>
-          <div>Your cart</div>
-          <div><span>{{this.count}}</span> items</div>
+          <h4>Your cart</h4>
+          <h4><span>{{this.count}}</span> items</h4>
         </div>
 
         <ul class='cartlist__list' v-for="item in cartList" :key="cartList.id" >
@@ -23,8 +23,11 @@
           </div>
 
         </div>
+        <h4 class="">You may like</h4>
+        <div class="cartlist__recommendation">
 
-        <h3 style="color: red">Recommendations</h3>
+          <OneCard v-for="item in recommendList" :key="item.id" :item="item"/>
+        </div>
 
       </div>
     </div>
@@ -34,14 +37,16 @@
 <script>
 import CartProduct from "@/components/CartProduct.vue";
 import {mapGetters} from "vuex";
+import OneCard from "@/components/OneCard.vue";
 export default {
   name: "CartList",
-  components:{ CartProduct},
+  components:{OneCard, CartProduct},
   data(){
   },
   computed:{
     ...mapGetters({
       cartList: 'cartList/getCartList',
+      recommendList: 'products/getProducts',
       sum: 'cartList/getTotalSum',
       count: 'cartList/getCountOfProducts'
     })
@@ -52,6 +57,7 @@ export default {
 <style lang="scss" scoped>
 .cartlist{
   background: #fff;
+
   &__wrapper{
 
   }
@@ -65,9 +71,10 @@ export default {
     color: #414141;
   }
   &__list{
+    //padding: 30px 0 50px 0;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     padding-inline-start: 0;
   }
   &__act{
@@ -100,6 +107,31 @@ export default {
         font-weight: 500;
         font-size: 16px;
       }
+    }
+  }
+  &__recommendation{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+    width: 100%;
+    overflow-x: auto;
+    margin: 0 ;
+    scrollbar-width: thin;
+    scrollbar-color: #245462 lightgray;
+    padding:0 20px;
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      background: lightgray;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #8ba0a2;
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #94bcc0;
     }
   }
 }

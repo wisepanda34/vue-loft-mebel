@@ -86,6 +86,7 @@ export default {
   padding: 20px 0;
   &__wrapper{
     display: flex;
+    gap: 10px;
   }
   &__filter{
     flex:0 0 auto;
@@ -115,18 +116,19 @@ export default {
   }
   &__cards{
     display: grid;
+    gap: 10px;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 20px 0;
   }
 }
-@media (max-width: 1100px) {
+@media (max-width: 1140px) {
   .choose{
     &__cards {
       grid-template-columns: 1fr 1fr;
     }
   }
 }
-@media (max-width: 850px) {
+@media (max-width: 860px) {
   .choose{
     &__wrapper{
     }
@@ -148,10 +150,12 @@ export default {
     }
   }
 }
-@media (max-width: 550px) {
+@media (max-width: 576px) {
   .choose {
     &__cards {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 }

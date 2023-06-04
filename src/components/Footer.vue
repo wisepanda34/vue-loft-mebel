@@ -9,14 +9,10 @@
           <div class="footer__navigation-container">
             <ul class='footer__navigation-list' v-for="item in menuList" :key="item.title">
               <li >
-                <router-link class='footer__navigation-item' to="/cardPage">{{item.title}}</router-link>
+                <router-link class='footer__navigation-item' to="/catalog">{{item.title}}</router-link>
               </li>
             </ul>
           </div>
-<!--          <ul class='footer__navigation-bottom-list'>-->
-<!--            <li class='footer__navigation-bottom-item'>Sale</li>-->
-<!--            <li class='footer__navigation-bottom-item'>New</li>-->
-<!--          </ul>-->
         </div>
 
         <div class='footer__address'>

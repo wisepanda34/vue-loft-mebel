@@ -193,18 +193,12 @@ export default {
     margin-bottom: 50px;
     //padding: 0 20px;
   }
-  &__color,&__series,&__price{
-    //padding: 0 20px;
-
-  }
-
   &__color-list,&__series-list{
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
     text-align: left;
     padding-inline-start: 0;
-
   }
   &__color-item{
     width: 20px;
@@ -246,13 +240,10 @@ export default {
       background: #000;
     }
   }
-
   &__series-list{
     flex-direction: column;
-
   }
   &__series-item{
-
     input{
       vertical-align: middle;
       border: 1px solid #245462;

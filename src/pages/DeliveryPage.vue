@@ -1,5 +1,5 @@
 <template>
-  <DeliveryOrder/>
+  <DeliveryOrder />
 </template>
 
 <script>

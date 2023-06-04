@@ -9,7 +9,7 @@
 
 
         <div class="favoritesList__cards">
-          <FavoriteCard v-for="item in favorites" :key="item.id" :item="item"/>
+          <OneCard v-for="item in favorites" :key="item.id" :item="item"/>
         </div>
 
 
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import FavoriteCard from "@/components/FavoriteCard.vue";
 import {mapGetters} from "vuex";
+import OneCard from "@/components/OneCard.vue";
 
 export default {
   name: "FavoritesList",
-  components: {FavoriteCard},
+  components: {OneCard},
   computed:{
     ...mapGetters({
       favorites: 'favorites/getFavorites'

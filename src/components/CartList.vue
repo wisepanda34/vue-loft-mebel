@@ -18,7 +18,10 @@
           <div class='cartlist__act-total'>
             The total cost: &nbsp;&nbsp;  <span>{{ this.sum }}&nbsp;&#36;</span>
           </div>
-          <router-link to="/checkOut" class='cartlist__act-btn btn'>Checkout</router-link>
+          <div v-if="this.cartList.length>0">
+            <router-link to="/checkOut" class='cartlist__act-btn btn'>Checkout</router-link>
+          </div>
+
         </div>
 
         <h3 style="color: red">Recommendations</h3>

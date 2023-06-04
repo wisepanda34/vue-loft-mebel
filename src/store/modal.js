@@ -21,7 +21,7 @@ const modal = {
             state.modalTexts = modalTexts;
             setTimeout(() => {
                 state.modalTexts = '';
-            }, 1000);
+            }, 1500);
         }
     }
 }

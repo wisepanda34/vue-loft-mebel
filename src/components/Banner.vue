@@ -6,7 +6,7 @@
         <div class='banner__content'>
           <h1>LOFT FURNITURE</h1>
           <p>Modern and useful furniture in Boston</p>
-          <router-link class='banner__content-btn' to='/catalog'>WATCH CATALOG</router-link>
+          <router-link class='banner__content_btn' to='/catalog'>WATCH CATALOG</router-link>
         </div>
 
         <swiper
@@ -95,7 +95,7 @@ export default {
       margin-block-end: 0.5em;
       color: #343434;
     }
-    &-btn{
+    &_btn{
       display: flex;
       align-items: center;
       justify-content: center;
@@ -123,10 +123,11 @@ export default {
     }
   }
 }
-.swiper-button-next,
-.swiper-button-prev {
-  width: 30px !important;
-  height: 30px !important;
+
+.banner__slider  ::v-deep(.swiper-button-next),
+.banner__slider  ::v-deep(.swiper-button-prev) {
+  width: 20px !important;
+  height: 20px !important;
   background: #fff;
   color: gray !important;
 
@@ -142,17 +143,44 @@ export default {
 }
 @media(max-width:767px){
   .banner{
+    &__wrapper{
+      display: flex;
+      flex-direction: column;
+    }
     &__content{
-      display: none;
+      position: relative;
+      order: 2;
+      transform: translateY(0);
+      width: 100%;
+      left: 0;
+      padding: 25px;
+      h1,p{
+        display: none;
+      }
+      &_btn{
+        width: 163px;
+        height: 45px;
+        background: #FFFFFF;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+        font-size: 12px;
+        &:hover{
+          background: #eae9e9;
+        }
+      }
     }
     &__slide{
       height: 230px;
+      order: 1;
+    }
+    .banner__slider  ::v-deep(.swiper-button-next),
+    .banner__slider  ::v-deep(.swiper-button-prev){
+      display: none;
     }
   }
 }
   .swiper-button-next,
   .swiper-button-prev{
-    z-index: 0 !important;
+    z-index: -1 !important;
   }
 }
 @media(max-width:575px){

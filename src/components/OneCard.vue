@@ -3,8 +3,10 @@
     <router-link class='card' to="/cardPage" >
 
       <div class='card__pic'>
-        <div :class="['card__heart', {'yellow':isCardInFavorites(item)}]"  @click.prevent="handleAddToFavorites(item,true)">&#9825;</div>
-        <img :src="item.img" alt="img" />
+        <div class='card__heart'  @click.prevent="handleAddToFavorites(item,true)">
+          <img :class="['card__icon', {'yellow':isCardInFavorites(item)}]" src="/images/icons/wishlist-icon.svg" alt="i">
+        </div>
+        <img class="card__img" :src="item.img" alt="img" />
       </div>
       <div class='card__info'>
         <div class='card__info-title'>{{item.titleCard}}</div>
@@ -89,18 +91,23 @@ export default {
   }
   &__pic{
     padding: 30px 0 0 0;
-    img{
-      width: 200px;
-      height: 150px;
-      display: block;
-      margin: 0 auto;
-    }
+  }
+  &__img{
+    width: 200px;
+    height: 150px;
+    display: block;
+    margin: 0 auto;
   }
   &__heart{
     position: absolute;
-    top: 2px;
+    top: 5px;
     right: 6px;
     cursor: pointer;
+    width: 15px;
+    height: 20px;
+  }
+  &__icon{
+    max-width: 100%;
   }
 
   &__info{
@@ -139,7 +146,9 @@ export default {
   }
 
 }
-.yellow{
-  background: yellow;
+ .yellow {
+    fill: yellow;
+    stroke: yellow;
+    background: yellow;
 }
 </style>

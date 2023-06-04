@@ -55,9 +55,6 @@
 
 <script>
 import DeliveryOrder from "@/components/DeliveryOrder.vue";
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import {mapActions, mapGetters} from "vuex";
 import MyInput from "@/components/UI/MyInput.vue";
 import MyButton from "@/components/UI/MyButton.vue";
@@ -65,7 +62,6 @@ import MyButton from "@/components/UI/MyButton.vue";
 // library.add(faPenToSquare);
 export default {
   name: "CheckOut",
-  // FontAwesomeIcon,
   components: {DeliveryOrder, MyButton, MyInput},
   data(){
     return {
@@ -93,7 +89,8 @@ export default {
   },
   computed:{
     ...mapGetters({
-      getUserData:'user/getUserData'
+      getUserData:'user/getUserData',
+      getTotalSum:'cartList/getTotalSum'
     })
   },
   mounted() {
@@ -106,32 +103,44 @@ export default {
         // ниже логика для вывода тех полей в форме, которые указаны в userData()
         if(userValue){
           this.order.userData[key]=userValue
-          console.log('userValue >>',userValue)
         }
       }
     })
   },
   methods: {
     ...mapActions({
-      addNewOrder: 'orders/addNewOrder'
+      addNewOrder: 'orders/addNewOrder',
+      openVoiceModal:'modal/openVoiceModal'
     }),
     //это логика для исключения повторной генерации события handleSubmit
     // в момент отправления данных из формы в хранилище
 
     async handleSubmitOrder() {
-      if (this.loading) return
-      console.log('submit')
-      this.loading = true
-      try {
-        this.order.deliveryOrder=this.selectedDelivery
-        this.order.paymentOrder=this.selectedPayment
-        await this.addNewOrder(this.order)
-        console.log('submit orders>>',this.order)
-      } catch (e) {
-        console.log(e)
-      } finally {
-        this.loading = false
-      }
+
+        if (this.loading) return
+        this.loading = true
+        try {
+          this.order.deliveryOrder=this.selectedDelivery
+          this.order.paymentOrder=this.selectedPayment
+          await this.addNewOrder(this.order)
+          console.log('order>>', this.order)
+          this.order = {
+            userData: { name: "", surname: "", email: "", phone: "" },
+            deliveryOrder: "",
+            paymentOrder: ""
+          };
+          this.selectedDelivery = "";
+          this.selectedPayment = "";
+
+          await this.openVoiceModal('your order has been placed and sent for processing, we will contact you');
+
+          this.$router.go(-1);
+        } catch (e) {
+        } finally {
+          this.loading = false
+
+        }
+
     }
   }
 }

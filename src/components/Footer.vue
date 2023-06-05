@@ -25,19 +25,19 @@
           <ul class='footer__address-list'>
             <li >
               <a href='tel:19648999119' class='footer__address-link'>
-                <img src='@/images/icons/phone-black.svg' alt='i' />
+                <img src='/images/icons/phone-black.svg' alt='i' />
                 <div>+1 (964) 89 99 119</div>
               </a>
             </li>
             <li >
               <a href='#' class='footer__address-link'>
-                <img src='@/images/icons/inst.svg' alt='i' />
+                <img src='/images/icons/inst.svg' alt='i' />
                 <div>INSTAGRAM</div>
               </a>
             </li>
             <li >
               <a href='mailto:loft_furniture@gmail.com' class='footer__address-link'>
-                <img src='@/images/icons/mail.svg' alt='i' />
+                <img src='/images/icons/mail.svg' alt='i' />
                 <div>loft_furniture@gmail.com</div>
               </a>
             </li>

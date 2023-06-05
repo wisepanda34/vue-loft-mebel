@@ -5,6 +5,7 @@
       type="text"
       class="input"
   >
+
 </template>
 
 <script>

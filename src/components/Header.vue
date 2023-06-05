@@ -10,11 +10,14 @@
           <span></span>
         </div>
         <div class="header__logo">Loft <br> Furniture</div>
-        <my-input class="header__input"/>
+        <my-input class="header__input" v-model="searchQuery">
+<!--          <img src='/images/icons/search-icon.svg' alt="i">-->
+
+        </my-input>
         <div class="header__icons">
-          <router-link to="/favoritesPage"><img src="@/images/icons/wishlist-icon.svg" alt="i"/></router-link>
-          <router-link to="/cart"><img src="@/images/icons/cart.svg" alt="i"/></router-link >
-          <router-link to="/account"><img src="@/images/icons/profile-icon.svg" alt="i"/></router-link>
+          <router-link to="/favoritesPage"><img src="/images/icons/wishlist-icon.svg" alt="i"/></router-link>
+          <router-link to="/cart"><img src="/images/icons/cart.svg" alt="i"/></router-link >
+          <router-link to="/account"><img src="/images/icons/profile-icon.svg" alt="i"/></router-link>
         </div>
       </div>
 
@@ -36,6 +39,7 @@ export default {
     return{
       isMenuActive: false,
       windowWidth: window.innerWidth,
+      searchQuery:'',
     }
   },
   mounted() {
@@ -43,6 +47,14 @@ export default {
   },
   // beforeUnmount() {
   //   window.removeEventListener("resize", this.handleWindowResize);
+  // },
+  // computed:{
+  //   sortedCards(){
+  //     return [...this.products].sort((card1,card2)=>card1[this.searchQuery]?.localeCompare(card2[this.searchQuery]))
+  //   },
+  //   sortedAndSearchedPosts(){
+  //     return this.sortedCards.filter(card=>card.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
+  //   }
   // },
   methods: {
     handleWindowResize() {
@@ -107,10 +119,17 @@ export default {
     font-size: 16px;
     order: 3;
     background-color: #fff!important;
-    background-image: url('@/images/icons/search-icon.svg') ;
-    background-repeat: no-repeat; /*Убираем повтор изображения*/
-    background-position: 14px; /*Позиционируем*/
-
+    //background-image: url('~@/public/images/icons/search-icon.svg') ;
+    //background-repeat: no-repeat; /*Убираем повтор изображения*/
+    //background-position: 14px; /*Позиционируем*/
+    img{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 10px;
+      height: 15px;
+      z-index: 5;
+    }
   }
   &__icons{
     flex: 0 1 auto;

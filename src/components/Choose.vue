@@ -2,9 +2,13 @@
   <section class="choose">
     <div class="container">
       <div class="choose__wrapper">
-        
-        <Filter class="choose__filter" @filter-selected="onFilterSelected"/>
-        
+
+        <Filter class="choose__filter"
+                @filter-selected="onFilterSelected"
+                @type-selected="onTypeSelected"
+                @kind-selected="onKindSelected"
+        />
+
         <div class="choose__block">
           <div class="choose__options">
             <my-button class="choose__btn">Filter</my-button>
@@ -43,6 +47,8 @@ export default {
         {value:'ascending', name:'ascending price'},
       ],
       selectedFilter:'',
+      selectedType:'',
+      selectedKind:'',
     }
   },
   computed: {
@@ -61,22 +67,40 @@ export default {
       return this.products
     },
     sortedAndFilteredProducts() {
-      const currentFilter = this.selectedFilter
-      if (currentFilter === 'kitchen') {
-        return this.sortedProducts.filter(item=>item.category.toLowerCase().includes(currentFilter.toLowerCase()))
-      } if (currentFilter === 'living room') {
-        return this.sortedProducts.filter(item=>item.category.toLowerCase().includes(currentFilter.toLowerCase()))
-      }if (currentFilter === 'bedroom') {
-        return this.sortedProducts.filter(item=>item.category.toLowerCase().includes(currentFilter.toLowerCase()))
-      }
+      const currentFilter = this.selectedFilter;
+      const currentType = this.selectedType;
+      const currentKind = this.selectedKind;
+      let filteredProducts = this.sortedProducts;
 
-      return this.sortedProducts
-    }
+      if (currentFilter) {
+        filteredProducts = filteredProducts.filter(item =>
+            item.category.toLowerCase().includes(currentFilter.toLowerCase())
+        );
+      }
+      if (currentType) {
+        filteredProducts = filteredProducts.filter(item =>
+            item.typeProduct.toLowerCase().includes(currentType.toLowerCase())
+        );
+      }
+      if (currentKind) {
+        filteredProducts = filteredProducts.filter(item =>
+            item.kindProduct.toLowerCase().includes(currentKind.toLowerCase())
+        );
+      }
+      return filteredProducts;
+    },
   },
   methods:{
     onFilterSelected(filterValue){
       this.selectedFilter=filterValue;
-    }
+    },
+    onTypeSelected(typeValue){
+      this.selectedType=typeValue;
+    },
+    onKindSelected(kindValue){
+      this.selectedKind=kindValue;
+    },
+
   }
 }
 </script>

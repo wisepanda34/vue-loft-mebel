@@ -20,7 +20,7 @@
         </div>
 
         <div class='performance__pic'>
-          <img src='@/images/img/performance_sofa.png' alt="img" />
+          <img src='/images/img/performance_sofa.png' alt="img" />
         </div>
 
 

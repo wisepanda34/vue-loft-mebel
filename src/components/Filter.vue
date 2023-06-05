@@ -23,8 +23,8 @@
             class="filter__select"
         />
         <my-select
-            v-model='selectedKind'
-            :options='kindOptions'
+            v-model="selectedKind"
+            :options="kindOptions"
             class="filter__select"
         />
 
@@ -116,8 +116,10 @@ export default {
       selectedType:'',
       typeOptions:[
         {value:'', name:'all'},
-        {value:'sort furniture', name:'sort furniture'},
-        {value:'class furniture', name:'class furniture'},
+        {value:'soft', name:'soft furniture'},
+        {value:'leather', name:'leather furniture'},
+        {value:'artificial', name:'artificial material'},
+        {value:'wood', name:'wood furniture'},
       ],
       selectedKind:'',
       kindOptions:[
@@ -137,7 +139,13 @@ export default {
   watch:{
     selectedFilter(newVal){
       this.$emit('filter-selected',newVal)
-    }
+    },
+    selectedKind(newValue){
+      this.$emit('kind-selected',newValue)
+    },
+    selectedType(newValue){
+      this.$emit('type-selected',newValue)
+    },
   }
 }
 </script>

@@ -12,11 +12,11 @@
         </div>
 
         <div class='bonus__footline'>
-          <div class='bonus__cash'><img src='@/images/icons/cashback.svg' alt="i" class='bonus__icon' />We return up to 7% to the bonus account</div>
+          <div class='bonus__cash'><img src='/images/icons/cashback.svg' alt="i" class='bonus__icon' />We return up to 7% to the bonus account</div>
           <div class='bonus__cash'>
 <!--            <font-awesome-icon class="currency-icon" icon="dollar-sign" />-->
             1 bonus = 1 dollar</div>
-          <div class='bonus__cash'><img src='@/images/icons/gift.svg' alt="i" class='bonus__icon' />Pay with bonuses up to 20% of the purchase</div>
+          <div class='bonus__cash'><img src='/images/icons/gift.svg' alt="i" class='bonus__icon' />Pay with bonuses up to 20% of the purchase</div>
         </div>
 
       </div>

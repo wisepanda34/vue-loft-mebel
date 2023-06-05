@@ -1,4 +1,4 @@
-const cart = {
+const products = {
     namespaced: true,
     state() {
         return {
@@ -6,7 +6,8 @@ const cart = {
                 {
                     id: 'qw1',
                     titleCard: "Valencia Beige",
-                    typeProduct: "bar stool",
+                    kindProduct: "bar stool",
+                    typeProduct:'artificial',
                     category:'kitchen',
                     img: '/images/img/chair-Beige.jpg',
                     price: 28,
@@ -18,7 +19,8 @@ const cart = {
                 {
                     id: 'qw2',
                     titleCard: "Tolics-2 whire Gloss",
-                    typeProduct: "bar stool",
+                    kindProduct: "bar stool",
+                    typeProduct:'artificial',
                     category:'kitchen',
                     img: '/images/img/chair-white-Gloss.jpg',
                     price: 35,
@@ -30,7 +32,8 @@ const cart = {
                 {
                     id: 'qw3',
                     titleCard: "Dins Velwet yellow",
-                    typeProduct: "sofa",
+                    kindProduct: "sofa",
+                    typeProduct:'soft',
                     category:'living room',
                     img: '/images/img/sofa-yellow.jpg',
                     price: 529,
@@ -42,7 +45,8 @@ const cart = {
                 {
                     id: 'qw4',
                     titleCard: "Koosken Navy blue",
-                    typeProduct: "sofa",
+                    kindProduct: "sofa",
+                    typeProduct:'soft',
                     category:'living room',
                     img: '/images/img/sofa-Koosken.jpg',
                     price: 450,
@@ -54,7 +58,8 @@ const cart = {
                 {
                     id: 'qw5',
                     titleCard: "Sherona barhat gray",
-                    typeProduct: "bed",
+                    kindProduct: "bed",
+                    typeProduct:'leather',
                     category:'bedroom',
                     img: '/images/img/bed-Sherona.jpg',
                     price: 459,
@@ -66,7 +71,8 @@ const cart = {
                 {
                     id: 'qw6',
                     titleCard: "Avinghon-1",
-                    typeProduct: "bufet",
+                    kindProduct: "bufet",
+                    typeProduct:'artificial',
                     category:'kitchen',
                     img: '/images/img/bufet-Avinghon.jpg',
                     price: 399,
@@ -78,7 +84,8 @@ const cart = {
                 {
                     id: 'qw7',
                     titleCard: "Stella oak sonoma",
-                    typeProduct: "commode",
+                    kindProduct: "commode",
+                    typeProduct:'artificial',
                     category:'bedroom',
                     img: '/images/img/commode-Stella.jpg',
                     price: 229,
@@ -90,7 +97,8 @@ const cart = {
                 {
                     id: 'qw8',
                     titleCard: "Ravenna-1 light",
-                    typeProduct: "commode",
+                    kindProduct: "commode",
+                    typeProduct:'artificial',
                     category:'bedroom',
                     img: '/images/img/commode-Ravenna.jpg',
                     price: 350,
@@ -102,7 +110,8 @@ const cart = {
                 {
                     id: 'qw9',
                     titleCard: "Benflit gray",
-                    typeProduct: "table",
+                    kindProduct: "table",
+                    typeProduct:'artificial',
                     category:'living room',
                     img: '/images/img/table-Benflit.jpg',
                     price: 159,
@@ -114,7 +123,8 @@ const cart = {
                 {
                     id: 'qw10',
                     titleCard: "Tiffany Woodline creem",
-                    typeProduct: "table",
+                    kindProduct: "table",
+                    typeProduct:'wood',
                     category:'living room',
                     img: '/images/img/table-Tiffany.jpg',
                     price: 219,
@@ -126,7 +136,8 @@ const cart = {
                 {
                     id: 'qw11',
                     titleCard: "Valencia Beige",
-                    typeProduct: "cupboard",
+                    kindProduct: "cupboard",
+                    typeProduct:'artificial',
                     category:'living room',
                     img: '/images/img/closet-Beige.jpg',
                     price: 369,
@@ -138,7 +149,8 @@ const cart = {
                 {
                     id: 'qw12',
                     titleCard: "Light-3 white",
-                    typeProduct: "cupboard",
+                    kindProduct: "cupboard",
+                    typeProduct:'artificial',
                     category:'living room',
                     img: '/images/img/closet-Light.jpg',
                     price: 459,
@@ -150,7 +162,8 @@ const cart = {
                 {
                     id: 'qw13',
                     titleCard: "Villy pink",
-                    typeProduct: "kids sofa",
+                    kindProduct: "kids sofa",
+                    typeProduct:'soft',
                     category:'bedroom',
                     img: '/images/img/sofa-Villy.jpg',
                     price: 399,
@@ -162,7 +175,8 @@ const cart = {
                 {
                     id: 'qw14',
                     titleCard: "Saint-Paolo Velvet Brown",
-                    typeProduct: "kids sofa",
+                    kindProduct: "kids sofa",
+                    typeProduct:'soft',
                     category:'bedroom',
                     img: '/images/img/sofa-Saint-Paolo.jpg',
                     price: 419,
@@ -174,7 +188,8 @@ const cart = {
                 {
                     id: 'qw15',
                     titleCard: "Valencia Beige",
-                    typeProduct: "bookcase",
+                    kindProduct: "bookcase",
+                    typeProduct:'wood',
                     category:'living room',
                     img: '/images/img/bookcase-Beige.jpg',
                     price: 360,
@@ -192,4 +207,4 @@ const cart = {
     actions: {},
     mutations: {}
 };
-export default cart
+export default products

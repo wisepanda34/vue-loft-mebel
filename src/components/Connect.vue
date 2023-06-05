@@ -12,21 +12,21 @@
         <ul class='connect__contacts-list'>
           <li>
             <a href="tel:19648999119" class='connect__contacts-link'>
-              <img src='@/images/icons/phone-black.svg' alt='i' />
+              <img src='/images/icons/phone-black.svg' alt='i' />
               <div>+1 (964) 89 99 119</div>
             </a>
           </li>
 
            <li>
              <a href='mailto:loft_furniture@gmail.com' class='connect__contacts-link'>
-               <img src="@/images/icons/mail.svg" alt='i' />
+               <img src="/images/icons/mail.svg" alt='i' />
                <div>loft_furniture@gmail.com</div>
              </a>
            </li>
 
             <li>
               <a href='#' class='connect__contacts-link'>
-                <img src="@/images/icons/inst.svg" alt='i' />
+                <img src="/images/icons/inst.svg" alt='i' />
                 <div>INSTAGRAM</div>
               </a>
             </li>

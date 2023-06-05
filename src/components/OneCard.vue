@@ -10,7 +10,7 @@
       </div>
       <div class='card__info'>
         <div class='card__info-title'>{{item.titleCard}}</div>
-        <div class='card__info-subtitle'>{{item.typeProduct}}</div>
+        <div class='card__info-subtitle'>{{item.kindProduct}}</div>
         <div class='card__info-price'>{{item.price}} &#36;</div>
       </div>
       <div class='card__descr'>

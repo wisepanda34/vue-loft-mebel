@@ -9,16 +9,16 @@
 </template>
 
 <script>
-import {mapGetters,mapActions} from "vuex";
 import BaseModal from "@/components/UI/BaseModal.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import storageMixin from "@/mixins/storageMixin";
 
 
   export default {
     components: {Footer, Header, BaseModal},
+    mixins: [storageMixin],
 
-    // emits:['close'],
 
     mounted() {
       this.$store.dispatch('showCtx');

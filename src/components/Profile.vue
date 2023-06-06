@@ -65,33 +65,43 @@ import MyButton from "@/components/UI/MyButton.vue";
 export default {
 name: "Profile",
   components:{MyButton, MyInput},
+  initUserData: {
+    name: '',
+    surname: '',
+    email: '',
+    phone:'',
+    city:'',
+    street:'',
+    house:'',
+    flat:''
+  },
   data(){
     return {
-      userData:{
-          name: '',
-          surname: '',
-          email: '',
-          phone:'',
-          city:'',
-          street:'',
-          house:'',
-          flat:''
-      },
+      userData:{},
       loading: false
     }
   },
+
   computed:{
   ...mapGetters({
       getUserData:'user/getUserData'
     })
   },
+  created() {
+    this.userData={...this.$options.initUserData}
+  },
   mounted() {
-    Object.keys(this.getUserData).forEach(key=>{ //name
-      const userValue = this.getUserData[key]    //Guest
-      // ниже логика для вывода тех полей в форме, которые указаны в data()
-      if(userValue) this.userData[key]=userValue
-      console.log('userValue >>',userValue)
-    })
+    Object.keys(this.getUserData).forEach(key => {
+      const userValue = this.getUserData[key];
+      if (userValue) {
+        this.userData[key] = userValue;
+      }
+    });
+
+    const storedData = this.getStorage();
+    if (storedData) {
+      Object.assign(this.userData, storedData);
+    }
   },
   methods:{
     ...mapActions({
@@ -101,16 +111,23 @@ name: "Profile",
     // в момент отправления данных из формы в хранилище
     async handleSubmit () {
       if (this.loading) return
-      console.log('submit')
       this.loading = true
       try {
         await this.updateUserData(this.userData)
+        this.setStorage(this.userData);
+        // this.userData={...this.$options.initUserData}
       } catch (e) {
         console.log(e)
       } finally {
         this.loading = false
       }
-    }
+    },
+    getStorage() {
+      return JSON.parse(localStorage.getItem('userDataStorage'));
+    },
+    setStorage(val){
+      localStorage.setItem('userDataStorage',JSON.stringify(val))
+    },
   }
 }
 </script>

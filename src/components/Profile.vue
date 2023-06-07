@@ -98,7 +98,7 @@ name: "Profile",
       }
     });
 
-    const storedData = this.getStorage();
+    const storedData = JSON.parse(localStorage.getItem("userDataStorage"));
     if (storedData) {
       Object.assign(this.userData, storedData);
     }
@@ -115,17 +115,17 @@ name: "Profile",
       try {
         await this.updateUserData(this.userData)
         this.setStorage(this.userData);
-        // this.userData={...this.$options.initUserData}
       } catch (e) {
         console.log(e)
       } finally {
         this.loading = false
       }
     },
-    getStorage() {
-      return JSON.parse(localStorage.getItem('userDataStorage'));
-    },
+    // getStorage() {
+    //   return JSON.parse(localStorage.getItem('userDataStorage'));
+    // },
     setStorage(val){
+      this.$root.userData = val; // Передаем данные в корневой компонент
       localStorage.setItem('userDataStorage',JSON.stringify(val))
     },
   }

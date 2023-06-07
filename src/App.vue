@@ -18,7 +18,14 @@ import storageMixin from "@/mixins/storageMixin";
   export default {
     components: {Footer, Header, BaseModal},
     mixins: [storageMixin],
-
+    data() {
+      return {
+        userData: null,
+      };
+    },
+    created() {
+      this.userData = this.getStorage();
+    },
 
     mounted() {
       this.$store.dispatch('showCtx');

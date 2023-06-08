@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form{
+&__form{
   flex: 0 1 457px;
   display: flex;
   flex-direction: column;
@@ -121,20 +121,20 @@ export default {
 
 }
 @media (max-width: 767px) {
-  .form{
+  &__form{
     flex: 1 1 auto;
     width: 100%;
-    &__inputs{
+    &_inputs{
       display: block;
       width: 100%;
     }
-    &__input{
+    &_input{
       width:  100%;
     }
-    &__buttons{
+    &_buttons{
       justify-content: center;
     }
-    &__attach{
+    &_attach{
       width: 106px;
     }
   }

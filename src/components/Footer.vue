@@ -16,29 +16,20 @@
         </div>
 
         <div class='footer__address'>
+
           <div class='footer__address-block'>
             <div class='footer__address-logo'>LF</div>
             <div class='footer__address-addr'>
               Boston, Lincoln avenue, 45 <br />Lincoln center, 2 floor
             </div>
           </div>
+
           <ul class='footer__address-list'>
-            <li >
-              <a href='tel:19648999119' class='footer__address-link'>
-                <img src='/images/icons/phone-black.svg' alt='i' />
-                <div>+1 (964) 89 99 119</div>
-              </a>
-            </li>
-            <li >
-              <a href='#' class='footer__address-link'>
-                <img src='/images/icons/inst.svg' alt='i' />
-                <div>INSTAGRAM</div>
-              </a>
-            </li>
-            <li >
-              <a href='mailto:loft_furniture@gmail.com' class='footer__address-link'>
-                <img src='/images/icons/mail.svg' alt='i' />
-                <div>loft_furniture@gmail.com</div>
+            <li :key="i"
+                v-for="(link,i) in linksFooter">
+              <a :href='link.href' class='footer__address-link'>
+                <img :src='link.src' alt='i' />
+                <div>{{link.value}}</div>
               </a>
             </li>
           </ul>
@@ -58,9 +49,11 @@ export default {
   data() {
     return {}
   },
+
   computed:{
     ...mapGetters({
-      menuList:'menuList/getMenuList'
+      menuList:'menuList/getMenuList',
+      linksFooter:'linksFooter/getLinksFooter'
     })
   }
 }
@@ -80,7 +73,7 @@ export default {
   }
 
   &__navigation{
-    max-width: 45vw;
+    flex:0 1 45%;
     &-title{
       font-weight: 500;
       font-size: 14px;
@@ -91,7 +84,6 @@ export default {
       text-align: left;
     }
     &-container{
-
       display: flex;
       flex-wrap: wrap;
     }
@@ -110,8 +102,6 @@ export default {
         color: #3dadcc;
         text-decoration: underline;
       }
-
-
     }
     &-bottom-list{
       display: flex;
@@ -126,6 +116,7 @@ export default {
   }
 
   &__address{
+    flex:0 1 50%;
     text-align: end;
     display: flex;
     flex-direction: column;
@@ -146,6 +137,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       gap: 30px;
+      padding-left: 0;
     }
     &-link{
       display: flex;
@@ -161,6 +153,7 @@ export default {
     &__address{
       &-list{
         flex-direction: column;
+        gap: 20px;
       }
     }
     &__navigation{
@@ -171,13 +164,13 @@ export default {
 @media(max-width: 767px){
   .footer{
     &__wrapper{
-      padding: 14px 0;
+      padding: 30px 0;
     }
     &__navigation{
       display: none;
     }
     &__address{
-      width: 100%;
+      flex:1 1 100%;
       &-block{
         flex-direction: row;
         justify-content: space-between;
@@ -191,10 +184,10 @@ export default {
       }
       &-list{
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: center;
         padding-inline-start: 0;
         font-size: 10px;
-        gap:15px;
+        gap:20px;
 
       }
       &-link{

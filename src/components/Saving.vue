@@ -6,7 +6,7 @@
       <div class='saving__wrapper'>
 
         <div class='saving__item' v-for="item in savings" :key='item.subtitle'>
-          <img src="/images/icons/check_around.svg" alt="i">
+          <img :src="'./images/icons/check_around.svg'" alt="i">
           <div class="saving__block">
             <h6>{{ item.subtitle }}</h6>
             <p>{{ item.descr }}</p>

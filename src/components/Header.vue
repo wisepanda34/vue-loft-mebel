@@ -11,13 +11,13 @@
         </div>
         <div class="header__logo">Loft <br> Furniture</div>
         <my-input class="header__input" v-model="searchQuery">
-<!--          <img src='/images/icons/search-icon.svg' alt="i">-->
+          <img :src="'./images/icons/search-icon.svg'" alt="i">
 
         </my-input>
         <div class="header__icons">
-          <router-link to="/favoritesPage"><img src="/images/icons/wishlist-icon.svg" alt="i"/></router-link>
-          <router-link to="/cart"><img src="/images/icons/cart.svg" alt="i"/></router-link >
-          <router-link to="/account"><img src="/images/icons/profile-icon.svg" alt="i"/></router-link>
+          <router-link to="/favoritesPage"><img :src="'./images/icons/wishlist-icon.svg'" alt="i"/></router-link>
+          <router-link to="/cart"><img :src="'./images/icons/cart.svg'" alt="i"/></router-link >
+          <router-link to="/account"><img :src="'./images/icons/profile-icon.svg'" alt="i"/></router-link>
         </div>
       </div>
 

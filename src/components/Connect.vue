@@ -5,41 +5,54 @@
     <div class='connect__title'>Connect with us</div>
     <div class='connect__wrapper'>
 
-      <Forma/>
+      <form class='connect__form' @submit="handleSubmit">
 
-      <div class='connect__contacts'>
+        <div class='connect__form_inputs'>
 
-        <ul class='connect__contacts-list'>
-          <li>
-            <a href="tel:19648999119" class='connect__contacts-link'>
-              <img src='/images/icons/phone-black.svg' alt='i' />
-              <div>+1 (964) 89 99 119</div>
-            </a>
-          </li>
+          <div class='connect__form_name'>
+            <label for='input_name'>Your name
+              <my-input class="connect__form_input" name='input_name'/>
+            </label>
+          </div>
 
-           <li>
-             <a href='mailto:loft_furniture@gmail.com' class='connect__contacts-link'>
-               <img src="/images/icons/mail.svg" alt='i' />
-               <div>loft_furniture@gmail.com</div>
-             </a>
-           </li>
+          <div class='connect__form_phone'>
+            <label for='input_phone'>Your phone
+              <my-input class="connect__form_input connect__form_input-phone" name='input_phone' type='tel' pattern="[0-9]*"/>
+            </label>
+          </div>
 
-            <li>
-              <a href='#' class='connect__contacts-link'>
-                <img src="/images/icons/inst.svg" alt='i' />
-                <div>INSTAGRAM</div>
-              </a>
-            </li>
-
-        </ul>
-
-        <div class='connect__contacts-address'>
-          Boston, Lincoln avenue, 45 Lincoln center, 2 floor
         </div>
 
 
-      </div>
+        <div class='connect__form_textarea' >
+          <label>Message
+            <textarea name="textarea_message" minLength="5" maxLength="100" />
+          </label>
+        </div>
 
+        <div class='connect__form_buttons'>
+          <my-button class='connect__form_attach' type="file" multiple>Attach file</my-button>
+          <my-button class='connect__form_submit' type="submit">Send</my-button>
+        </div>
+
+      </form>
+
+      <div class='connect__contacts'>
+
+        <ul class='connect__contacts_list'>
+          <li class='connect__contacts_item' v-for="(link,i) in linksFooter" :key="i">
+            <a :href="link.href" class='connect__contacts_link'>
+              <img :src="'./images/icons/phone-black.svg'" alt='i' />
+              <div>{{link.value}}</div>
+            </a>
+          </li>
+        </ul>
+
+        <div class='connect__contacts_address'>
+          Boston, Lincoln avenue, 45 Lincoln center, 2 floor
+        </div>
+
+      </div>
 
     </div>
   </div>
@@ -47,11 +60,34 @@
 </template>
 
 <script>
-import Forma from "@/components/Forma.vue";
+import {mapActions, mapGetters} from "vuex";
+import linksFooter from "@/store/linksFooter";
+import MyInput from "@/components/UI/MyInput.vue";
+import MyButton from "@/components/UI/MyButton.vue";
 
 export default {
   name: "Connect",
-  components: {Forma}
+  components: {MyInput, MyButton},
+  computed:{
+    linksFooter() {
+      return linksFooter
+    },
+    ...mapGetters({
+      linksFooter:'linksFooter/getLinksFooter'
+    })
+  },
+  methods:{
+    ...mapActions('clients',['addNewClient']),
+    handleSubmit(event){
+      event.preventDefault();
+      const name=event.target.elements.input_name.value;
+      const phone=event.target.elements.input_phone.value;
+      const message=event.target.elements.textarea_message.value;
+      const newClient={name,phone,message};
+      this.addNewClient(newClient);
+      event.target.reset();
+    }
+  }
 }
 </script>
 
@@ -72,7 +108,7 @@ export default {
     flex: 0 1 auto;
     padding-left: 100px;
 
-    &-list{
+    &_list{
       display: flex;
       column-gap:37px;
       row-gap:23px;
@@ -80,14 +116,79 @@ export default {
       padding-left: 0;
     }
 
-    &-link{
+    &_link{
       display: flex;
       gap:10px;
     }
-    &-address{
+    &_address{
       text-align: left;
       margin-top: 25px;
     }
+  }
+  &__form{
+    flex: 0 1 457px;
+    display: flex;
+    flex-direction: column;
+
+    &_inputs{
+      display: flex;
+      gap:10px;
+    }
+    &_input{
+      display: block;
+      outline: none;
+      width: 207px;
+      height: 38px;
+      border: 1px solid #c4c4c4;
+      border-radius: 3px;
+    }
+    &_name,&_phone,&_textarea{
+      label{
+        display: block;
+        margin-bottom: 0.25rem;
+        text-align: start;
+        color: #969696;
+        font-size: 12px;
+        line-height: 14px;
+      }
+    }
+    &_input-phone{
+      width: 240px;
+    }
+    &_textarea{
+      textarea{
+        display: block;
+        width: 100%;
+        height: 142px;
+        resize: none;
+        outline: none;
+        background: #FCFCFC;
+        border: 1px solid #c4c4c4;
+        box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.07);
+        box-sizing: border-box;
+        border-radius: 3px;
+      }
+    }
+    &_buttons{
+      display: flex;
+      gap: 20px;
+      margin-top: 15px;
+    }
+    &_attach{
+      width: 149px;
+      height: 40px;
+      background: #FFFFFF;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+      color: #414141;
+      &:hover{
+        background: lightgray;
+      }
+    }
+    &_submit{
+      width: 106px;
+      height: 40px;
+    }
+
   }
 }
 
@@ -106,26 +207,29 @@ export default {
     }
     &__contacts{
       padding: 20px 0;
+      &_list{
+        justify-content: center;
+
+      }
+      &_address{
+        text-align: center;
+      }
     }
-  }
-  .form{
-    flex: 1 1 auto;
-    width: 100%;
-    &__inputs{
-      display: block;
+    &__form{
+      flex: 1 1 auto;
       width: 100%;
-
-    }
-    &__name,&__phone{
-
-      input{
+      &_inputs{
+        display: block;
+        width: 100%;
+      }
+      &_input{
         width:  100%;
       }
-
-    }
-    &__textarea{
-      textarea{
-        box-sizing: content-box;
+      &_buttons{
+        justify-content: center;
+      }
+      &_attach{
+        width: 106px;
       }
     }
   }

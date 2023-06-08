@@ -20,15 +20,11 @@
           effect="fade"
         >
 
-          <swiper-slide >
+          <swiper-slide :key="i"
+                        v-for="(slide,i) in slides"
+          >
             <div class='banner__slide'>
-              <img src='/images/img/banner1.jpg' alt='img' />
-            </div>
-          </swiper-slide>
-
-          <swiper-slide>
-            <div class='banner__slide'>
-              <img src='/images/img/slider.jpg' alt='img' />
+              <img :src="slide" alt='img' />
             </div>
           </swiper-slide>
         </swiper>
@@ -49,6 +45,14 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+  },
+  data(){
+    return{
+      slides : [
+        './images/img/banner1.jpg',
+        './images/img/slider.jpg'
+      ]
+    }
   },
   setup() {
     const onSwiper = (swiper) => {

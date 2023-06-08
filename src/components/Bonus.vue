@@ -12,11 +12,9 @@
         </div>
 
         <div class='bonus__footline'>
-          <div class='bonus__cash'><img src='/images/icons/cashback.svg' alt="i" class='bonus__icon' />We return up to 7% to the bonus account</div>
-          <div class='bonus__cash'>
-<!--            <font-awesome-icon class="currency-icon" icon="dollar-sign" />-->
-            1 bonus = 1 dollar</div>
-          <div class='bonus__cash'><img src='/images/icons/gift.svg' alt="i" class='bonus__icon' />Pay with bonuses up to 20% of the purchase</div>
+          <div class='bonus__cash' v-for="(item,i) in bonusContent" :key="i">
+            <img :src="item.src" alt="i" class='bonus__icon' />{{item.text}}
+          </div>
         </div>
 
       </div>
@@ -36,6 +34,24 @@ export default {
   name: "Bonus",
   components: {
     // FontAwesomeIcon
+  },
+  data(){
+    return{
+      bonusContent:[
+        {
+          src:'./images/icons/cashback.svg',
+          text: 'We return up to 7% to the bonus account'
+        },
+        {
+          src:'./images/icons/cashback.svg',
+          text: '1 bonus = 1 dollar'
+        },
+        {
+          src:'./images/icons/gift.svg',
+          text: 'Pay with bonuses up to 20% of the purchase'
+        }
+      ]
+    }
   }
 }
 </script>
@@ -89,7 +105,7 @@ export default {
     min-height: 57px;
     display: flex;
     gap: 30px;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background: #F8F8F8;
   }
@@ -122,6 +138,7 @@ export default {
   .bonus{
     &__footline{
       padding: 10px 0 10px 20%;
+      font-size: 14px;
     }
   }
 }

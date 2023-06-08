@@ -4,7 +4,7 @@
 
       <div class='card__pic'>
         <div class='card__heart'  @click.prevent="handleAddToFavorites(item,true)">
-          <img :class="['card__icon', {'yellow':isCardInFavorites(item)}]" src="/images/icons/wishlist-icon.svg" alt="i">
+          <img :class="['card__icon', {'yellow':isCardInFavorites(item)}]" :src="'./images/icons/wishlist-icon.svg'" alt="i">
         </div>
         <img class="card__img" :src="item.img" alt="img" />
       </div>

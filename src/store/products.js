@@ -203,7 +203,20 @@ const products = {
     },
     getters: {
         getProducts: state => state.products,
-        getProduct: state => id => state.products.find(item => item.id === id)
+        getProduct: state => id => state.products.find(item => item.id === id),
+        searchProduct: state => query => {
+            if (!query) return []
+            return state.products.filter(item => {
+                const itemIncludeSearchParam = [
+                    'titleCard',
+                    'kindProduct',
+                    'typeProduct',
+                    'category'
+                ].find(param => item[param].includes(query.trim().toLowerCase()))
+
+                return itemIncludeSearchParam
+            })
+        }
     },
     actions: {},
     mutations: {}

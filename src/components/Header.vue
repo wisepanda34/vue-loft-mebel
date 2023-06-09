@@ -12,8 +12,12 @@
         <div class="header__logo">Loft <br> Furniture</div>
         <my-input class="header__input" v-model="searchQuery">
           <img :src="'./images/icons/search-icon.svg'" alt="i">
-
         </my-input>
+        <ul v-if="!searched.length">
+          <li v-for="item in searched" >
+            {{item.titleCard}}
+          </li>
+        </ul>
         <div class="header__icons">
           <router-link to="/favoritesPage"><img :src="'./images/icons/wishlist-icon.svg'" alt="i"/></router-link>
           <router-link to="/cart"><img :src="'./images/icons/cart.svg'" alt="i"/></router-link >
@@ -31,6 +35,7 @@
 import Navbar from "@/components/Navbar.vue";
 import MenuTransform from "@/components/MenuTransform.vue";
 import MyInput from "@/components/UI/MyInput.vue";
+import {mapGetters} from "vuex";
 
 export default {
   name: "Header",
@@ -40,6 +45,14 @@ export default {
       isMenuActive: false,
       windowWidth: window.innerWidth,
       searchQuery:'',
+    }
+  },
+  computed: {
+    ...mapGetters({
+      searchProduct: "products/searchProduct"
+    }),
+    searched() {
+      return this.searchProduct(this.searchQuery)
     }
   },
   mounted() {

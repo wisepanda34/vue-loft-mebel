@@ -45,17 +45,6 @@ export default {
   mounted() {
     window.addEventListener("resize", this.handleWindowResize);
   },
-  // beforeUnmount() {
-  //   window.removeEventListener("resize", this.handleWindowResize);
-  // },
-  // computed:{
-  //   sortedCards(){
-  //     return [...this.products].sort((card1,card2)=>card1[this.searchQuery]?.localeCompare(card2[this.searchQuery]))
-  //   },
-  //   sortedAndSearchedPosts(){
-  //     return this.sortedCards.filter(card=>card.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
-  //   }
-  // },
   methods: {
     handleWindowResize() {
       this.windowWidth = window.innerWidth;

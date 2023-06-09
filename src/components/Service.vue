@@ -12,6 +12,7 @@
         </div>
 
       </div>
+      <router-link to="/reviewsPage" class=" service__reviews center">Read comments about our services...</router-link>
     </div>
   </section>
 </template>
@@ -41,6 +42,7 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+    padding: 20px 0;
 
   }
   &__item{
@@ -80,6 +82,14 @@ export default {
       height: 20px;
     }
   }
+  &__reviews{
+    font-size: 24px;
+    color: #366a7a;
+    letter-spacing: 0.07em;
+    &:hover{
+      color: #718b8f;
+    }
+  }
 }
 
 @media (max-width:767px) {
@@ -99,9 +109,6 @@ export default {
       p{
         font-size: 12px;
       }
-    }
-    &__icon{
-
     }
   }
 }

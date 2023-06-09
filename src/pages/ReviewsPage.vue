@@ -3,10 +3,11 @@
     <div class="container">
       <div class="reviews__wrapper">
         <h3 class="reviews__title center">OUR CLIENTS COMMENTS</h3>
-        <div class="reviews__comments" v-for="comment in posts.comments" :key="comment.id">
+        <div class="reviews__comments" v-if="!isPostsLoading" v-for="comment in posts.comments" :key="comment.id">
           <div class="reviews__user"><span>client:</span> {{comment.user.username}}</div>
           <div class="reviews__text"><span>review:</span> {{comment.body}}</div>
         </div>
+        <div class="center" v-else>Loading...</div>
       </div>
     </div>
   </section>
@@ -17,17 +18,26 @@ export default {
   name: "ReviewsPage",
   data(){
     return{
-      posts:[]
+      posts:[],
+      isPostsLoading: false,
+      page: 3,
+      limit: 2
     }
   },
   mounted() {
     const fetchData=async()=> {
       try {
-        const res = await fetch('https://dummyjson.com/comments?limit=10&skip=10&select=body,postId');
+        this.isPostsLoading=true
+        const res = await fetch('https://dummyjson.com/comments?limit=10&skip=10&select=body,postId',{
+          _page:this.page,
+          _limit: this.limit
+        });
           this.posts = await res.json();
         console.log(this.posts)
       } catch (error) {
         console.log(error);
+      }finally {
+        this.isPostsLoading=false
       }
     }
     fetchData();
@@ -43,6 +53,7 @@ export default {
   &__title{
     color: #4c6062;
     margin-bottom: 30px;
+    justify-self: start;
   }
   &__comments{
     width: 90%;

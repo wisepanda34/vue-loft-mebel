@@ -1,6 +1,6 @@
 <template>
 
-    <router-link class='card' to="/cardPage" >
+    <router-link class='card' :to="`/product/${item.id}`" >
 
       <div class='card__pic'>
         <div class='card__heart'  @click.prevent="handleAddToFavorites(item,true)">

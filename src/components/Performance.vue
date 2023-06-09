@@ -37,7 +37,6 @@ export default {
 
 <style lang="scss" scoped>
 .performance{
-  min-height: 500px;
 
   &__wrapper{
     display: flex;

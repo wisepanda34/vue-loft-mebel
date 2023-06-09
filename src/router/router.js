@@ -41,8 +41,12 @@ const routes = [
     path: '/catalog',
     component: Catalog
   },
+  // {
+  //   path: '/cardPage/',
+  //   component: CardPage
+  // },
   {
-    path: '/cardPage',
+    path: '/product/:id',
     component: CardPage
   },
   {
@@ -61,6 +65,11 @@ const routes = [
     path: '/reviewsPage',
     component: ReviewsPage
   },
+  // {
+  //   path: '/*',
+  //   component: ErrorPage
+  //   // todo Make component
+  // },
 
 
 ]

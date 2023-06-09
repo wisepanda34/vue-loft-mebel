@@ -1,5 +1,5 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  publicPath:'/vue-loft-mebel',
+  publicPath: process.env.BASE_URL,
   transpileDependencies: true
 })

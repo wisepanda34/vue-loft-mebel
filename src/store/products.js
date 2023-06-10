@@ -203,18 +203,20 @@ const products = {
     },
     getters: {
         getProducts: state => state.products,
+        // отдаем в компонент продукт, найденный по id
         getProduct: state => id => state.products.find(item => item.id === id),
+        //отдаем в компонент те продукты, у которых найдены совпадения
         searchProduct: state => query => {
             if (!query) return []
             return state.products.filter(item => {
-                const itemIncludeSearchParam = [
+                const productsIncludeSearchParam = [
                     'titleCard',
                     'kindProduct',
                     'typeProduct',
                     'category'
-                ].find(param => item[param].includes(query.trim().toLowerCase()))
+                ].find(param => item[param].toLowerCase().includes(query.trim().toLowerCase()))
 
-                return itemIncludeSearchParam
+                return productsIncludeSearchParam
             })
         }
     },

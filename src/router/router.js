@@ -41,10 +41,6 @@ const routes = [
     path: '/catalog',
     component: Catalog
   },
-  // {
-  //   path: '/cardPage/',
-  //   component: CardPage
-  // },
   {
     path: '/product/:id',
     component: CardPage

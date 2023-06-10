@@ -24,7 +24,7 @@ export default {
     }
   },
   methods: {
-    getImage
+    getImage: getImage
   },
   mounted() {
     console.log(getImage(this.currentProduct.img))
@@ -32,6 +32,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

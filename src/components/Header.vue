@@ -10,14 +10,22 @@
           <span></span>
         </div>
         <div class="header__logo">Loft <br> Furniture</div>
-        <my-input class="header__input" v-model="searchQuery">
-          <img :src="'./images/icons/search-icon.svg'" alt="i">
-        </my-input>
-        <ul v-if="!searched.length">
-          <li v-for="item in searched" >
-            {{item.titleCard}}
-          </li>
-        </ul>
+
+        <div class="header__search">
+          <my-input class="header__search_input" v-model="searchQuery">
+            <img :src="'images/icons/search-icon.svg'" alt="i">
+          </my-input>
+
+          <ul class="header__search_list" v-if="searched.length">
+            <li class="header__search_item" v-for="item in searched" >
+              <router-link class="header__search_link"
+                           :to="`/product/${item.id}`"
+                           @click="closeSearch"
+              >{{item.titleCard}}</router-link>
+            </li>
+          </ul>
+        </div>
+
         <div class="header__icons">
           <router-link to="/favoritesPage"><img :src="'./images/icons/wishlist-icon.svg'" alt="i"/></router-link>
           <router-link to="/cart"><img :src="'./images/icons/cart.svg'" alt="i"/></router-link >
@@ -49,7 +57,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      searchProduct: "products/searchProduct"
+      searchProduct: "products/searchProduct",
+      getProduct: "products/getProduct"
     }),
     searched() {
       return this.searchProduct(this.searchQuery)
@@ -69,6 +78,9 @@ export default {
     closeMenu() {
       this.isMenuActive = false;
       document.body.classList.remove('no-scroll');
+    },
+    closeSearch(){
+      this.searchQuery=''
     }
   }
 }
@@ -77,33 +89,32 @@ export default {
 <style lang="scss" scoped>
 
 .header{
-  height: 138px;
   padding-bottom: 10px;
   background: lightgray;
   &__main{
     display: flex;
-    align-items: center;
     justify-content: space-between;
   }
   &__burger{
     display: none;
     flex: 0 0 30px;
     flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 16px;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    //height: 16px;
     cursor: pointer;
     order: 1;
 
     span{
       background: #000;
-      width: 30px;
+      //width: 30px;
       height: 1px;
+      //margin: 0 auto;
     }
   }
   &__logo{
     flex: 0 1 auto;
-    margin-top: 16px;
     font-size: 24px;
     font-weight: 900;
     font-family: 'Playfair Display', serif;
@@ -111,33 +122,42 @@ export default {
     text-transform: uppercase;
     order: 2;
   }
-  &__input{
+  &__search{
     position: relative;
     flex: 1 1 auto;
-    height: 50px;
-    margin: 20px 30px 0 30px;
-    padding: 0 30px 0 40px!important;
-    border: 1px solid rgba(230, 230, 230, 1)!important;
-    font-size: 16px;
+    padding: 0 20px;
     order: 3;
-    background-color: #fff!important;
-    //background-image: url('~@/public/images/icons/search-icon.svg') ;
-    //background-repeat: no-repeat; /*Убираем повтор изображения*/
-    //background-position: 14px; /*Позиционируем*/
-    img{
+    &_input{
+      width: 100%;
+      height: 50px;
+      padding: 0 30px 0 40px;
+      border: 1px solid rgba(230, 230, 230, 1);
+      background-color: #fff;
+      font-size: 16px;
+    }
+    &_list{
       position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 10px;
-      height: 15px;
-      z-index: 5;
+      z-index: 100;
+      top: 33px;
+      left: 20px;
+      width: calc(100% - 40px);
+      background: #fff;
+      border: 1px solid rgba(230, 230, 230, 1);
+    }
+    &_item{
+      margin: 4px 0;
+    }
+    &_link{
+      &:hover{
+        color: #4d91a4;
+      }
     }
   }
   &__icons{
     flex: 0 1 auto;
     display: flex;
+    align-items: center;
     gap: 30px;
-    margin-top: 20px;
     order:4;
   }
   &__menuTransform{
@@ -146,19 +166,16 @@ export default {
 }
 @media (max-width:992px){
   .header{
-    height: 110px;
     &__main{
       padding: 0;
     }
-
     &__logo{
       order: 2;
       margin-top: 0;
     }
-    &__input{
+    &__search{
       order: 3;
       margin: 0 20px 0 20px;
-      height: 40px;
     }
     &__icons{
       order: 4;
@@ -170,27 +187,36 @@ export default {
 @media (max-width:767px){
   .header{
     position: relative;
-    height: 100px;
+    padding: 10px 0;
     &__main{
       flex-wrap: wrap;
-      padding: 10px 0 3px 0;
     }
     &__burger{
       display: flex;
-      flex: 0 1 auto;
-      margin-right: 18px;
       order:1;
+
     }
     &__logo{
       order: 2;
       flex: 0 1 auto;
-      margin: 0 20px 0 0;
       font-size: 18px;
+      padding: 0 10px;
     }
-    &__input{
+    &__search{
       order: 4;
       flex: 0 1 100%;
       margin: 7px 0 0 0;
+      padding: 0;
+
+      &_input{
+        height: 30px;
+      }
+      &_list{
+        top: 13px;
+        left: 0;
+        width: 100%;
+        font-size: 14px;
+      }
     }
     &__icons{
       order: 3;

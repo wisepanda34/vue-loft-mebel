@@ -21,7 +21,9 @@
           <div class='card__descr-size'>
 <!--            <div><span>width</span><p>{{item.width}} sm</p></div>&#9587;<div><span>deep</span><p>{{item.deep}} sm</p></div>&#9587;<div><span>height</span><p>{{item.height}} sm</p></div>-->
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cum eaque earum, iure labore laudantium magni, necessitatibus, nemo neque officiis omnis pariatur praesentium quas quo temporibus veniam vitae! Aperiam dolorum esse nostrum officia omnis quia vel vero. Aliquam aspernatur iusto laboriosam, minus nemo nobis porro temporibus! Adipisci assumenda consectetur cupiditate, dicta dolor eos labore molestiae natus necessitatibus nisi, odio optio possimus quasi qui quo repellat saepe sed velit! Consequatur ex fuga omnis quasi quia quod saepe velit voluptate. A aspernatur at atque consectetur delectus dignissimos eligendi, enim facere illum impedit minus mollitia nostrum officia officiis perferendis praesentium provident tenetur vitae.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet asperiores dignissimos error explicabo fugit, hic neque optio quisquam, quo ratione rem, sed sunt temporibus ut voluptatum? Adipisci aspernatur dolorem molestias?</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias at facilis iure labore minima natus nesciunt, odit perferendis porro provident quaerat quas repellat sapiente tempora ut velit voluptatem! Accusantium aperiam architecto aspernatur autem consequuntur, cumque cupiditate eligendi ipsam iusto necessitatibus nemo, obcaecati, quaerat quia quibusdam quidem ratione repellendus ut vero.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad in nulla obcaecati possimus quae quibusdam tempore. Aliquid dignissimos dolores eveniet, non perferendis rerum temporibus voluptatem! Aperiam autem, consequuntur cupiditate debitis dolores ducimus ex incidunt laborum nam qui reiciendis totam voluptate.</p>
         </div>
 
 

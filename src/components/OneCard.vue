@@ -22,7 +22,7 @@
         <div class='card__descr-size'>
           <div><span>width</span><p>{{item.width}} sm</p></div>&#9587;<div><span>deep</span><p>{{item.deep}} sm</p></div>&#9587;<div><span>height</span><p>{{item.height}} sm</p></div>
         </div>
-        <my-button class='card__descr-btn'
+        <my-button v-show="isBtnShow" class='card__descr-btn'
            @click.prevent="handleAddToCartAndOpenVoiceModal(item)"
         >Add to cart</my-button>
       </div>
@@ -43,7 +43,8 @@ export default {
     item:{
       type: Object,
       default:()=>{}
-    }
+    },
+    isBtnShow:Boolean
   },
   methods: {
     getImage: getImage,

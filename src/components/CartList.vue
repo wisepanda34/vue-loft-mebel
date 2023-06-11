@@ -25,8 +25,7 @@
         </div>
         <h4 class="">You may like</h4>
         <div class="cartlist__recommendation">
-
-          <OneCard v-for="item in recommendList" :key="item.id" :item="item"/>
+          <OneCard class="no-margin-bottom"  v-for="item in recommendList" :key="item.id" :item="item"/>
         </div>
 
       </div>
@@ -42,6 +41,9 @@ export default {
   name: "CartList",
   components:{OneCard, CartProduct},
   data(){
+    return{
+      isBtnShow:false
+    }
   },
   computed:{
     ...mapGetters({
@@ -134,6 +136,9 @@ export default {
       background-color: #94bcc0;
     }
   }
+}
+.no-margin-bottom{
+  margin-bottom: 10px;
 }
 @media (max-width: 767px) {
   .cartlist{

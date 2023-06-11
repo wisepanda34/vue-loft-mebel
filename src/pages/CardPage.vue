@@ -1,7 +1,8 @@
 <template>
   <section class="cardPage">
     <div class="container">
-      <h6>Page of the product</h6>
+      <h6 class="cardPage__comeback" @click="comeBack">Come back</h6>
+
       <h1 class="cardPage__title center">{{currentProduct.titleCard}}</h1>
       <div class="cardPage__wrapper">
 
@@ -26,9 +27,9 @@
           <p>Consectetur adipisicing elit. Alias at facilis iure labore minima natus nesciunt, odit perferendis porro provident quaerat quas repellat sapiente tempora ut velit voluptatem! Accusantium aperiam architecto aspernatur autem consequuntur, cumque cupiditate eligendi ipsam iusto necessitatibus nemo, obcaecati, quaerat quia quibusdam quidem ratione repellendus ut vero.</p>
           <p>Ad in nulla obcaecati possimus quae quibusdam tempore. Aliquid dignissimos dolores eveniet, non perferendis rerum temporibus voluptatem! Aperiam autem, consequuntur cupiditate debitis dolores ducimus ex incidunt laborum nam qui reiciendis totam voluptate.</p>
         </div>
-
-
       </div>
+      <h6 class="cardPage__comeback" @click="comeBack">Come back</h6>
+      
     </div>
   </section>
 </template>
@@ -50,18 +51,27 @@ export default {
     }
   },
   methods: {
-    getImage: getImage
+    getImage: getImage,
+    comeBack(){
+      this.$router.go(-1)
+    }
   },
-  mounted() {
-    console.log(getImage(this.currentProduct.img))
-  }
 }
 </script>
 
 <style lang="scss" scoped>
 .cardPage{
   padding: 10px 0;
+  &__comeback{
+    cursor: pointer;
+    text-align: end;
+    color: #4c6062;
+    text-decoration: underline;
+    &:hover{
+      color: #68c0ee;
 
+    }
+  }
   &__wrapper{
     display: flex;
     align-items: center;

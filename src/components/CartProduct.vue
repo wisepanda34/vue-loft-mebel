@@ -1,7 +1,7 @@
 <template>
-  <router-link :to="`/cartPage/${item.id}`" >
+  <router-link :to="`/product/${item.id}`" >
     <div class="cartProduct">
-      <div class='cartProduct__img'><img :src="getImage('item.img')" alt="img"/></div>
+      <div class='cartProduct__img'><img :src="getImage(item.img)" alt="img"/></div>
 
       <div class="cartProduct__block">
           <div class="cartProduct__main">

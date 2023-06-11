@@ -3,7 +3,7 @@
   <section class='cards'>
     <div class='container'>
       <div class='cards__wrapper'>
-        <OneCard v-for="item in products" :key="item.id" :item="item"/>
+        <OneCard :isBtnShow="true" v-for="item in products" :key="item.id" :item="item"/>
       </div>
     </div>
   </section>
@@ -16,7 +16,9 @@ export default {
   name: "Cards",
   components: {OneCard},
   data(){
-    return {}
+    return {
+      isBtnShow: true
+    }
   },
   computed: {
     ...mapGetters({

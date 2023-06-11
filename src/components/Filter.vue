@@ -2,7 +2,7 @@
   <section class='filter'>
   <div class="filter__head">
     <div class="filter__title">Filter</div>
-    <div class="filter__delete">&#9587;</div>
+    <div class="filter__close" @click="$emit('close-filter')">&#9587;</div>
   </div>
 
 
@@ -165,7 +165,8 @@ export default {
     padding-left: 100px;
     padding-bottom: 20px;
   }
-  &__delete{
+  &__close{
+    display: none;
     justify-self: self-end;
     font-size: 10px;
   }
@@ -278,7 +279,11 @@ export default {
   }
 }
 
-@media (max-width: 992px) {
-
+@media (max-width: 860px) {
+  .filter{
+    &__close{
+      display: block;
+    }
+  }
 }
 </style>

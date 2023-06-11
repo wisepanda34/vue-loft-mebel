@@ -7,11 +7,12 @@
                 @filter-selected="onFilterSelected"
                 @type-selected="onTypeSelected"
                 @kind-selected="onKindSelected"
+                @close-filter="closeFilter"
         />
 
         <div class="choose__block">
           <div class="choose__options">
-            <my-button class="choose__btn">Filter</my-button>
+            <my-button class="choose__btn" @click="openFilter">Filter</my-button>
             <my-select
                 class="choose__select"
                 v-model="selectedSort"
@@ -100,7 +101,12 @@ export default {
     onKindSelected(kindValue){
       this.selectedKind=kindValue;
     },
+    closeFilter(){
 
+    },
+    openFilter(){
+
+    }
   }
 }
 </script>

@@ -30,7 +30,7 @@ export default {
   methods:{
     getImage,
     chooseMenu(){
-      this.$emit('close-menu')
+      this.$emit('close-menuTransform')
     }
   }
 }

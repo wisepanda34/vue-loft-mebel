@@ -9,19 +9,28 @@
           <span></span>
           <span></span>
         </div>
-        <div class="header__logo">Loft <br> Furniture</div>
+
+        <div class="header__logo">
+          <router-link to="/">Loft <br> Furniture</router-link>
+        </div>
 
         <div class="header__search">
-          <my-input class="header__search_input" v-model="searchQuery">
-            <img :src="'images/icons/search-icon.svg'" alt="i">
-          </my-input>
+          <my-input class="header__search_input" v-model="searchQuery"/>
+          <svg class="header__search_icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 15L11 11M7 13C3.68629 13 1 10.3137 1 7C1 3.68629 3.68629 1 7 1C10.3137 1 13 3.68629 13 7C13 10.3137 10.3137 13 7 13Z" stroke="black"/>
+          </svg>
 
           <ul class="header__search_list" v-if="searched.length">
             <li class="header__search_item" v-for="item in searched" >
               <router-link class="header__search_link"
                            :to="`/product/${item.id}`"
                            @click="closeSearch"
-              >{{item.titleCard}}</router-link>
+              >
+                <div class="header__search_pic">
+                  <img :src="getImage(item.img)" alt="img">
+                </div>
+                {{item.titleCard}}
+              </router-link>
             </li>
           </ul>
         </div>
@@ -104,15 +113,11 @@ export default {
     justify-content: center;
     gap: 7px;
     width: 100%;
-    //height: 16px;
     cursor: pointer;
     order: 1;
-
     span{
       background: #000;
-      //width: 30px;
       height: 1px;
-      //margin: 0 auto;
     }
   }
   &__logo{
@@ -132,10 +137,19 @@ export default {
     &_input{
       width: 100%;
       height: 50px;
-      padding: 0 30px 0 40px;
+      padding: 0 20px 0 40px;
       border: 1px solid rgba(230, 230, 230, 1);
       background-color: #fff;
       font-size: 16px;
+    }
+    &_icon{
+      position: absolute;
+      top: 16px;
+      left: 34px;
+      width: 16px;
+      height: 16px;
+      z-index: 10;
+
     }
     &_list{
       position: absolute;
@@ -145,11 +159,18 @@ export default {
       width: calc(100% - 40px);
       background: #fff;
       border: 1px solid rgba(230, 230, 230, 1);
+      padding-left: 10px;
     }
     &_item{
       margin: 4px 0;
     }
     &_link{
+      display: flex;
+      gap: 10px;
+      img{
+        width: 20px;
+        height: 20px;
+      }
       &:hover{
         color: #4d91a4;
       }
@@ -211,10 +232,14 @@ export default {
       padding: 0;
 
       &_input{
-        height: 30px;
+        height: 40px;
+      }
+      &_icon{
+        top: 14px;
+        left: 14px;
       }
       &_list{
-        top: 13px;
+        top: 25px;
         left: 0;
         width: 100%;
         font-size: 14px;

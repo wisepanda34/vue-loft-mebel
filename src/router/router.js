@@ -64,7 +64,7 @@ const routes = [
   // {
   //   path: '/*',
   //   component: ErrorPage
-  //   // todo Make component
+  // todo Make component
   // },
 
 

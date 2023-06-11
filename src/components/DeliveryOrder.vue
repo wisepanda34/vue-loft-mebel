@@ -8,7 +8,7 @@
         <p>Contact phone number for consultation:</p>
 
         <a class='delivery__phone' href='tel: 19648999119'>
-          <img src="images/icons/phone-black.svg" alt="i"/>
+          <img :src="getImage('images/icons/phone-black.svg')" alt="i"/>
           <span>+1 (964) 89 99 119</span>
         </a>
 
@@ -18,8 +18,11 @@
 </template>
 
 <script>
+import getImage from "@/helpers/getImage";
+
 export default {
-  name: "DeliveryOrder"
+  name: "DeliveryOrder",
+  methods: {getImage}
 }
 </script>
 

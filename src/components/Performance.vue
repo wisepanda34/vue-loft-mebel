@@ -20,7 +20,7 @@
         </div>
 
         <div class='performance__pic'>
-          <img :src="'./images/img/performance_sofa.png'" alt="img" />
+          <img :src="getImage('images/img/performance_sofa.png')" alt="img" />
         </div>
 
 
@@ -30,8 +30,12 @@
 </template>
 
 <script>
+import getImage from "@/helpers/getImage";
 export default {
-  name: "Performance"
+  name: "Performance",
+  methods:{
+    getImage
+  }
 }
 </script>
 

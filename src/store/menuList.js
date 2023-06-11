@@ -7,47 +7,47 @@ const menuList ={
             menuList: [
                 {
                     title: "Kitchen",
-                    icon: './images/icons/kitchen-icon.svg',
+                    icon: 'images/icons/kitchen-icon.svg',
                 },
                 {
                     title: "Bedroom",
-                    icon: './images/icons/bedroom-icon.svg',
+                    icon: 'images/icons/bedroom-icon.svg',
                 },
                 {
                     title: "Living rooms",
-                    icon: './images/icons/livingroom-icon.svg',
+                    icon: 'images/icons/livingroom-icon.svg',
                 },
                 {
                     title: "Lobby",
-                    icon: './images/icons/closet-icon.svg',
+                    icon: 'images/icons/closet-icon.svg',
                 },
                 {
                     title: "Office",
-                    icon: './images/icons/office-icon.svg',
+                    icon: 'images/icons/office-icon.svg',
                 },
                 {
-                    title: "Childrens room",
-                    icon: './images/icons/childrensroom-icon.svg',
+                    title: "Children room",
+                    icon: 'images/icons/childrenroom-icon.svg',
                 },
                 {
                     title: "Sale",
-                    icon: './images/icons/sale.svg',
+                    icon: 'images/icons/sale.svg',
                 },
                 {
                     title: "New",
-                    icon: './images/icons/new.svg',
+                    icon: 'images/icons/new.svg',
                 },
                 {
                     title: "Mattresses",
-                    icon: './images/icons/mattress.svg',
+                    icon: 'images/icons/mattress.svg',
                 },
                 {
                     title: "Cushioned furniture",
-                    icon: './images/icons/armchair.svg',
+                    icon: 'images/icons/armchair.svg',
                 },
                 {
                     title: "Cupboard",
-                    icon: './images/icons/cupboard.svg',
+                    icon: 'images/icons/cupboard.svg',
                 },
             ]
         }

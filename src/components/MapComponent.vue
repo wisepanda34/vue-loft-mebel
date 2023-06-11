@@ -19,11 +19,6 @@ export default {
   data: () => ({
     MapComponent: null
   }),
-  methods: {
-    // onLoad(frame) {
-    //   this.MapComponent = frame.contentWindow
-    // }
-  }
 }
 </script>
 

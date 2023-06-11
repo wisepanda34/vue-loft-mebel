@@ -9,11 +9,11 @@
 
     <div class='navbar__delivery'>
       <a class='navbar__delivery-phone flex' @click="chooseMenu" href='tel: 19648999119'>
-        <img :src="'./images/icons/phone-black.svg'" alt="i"/>
+        <img :src="getImage('images/icons/phone-black.svg')" alt="i"/>
         <span>+1 (964) 89 99 119</span>
       </a>
       <router-link to="/deliveryPage" @click="chooseMenu" class='navbar__delivery-deliv flex' >
-        <img :src="'./images/icons/delivery-icon-black.svg'" alt="i"/>
+        <img :src="getImage('images/icons/delivery-icon-black.svg')" alt="i"/>
         <span>Delivery</span>
       </router-link>
     </div>
@@ -23,9 +23,12 @@
 
 <script>
 
+import getImage from "@/helpers/getImage";
+
 export default {
   name: "Navbar",
   methods:{
+    getImage,
     chooseMenu(){
       this.$emit('close-menu')
     }

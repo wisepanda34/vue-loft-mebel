@@ -42,7 +42,7 @@
         <ul class='connect__contacts_list'>
           <li class='connect__contacts_item' v-for="(link,i) in linksFooter" :key="i">
             <a :href="link.href" class='connect__contacts_link'>
-              <img :src="'./images/icons/phone-black.svg'" alt='i' />
+              <img :src="getImage('images/icons/phone-black.svg')" alt='i' />
               <div>{{link.value}}</div>
             </a>
           </li>
@@ -64,6 +64,7 @@ import {mapActions, mapGetters} from "vuex";
 import linksFooter from "@/store/linksFooter";
 import MyInput from "@/components/UI/MyInput.vue";
 import MyButton from "@/components/UI/MyButton.vue";
+import getImage from "@/helpers/getImage";
 
 export default {
   name: "Connect",
@@ -77,6 +78,7 @@ export default {
     })
   },
   methods:{
+    getImage,
     ...mapActions('clients',['addNewClient']),
     handleSubmit(event){
       event.preventDefault();

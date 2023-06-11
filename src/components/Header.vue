@@ -27,9 +27,9 @@
         </div>
 
         <div class="header__icons">
-          <router-link to="/favoritesPage"><img :src="'./images/icons/wishlist-icon.svg'" alt="i"/></router-link>
-          <router-link to="/cart"><img :src="'./images/icons/cart.svg'" alt="i"/></router-link >
-          <router-link to="/account"><img :src="'./images/icons/profile-icon.svg'" alt="i"/></router-link>
+          <router-link to="/favoritesPage"><img :src="getImage('images/icons/wishlist-icon.svg')" alt="i"/></router-link>
+          <router-link to="/cart"><img :src="getImage('images/icons/cart.svg')" alt="i"/></router-link >
+          <router-link to="/account"><img :src="getImage('images/icons/profile-icon.svg')" alt="i"/></router-link>
         </div>
       </div>
 
@@ -43,6 +43,7 @@
 import Navbar from "@/components/Navbar.vue";
 import MenuTransform from "@/components/MenuTransform.vue";
 import MyInput from "@/components/UI/MyInput.vue";
+import getImage from "@/helpers/getImage";
 import {mapGetters} from "vuex";
 
 export default {
@@ -68,6 +69,7 @@ export default {
     window.addEventListener("resize", this.handleWindowResize);
   },
   methods: {
+    getImage,
     handleWindowResize() {
       this.windowWidth = window.innerWidth;
     },

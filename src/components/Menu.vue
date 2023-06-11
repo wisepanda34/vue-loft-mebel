@@ -7,7 +7,7 @@
           <li class="menu__item" v-for="item in menuList" :key="item.title">
             <a class="menu__link">
               <div class='menu__icon'>
-                <img :src='item.icon' alt='i' />
+                <img :src='getImage(item.icon)' alt='i' />
               </div>
               <div class="menu__title">{{item.title}}</div>
             </a>
@@ -24,6 +24,7 @@
 
 <script>
 import {mapGetters} from "vuex";
+import getImage from "@/helpers/getImage";
 
 export default {
   name: "Menu",
@@ -35,6 +36,9 @@ export default {
     ...mapGetters({
       menuList:'menuList/getMenuList'
     })
+  },
+  methods:{
+    getImage
   }
 }
 </script>

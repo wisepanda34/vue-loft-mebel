@@ -5,7 +5,7 @@
         <h3 class='profit__title center'>Buy profitably!</h3>
         <div class='profit__block'>
           <div class='profit__item' v-for="item in profits" :key="item.id">
-            <div class='profit__icon'><img :src="item.icon" alt="icon" /></div>
+            <div class='profit__icon'><img :src="getImage(item.icon)" alt="icon" /></div>
             <div class='profit__content'>
               <h5>{{item.title}}</h5>
               <p>{{item.descr}}</p>
@@ -20,6 +20,7 @@
 
 <script>
 import {mapGetters} from "vuex";
+import getImage from "@/helpers/getImage";
 export default {
   name: "Profit",
 
@@ -32,6 +33,9 @@ export default {
       profits: 'profits/getProfits'
     })
   },
+  methods:{
+    getImage
+  }
 }
 </script>
 

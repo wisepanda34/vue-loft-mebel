@@ -24,7 +24,7 @@
                         v-for="(slide,i) in slides"
           >
             <div class='banner__slide'>
-              <img :src="slide" alt='img' />
+              <img :src="getImage(slide)" alt='img' />
             </div>
           </swiper-slide>
         </swiper>
@@ -37,6 +37,7 @@
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, EffectFade } from 'swiper';
+import getImage from "@/helpers/getImage";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
@@ -67,6 +68,9 @@ export default {
       modules: [Navigation, EffectFade],
     };
   },
+  methods:{
+    getImage
+  }
 
 }
 </script>

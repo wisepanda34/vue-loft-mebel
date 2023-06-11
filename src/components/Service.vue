@@ -7,7 +7,7 @@
           <h5>{{ item.subtitle }}</h5>
           <p>{{ item.descr }}</p>
           <div class='service__icon'>
-            <img :src="item.icon" alt="icon" />
+            <img :src="getImage(item.icon)" alt="icon" />
           </div>
         </div>
 
@@ -19,6 +19,7 @@
 
 <script>
 import {mapGetters} from "vuex";
+import getImage from "@/helpers/getImage";
 
 export default {
   name: "Service",
@@ -30,8 +31,10 @@ export default {
     ...mapGetters({
       services: 'services/getServices'
     })
+  },
+  methods:{
+    getImage
   }
-
 }
 </script>
 

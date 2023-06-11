@@ -13,7 +13,7 @@
 
         <div class='bonus__footline'>
           <div class='bonus__cash' v-for="(item,i) in bonusContent" :key="i">
-            <img :src="item.src" alt="i" class='bonus__icon' />{{item.text}}
+            <img :src="getImage(item.src)" alt="i" class='bonus__icon' />{{item.text}}
           </div>
         </div>
 
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import getImage from "@/helpers/getImage";
 // import { library } from '@fortawesome/fontawesome-svg-core';
 // import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -52,6 +53,9 @@ export default {
         }
       ]
     }
+  },
+  methods:{
+    getImage
   }
 }
 </script>

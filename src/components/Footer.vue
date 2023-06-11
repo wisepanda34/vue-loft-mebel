@@ -28,7 +28,7 @@
             <li :key="i"
                 v-for="(link,i) in linksFooter">
               <a :href='link.href' class='footer__address-link'>
-                <img :src='link.src' alt='i' />
+                <img :src='getImage(link.src)' alt='i' />
                 <div>{{link.value}}</div>
               </a>
             </li>
@@ -42,6 +42,7 @@
 
 <script>
 import {mapGetters} from "vuex";
+import getImage from "@/helpers/getImage";
 
 export default {
   name: "Footer",
@@ -55,6 +56,9 @@ export default {
       menuList:'menuList/getMenuList',
       linksFooter:'linksFooter/getLinksFooter'
     })
+  },
+  methods:{
+    getImage
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <router-link :to="`/cartPage/${item.id}`" >
     <div class="cartProduct">
-      <div class='cartProduct__img'><img :src="item.img" alt="img"/></div>
+      <div class='cartProduct__img'><img :src="getImage('item.img')" alt="img"/></div>
 
       <div class="cartProduct__block">
           <div class="cartProduct__main">
@@ -23,6 +23,7 @@
 
 <script>
 import {mapActions} from "vuex";
+import getImage from "@/helpers/getImage";
 
 export default {
   name: "CartProduct",
@@ -33,6 +34,7 @@ export default {
     }
   },
   methods: {
+    getImage,
     ...mapActions({
       openVoiceModal:'modal/openVoiceModal'
     }),

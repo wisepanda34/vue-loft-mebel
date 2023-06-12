@@ -12,6 +12,7 @@ import favorites from "@/store/favorites";
 import modal from "@/store/modal";
 import orders from "@/store/orders";
 import linksFooter from "@/store/linksFooter";
+import userComments from "@/store/userComments";
 
 export default createStore({
   state() {
@@ -41,6 +42,7 @@ export default createStore({
     favorites,
     modal,
     orders,
-    linksFooter
+    linksFooter,
+    userComments
   }
 })

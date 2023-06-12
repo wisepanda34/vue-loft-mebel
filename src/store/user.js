@@ -23,7 +23,6 @@ const user={
             await new Promise(resolve => {
                 setTimeout(()=>{
                     resolve()
-                    console.log('data updated on server')
                 },2000)
             })
             commit('SET_USER_DATA', payload);
@@ -31,7 +30,6 @@ const user={
     },
     mutations:{
         SET_USER_DATA(state, payload) {
-            console.log('SET_USER_DATA')
            state.userData = payload;
         }
     }

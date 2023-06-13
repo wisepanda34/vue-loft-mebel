@@ -5,6 +5,8 @@
       <router-link to="/" @click="chooseMenu">Main</router-link>
       <router-link to="/about" @click="chooseMenu">About</router-link>
       <router-link to="/contacts" @click="chooseMenu">Contacts</router-link>
+      <router-link to="/reviewsPage" @click="chooseMenu">Reviews</router-link>
+
     </nav>
 
     <div class='navbar__delivery'>

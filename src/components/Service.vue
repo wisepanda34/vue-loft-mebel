@@ -12,7 +12,6 @@
         </div>
 
       </div>
-      <router-link to="/reviewsPage" class=" service__reviews center">Read comments about our services...</router-link>
     </div>
   </section>
 </template>
@@ -83,14 +82,6 @@ export default {
     img{
       width: 20px;
       height: 20px;
-    }
-  }
-  &__reviews{
-    font-size: 24px;
-    color: #366a7a;
-    letter-spacing: 0.07em;
-    &:hover{
-      color: #718b8f;
     }
   }
 }

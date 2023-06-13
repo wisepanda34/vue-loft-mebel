@@ -1,8 +1,12 @@
 <template>
   <section class="reviews">
     <div class="container">
-      <h5 class="reviews__writeTitle" @click="writeComment">Write comment</h5>
-      <div v-show="isWriteCommentOpen" class="reviews__writeComment">
+
+      <div class="reviews__controlForm">
+        <h5 class="reviews__hideForm" @click="toggleForm">{{isStateForm}}</h5>
+      </div>
+
+      <div v-show="isFormOpen" class="reviews__writeComment">
         <form
             class="reviews__form"
             @submit.prevent="handleSubmitComment"
@@ -11,13 +15,11 @@
           <input v-model="userValue"
                  class="reviews__form_input"
                  placeholder="username"
-                 name='user_comment'
                  required/>
 
           <textarea v-model="textValue"
                     class="reviews__form_textarea"
                     placeholder="comment"
-                    name='text_comment'
                     style="height: 80px"
                     required minLength="5" maxLength="300"/>
           <div class="reviews__form_buttons">
@@ -61,7 +63,8 @@ export default {
       limit: 10,
       userValue:'',
       textValue:'',
-      isWriteCommentOpen: false,
+      isFormOpen: true,
+      isStateForm: "hide form"
     }
   },
   mounted() {
@@ -71,7 +74,6 @@ export default {
     ...mapGetters({
       getComments: 'userComments/getComments'
     }),
-//todo: add  userComments to allComments
   },
   methods:{
     async fetchGetComments () {
@@ -94,18 +96,24 @@ export default {
       this.page++
       this.fetchGetComments()
     },
-    writeComment(){
-      this.isWriteCommentOpen = true
+    toggleForm(){
+      if(this.isFormOpen === true){
+        this.isFormOpen = false
+        this.isStateForm='open form'
+        this.cancelComment()
+      }else{
+        this.isFormOpen = true
+        this.isStateForm='close form'
+      }
     },
     cancelComment(){
-      this.isWriteCommentOpen = false
+      this.userValue=''
+      this.textValue=''
     },
     ...mapActions({
       addCommentToUserComments:'userComments/addUserComment',
       addCommentsToApiComments:'userComments/addApiComments',
     }),
-
-
     handleSubmitComment(){
       const newId="my-" + this.counter++
 
@@ -119,11 +127,10 @@ export default {
             }
       }
       newComment.user.username = this.userValue
-      newComment.user.body = this.textValue
+      newComment.body = this.textValue
       this.addCommentToUserComments(newComment)
       this.userValue=''
       this.textValue=''
-      this.isWriteCommentOpen = false
     },
   }
 }
@@ -131,12 +138,15 @@ export default {
 
 <style lang="scss" scoped>
 .reviews{
-  &__writeTitle{
+  &__controlForm{
     width: 90%;
-    margin: 10px auto;
+    margin: 0 auto;
+  }
+  &__hideForm{
     color: #366a7a;
     cursor: pointer;
     text-decoration: underline;
+    padding: 20px 0;
     &:hover{
       color: #4199b4;
     }

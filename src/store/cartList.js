@@ -32,6 +32,13 @@ const cartList = {
         },
         removeFromCart({ commit }, cardId) {
             commit('REMOVE_FROM_CART', cardId);
+        },
+        incrementQuantity({commit},itemId) {
+            commit('INCREMENT_ONE_PIECE',itemId)
+            console.log('INCREMENT_ONE_PIECE')
+        },
+        decrementQuantity({commit},itemId) {
+           commit('DECREMENT_ONE_PIECE',itemId)
         }
     },
     mutations: {
@@ -59,6 +66,18 @@ const cartList = {
         },
         REMOVE_FROM_CART(state, cardId) {
             state.cartList = state.cartList.filter(item => item.id !== cardId);
+        },
+        INCREMENT_ONE_PIECE(state,itemId){
+            const product = state.cartList.find(item => item.id === itemId)
+            if(product) product.amount++
+        },
+        DECREMENT_ONE_PIECE(state,itemId){
+            const product = state.cartList.find(item => item.id == itemId)
+            if(product && product.amount>1) {
+                product.amount--
+            }else{
+                state.cartList=state.cartList.filter(item=>item.id !==itemId)
+            }
         }
     }
 }

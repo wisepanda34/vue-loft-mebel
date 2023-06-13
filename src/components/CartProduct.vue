@@ -10,8 +10,14 @@
           </div>
 
           <div class='cartProduct__info'>
-            <div class='cartProduct__info-color'>color: <span>brown</span>  </div>
-            <div class='cartProduct__info-quantity'>quantity: <span>{{item.amount}}</span> </div>
+            <div class='cartProduct__info-color'>color: <span>brown</span> </div>
+
+            <div class='cartProduct__info-quantity'>quantity:
+              <button class="cartProduct__info-increment flex-center" type="button" @click.prevent="increment(item.id)">+</button>
+              <span>{{item.amount}}</span>
+              <button class="cartProduct__info-decrement flex-center" type="button" @click.prevent="decrement(item.id)">-</button>
+            </div>
+
             <div class='cartProduct__info-size'>size(w/h/d): <span>{{item.width}}x{{item.height}}x{{item.deep}}</span></div>
           </div>
       </div>
@@ -36,11 +42,20 @@ export default {
   methods: {
     getImage,
     ...mapActions({
-      openVoiceModal:'modal/openVoiceModal'
+      openVoiceModal:'modal/openVoiceModal',
+      addToCart:'cartList/addToCart',
+      incrementQuantity:'cartList/incrementQuantity',
+      decrementQuantity:'cartList/decrementQuantity'
     }),
     handlerRemoveProduct(item) {
       this.$store.dispatch('cartList/removeFromCart', item.id);
       this.openVoiceModal('Product was removed from cart!')
+    },
+    increment(id){
+      this.incrementQuantity(id)
+    },
+    decrement(id){
+      this.decrementQuantity(id)
     }
   }
 }
@@ -98,7 +113,22 @@ export default {
     line-height: 14px;
     span{
     color: #9E9E9E;
+      font-size: 14px;
     }
+    &-quantity{
+      display: flex;
+      gap: 7px;
+    }
+    &-decrement,&-increment{
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: none;
+      background: #518393;
+      color: #FFFFFF;
+    }
+
+
   }
   &__delete{
     flex:0 0 57px;

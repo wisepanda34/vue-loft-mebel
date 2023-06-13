@@ -36,9 +36,18 @@
         </div>
 
         <div class="header__icons">
-          <router-link to="/favoritesPage"><img :src="getImage('images/icons/wishlist-icon.svg')" alt="i"/></router-link>
-          <router-link to="/cart"><img :src="getImage('images/icons/cart.svg')" alt="i"/></router-link >
-          <router-link to="/account"><img :src="getImage('images/icons/profile-icon.svg')" alt="i"/></router-link>
+          <router-link to="/favoritesPage" class="flex-center">
+            <img :src="getImage('images/icons/wishlist-icon.svg')" alt="i"/>
+          </router-link>
+          <router-link to="/cart">
+            <div class="header__icons_cart">
+              <img :src="getImage('images/icons/bag.svg')" alt="i"/>
+              <div v-if="totalElements" class="header__icons_round">{{totalElements}}</div>
+            </div>
+          </router-link >
+          <router-link to="/account" class="flex-center">
+            <img :src="getImage('images/icons/profile-icon.svg')" alt="i"/>
+          </router-link>
         </div>
       </div>
 
@@ -63,16 +72,20 @@ export default {
       isMenuActive: false,
       windowWidth: window.innerWidth,
       searchQuery:'',
+      // isTotalElements: false
     }
   },
   computed: {
     ...mapGetters({
       searchProduct: "products/searchProduct",
-      getProduct: "products/getProduct"
+      getProduct: "products/getProduct",
+      //количество всех элементов в карзине
+      totalElements: 'cartList/getTotalElements',
     }),
     searched() {
       return this.searchProduct(this.searchQuery)
-    }
+    },
+
   },
   mounted() {
     window.addEventListener("resize", this.handleWindowResize);
@@ -182,6 +195,26 @@ export default {
     align-items: center;
     gap: 30px;
     order:4;
+    &_cart{
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    &_round{
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #e51c1c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 50%;
+      top: -2px;
+      left: 9px;
+      z-index: 20;
+    }
   }
   &__menuTransform{
     display: none;

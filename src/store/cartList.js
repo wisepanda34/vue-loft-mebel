@@ -14,10 +14,15 @@ const cartList = {
                 return total + item.price * item.amount;
             }, 0);
         },
-        getCountOfProducts: state=>{
+        //количество всех элементов заказа
+        getTotalElements: state=>{
             return state.cartList.reduce((count,item)=>{
                 return count + item.amount;
             },0)
+        },
+        //количество позиций товаров
+        getCountNameOfProduct: state=>{
+           return state.cartList.length
         }
     },
     actions: {

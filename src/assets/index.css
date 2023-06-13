@@ -54,6 +54,11 @@ p{
 .center{
     text-align: center;
 }
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .btn{
     width: 223px;
     height: 40px;

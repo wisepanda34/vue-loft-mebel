@@ -5,7 +5,7 @@
 
         <div class='cartlist__heading'>
           <h4>Your cart</h4>
-          <h4><span>{{this.count}}</span> items</h4>
+          <h4><span>{{this.totalElements}}</span> items</h4>
         </div>
 
         <ul class='cartlist__list' v-for="item in cartList" :key="cartList.id" >
@@ -16,7 +16,7 @@
 
         <div class='cartlist__act'>
           <div class='cartlist__act-total'>
-            The total cost: &nbsp;&nbsp;  <span>{{ this.sum }}&nbsp;&#36;</span>
+            The total cost: &nbsp;&nbsp;  <span>{{ this.totalCost }}&nbsp;&#36;</span>
           </div>
           <div v-if="this.cartList.length>0">
             <router-link to="/checkOut" class='cartlist__act-btn btn'>Checkout</router-link>
@@ -42,15 +42,18 @@ export default {
   components:{OneCard, CartProduct},
   data(){
     return{
-      isBtnShow:false
+      isBtnShow:false,
     }
   },
   computed:{
     ...mapGetters({
       cartList: 'cartList/getCartList',
       recommendList: 'products/getProducts',
-      sum: 'cartList/getTotalSum',
-      count: 'cartList/getCountOfProducts'
+      totalCost: 'cartList/getTotalSum',
+      //количество всех элементов в карзине
+      totalElements: 'cartList/getTotalElements',
+      //количество позиций товаров
+      countNameOfProduct: 'cartList/getCountNameOfProduct'
     })
   }
 }

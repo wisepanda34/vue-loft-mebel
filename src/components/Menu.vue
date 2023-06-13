@@ -56,9 +56,9 @@ export default {
   }
   &__list{
     min-height: 85px;
-     flex: 0 1 auto;
-     display: flex;
-     gap:50px;
+    flex: 0 1 auto;
+    display: flex;
+    gap:50px;
     flex-wrap: nowrap;
     justify-content: stretch;
     align-items: center;

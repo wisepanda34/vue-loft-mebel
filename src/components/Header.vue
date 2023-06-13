@@ -14,7 +14,7 @@
           <router-link to="/">Loft <br> Furniture</router-link>
         </div>
 
-        <div class="header__search">
+        <div class="header__search" ref="searchContainer">
           <my-input class="header__search_input" v-model="searchQuery"/>
           <svg class="header__search_icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 15L11 11M7 13C3.68629 13 1 10.3137 1 7C1 3.68629 3.68629 1 7 1C10.3137 1 13 3.68629 13 7C13 10.3137 10.3137 13 7 13Z" stroke="black"/>
@@ -89,11 +89,22 @@ export default {
   },
   mounted() {
     window.addEventListener("resize", this.handleWindowResize);
+    window.addEventListener("click", this.handleOutsideClick);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleWindowResize);
+    window.removeEventListener("click", this.handleOutsideClick);
   },
   methods: {
     getImage,
     handleWindowResize() {
       this.windowWidth = window.innerWidth;
+    },
+    handleOutsideClick(event){
+      const searchContainer = this.$refs.searchContainer
+      if(!searchContainer.contains(event.target)){
+        this.closeSearch()
+      }
     },
     activeMenu() {
       this.isMenuActive = true;
@@ -170,9 +181,28 @@ export default {
       top: 33px;
       left: 20px;
       width: calc(100% - 40px);
+      max-height: 50vh;
+      overflow-y: scroll;
       background: #fff;
       border: 1px solid rgba(230, 230, 230, 1);
       padding-left: 10px;
+      &::-webkit-scrollbar {
+        width: 15px;
+        height: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #FFFFFF;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #eaeaea;
+        border-radius: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: lightgray;
+      }
     }
     &_item{
       margin: 4px 0;

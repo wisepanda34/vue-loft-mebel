@@ -1,22 +1,16 @@
 <template>
-  <div class="appPage">
-    <Header/>
-    <router-view />
-    <Footer/>
-  </div>
-
+  <Layout/>
   <BaseModal/>
 </template>
 
 <script>
 import BaseModal from "@/components/UI/BaseModal.vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
 import storageMixin from "@/mixins/storageMixin";
+import Layout from "@/components/Layout.vue";
 
 
   export default {
-    components: {Footer, Header, BaseModal},
+    components: {Layout, BaseModal},
     mixins: [storageMixin],
     data() {
       return {
@@ -34,14 +28,6 @@ import storageMixin from "@/mixins/storageMixin";
 </script>
 
 <style lang="scss">
-.appPage{
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  router-view{
-    flex: 1 1 auto;
-  }
-}
+
 
 </style>

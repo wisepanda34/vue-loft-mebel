@@ -5,7 +5,7 @@
       <div v-show="isWriteCommentOpen" class="reviews__writeComment">
         <form
             class="reviews__form"
-            @submit="handleSubmitComment"
+            @submit.prevent="handleSubmitComment"
         >
 
           <input v-model="userValue"
@@ -30,7 +30,7 @@
       <div class="reviews__wrapper">
 
         <h3 class="reviews__title center">OUR CLIENTS COMMENTS</h3>
-        <div class="reviews__comments" v-if="!isPostsLoading" v-for="comment in allComments" :key="comment.id">
+        <div class="reviews__comments" v-if="!isPostsLoading" v-for="comment in getComments" :key="comment.id">
           <div class="reviews__user"><span>client:</span> {{comment.user.username}}</div>
           <div class="reviews__text"><span>review:</span> {{comment.body}}</div>
         </div>
@@ -55,7 +55,7 @@ export default {
   components: {MyButton, MyInput},
   data(){
     return{
-      allComments:[],
+      counter:0,
       isPostsLoading: false,
       page: 1,
       limit: 10,
@@ -69,7 +69,7 @@ export default {
   },
   computed:{
     ...mapGetters({
-      userComments: 'userComments/getUserComments'
+      getComments: 'userComments/getComments'
     }),
 //todo: add  userComments to allComments
   },
@@ -79,11 +79,11 @@ export default {
         this.isPostsLoading=true
         const res = await fetch(`https://dummyjson.com/comments?limit=${this.limit}&skip=${(this.page-1)*this.limit}&select=body,postId`,{
         });
+
         const newComments = await res.json();
-        console.log('newComments:',newComments)
-        // this.allComments = this.allComments.concat(newComments.comments)
-        this.allComments = [...this.allComments,...newComments.comments]
-        console.log(this.allComments)
+        console.log('newComments>>',newComments)
+        await this.addCommentsToApiComments(newComments.comments)
+        console.log('newComments.comments>>',newComments.comments)
       } catch (error) {
         console.log(error);
       }finally {
@@ -101,17 +101,28 @@ export default {
       this.isWriteCommentOpen = false
     },
     ...mapActions({
-      addCommentToUserComments:'userComments/addComment'
+      addCommentToUserComments:'userComments/addUserComment',
+      addCommentsToApiComments:'userComments/addApiComments',
     }),
-    handleSubmitComment(event){
-      event.preventDefault();
-      const id = Date.now()
-      const username = event.target.elements.user_comment.value
-      const body = event.target.elements.text_comment.value
-      const newUserComment={id,username,body}
-      this.addCommentToUserComments(newUserComment)
-      this.userValue = ''
-      this.textValue = ''
+
+
+    handleSubmitComment(){
+      const newId="my-" + this.counter++
+
+      const newComment={
+            id: Date.now(),
+            body: "",
+            postId: newId,
+            user: {
+              id: newId,
+              username: ""
+            }
+      }
+      newComment.user.username = this.userValue
+      newComment.user.body = this.textValue
+      this.addCommentToUserComments(newComment)
+      this.userValue=''
+      this.textValue=''
       this.isWriteCommentOpen = false
     },
   }

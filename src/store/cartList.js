@@ -2,9 +2,9 @@
 const cartList = {
     namespaced:true,
     state(){
+        const cartListData = JSON.parse(localStorage.getItem('cartListStorage')) || []
         return{
-            cartList:[],
-
+            cartList: cartListData,
         }
     },
     getters:{
@@ -29,16 +29,23 @@ const cartList = {
         //это логика вызова мутации 'ADD_TO_CART' из компонента
         addToCart({ commit,state }, card) {
             commit('ADD_TO_CART', card);
+            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
+
         },
         removeFromCart({ commit }, cardId) {
             commit('REMOVE_FROM_CART', cardId);
+
         },
         incrementQuantity({commit},itemId) {
             commit('INCREMENT_ONE_PIECE',itemId)
             console.log('INCREMENT_ONE_PIECE')
+            // localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
+
         },
         decrementQuantity({commit},itemId) {
            commit('DECREMENT_ONE_PIECE',itemId)
+            // localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
+
         }
     },
     mutations: {
@@ -66,10 +73,14 @@ const cartList = {
         },
         REMOVE_FROM_CART(state, cardId) {
             state.cartList = state.cartList.filter(item => item.id !== cardId);
+            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
+
         },
         INCREMENT_ONE_PIECE(state,itemId){
             const product = state.cartList.find(item => item.id === itemId)
             if(product) product.amount++
+            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
+
         },
         DECREMENT_ONE_PIECE(state,itemId){
             const product = state.cartList.find(item => item.id == itemId)
@@ -78,6 +89,8 @@ const cartList = {
             }else{
                 state.cartList=state.cartList.filter(item=>item.id !==itemId)
             }
+            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
+
         }
     }
 }

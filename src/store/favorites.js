@@ -1,8 +1,9 @@
 const favorites={
     namespaced:true,
    state(){
+        const favoritesDataStorage = JSON.parse(localStorage.getItem('favoritesStorage')) || []
        return{
-           favorites:[]
+           favorites: favoritesDataStorage
        };
    },
     getters:{
@@ -11,9 +12,12 @@ const favorites={
     actions:{
         addToFavorites({commit, state}, newFavorite){
             commit('ADD_NEW_FAVORITE',newFavorite)
+            localStorage.setItem('favoritesStorage', JSON.stringify(state.favorites))
         },
         removeFromFavorites({commit, state},card){
             commit('REMOVE_FROM_FAVORITES',card)
+            localStorage.setItem('favoritesStorage', JSON.stringify(state.favorites))
+
         }
     },
     mutations:{

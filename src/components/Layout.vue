@@ -16,9 +16,9 @@ export default {
   components: {Footer, Header},
   created() {
     //получение данных из localStorage и передача этих данных в store/user.js/userData.
-    const storedData = JSON.parse(localStorage.getItem("userDataStorage"));
-    if (storedData) {
-      this.updateUserData(storedData)
+    const storedUserData = JSON.parse(localStorage.getItem("userDataStorage"));
+    if (storedUserData) {
+      this.updateUserData(storedUserData)
     }
   },
   computed:{

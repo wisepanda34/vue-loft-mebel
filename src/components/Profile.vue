@@ -49,9 +49,7 @@
 
           <a class='profile__orders-btn' href='#'>See all</a>
 
-
         </div>
-
 
       </div>
     </div>
@@ -65,19 +63,18 @@ import MyButton from "@/components/UI/MyButton.vue";
 export default {
 name: "Profile",
   components:{MyButton, MyInput},
-  initUserData: {
-    name: '',
-    surname: '',
-    email: '',
-    phone:'',
-    city:'',
-    street:'',
-    house:'',
-    flat:''
-  },
   data(){
     return {
-      userData:{},
+      userData:{
+        name: '',
+        surname: '',
+        email: '',
+        phone:'',
+        city:'',
+        street:'',
+        house:'',
+        flat:''
+      },
       loading: false
     }
   },
@@ -87,21 +84,15 @@ name: "Profile",
       getUserData:'user/getUserData'
     })
   },
-  created() {
-    this.userData={...this.$options.initUserData}
-  },
   mounted() {
+  //преобразование данных из геттера getUserData в массив,
+    // который перебирается и копирует значения в объект userData.
     Object.keys(this.getUserData).forEach(key => {
       const userValue = this.getUserData[key];
       if (userValue) {
         this.userData[key] = userValue;
       }
     });
-
-    const storedData = JSON.parse(localStorage.getItem("userDataStorage"));
-    if (storedData) {
-      Object.assign(this.userData, storedData);
-    }
   },
   methods:{
     ...mapActions({
@@ -121,9 +112,12 @@ name: "Profile",
         this.loading = false
       }
     },
+
     // getStorage() {
     //   return JSON.parse(localStorage.getItem('userDataStorage'));
     // },
+
+    //функция отправки данных в localStorage
     setStorage(val){
       this.$root.userData = val; // Передаем данные в корневой компонент
       localStorage.setItem('userDataStorage',JSON.stringify(val))

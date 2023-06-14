@@ -102,6 +102,7 @@ export default {
     },
     handleOutsideClick(event){
       const searchContainer = this.$refs.searchContainer
+      if(!searchContainer) return
       if(!searchContainer.contains(event.target)){
         this.closeSearch()
       }

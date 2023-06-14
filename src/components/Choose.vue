@@ -3,12 +3,22 @@
     <div class="container">
       <div class="choose__wrapper">
 
-        <Filter class="choose__filter"
-                @filter-selected="onFilterSelected"
-                @type-selected="onTypeSelected"
-                @kind-selected="onKindSelected"
-                @close-filter="closeFilter"
-        />
+        <div  class="choose__filterWrapper"
+              :class="{'choose__filterWrapper-active' : isFilterOpen}"
+              ref="filterWrapper"
+              @click.self="closeFilter"
+              tabindex="-1"
+              @keydown.esc="closeFilter"
+        >
+          <Filter class="choose__filter"
+                  :class="{'choose__filter-active' : isFilterOpen}"
+                  @filter-selected="onFilterSelected"
+                  @type-selected="onTypeSelected"
+                  @kind-selected="onKindSelected"
+                  @close-filter="closeFilter"
+
+          />
+        </div>
 
         <div class="choose__block">
           <div class="choose__options">
@@ -50,7 +60,18 @@ export default {
       selectedFilter:'',
       selectedType:'',
       selectedKind:'',
+      isFilterOpen:false,
+
     }
+  },
+  watch:{
+    isFilterOpen(newValue) {
+      if (newValue) {
+        this.$nextTick(() => {
+          this.$refs.filterWrapper.focus();
+        });
+      }
+    },
   },
   computed: {
     ...mapGetters({
@@ -102,10 +123,10 @@ export default {
       this.selectedKind=kindValue;
     },
     closeFilter(){
-
+      this.isFilterOpen=false
     },
     openFilter(){
-
+      this.isFilterOpen=true
     }
   }
 }
@@ -118,8 +139,12 @@ export default {
     display: flex;
     gap: 10px;
   }
-  &__filter{
+  &__filterWrapper{
     flex:0 0 auto;
+    //transition: all 0.2s ease;
+  }
+  &__filter{
+    //transition: all 0.6s ease-out;
   }
   &__block{
     flex:1 1 auto;
@@ -161,9 +186,28 @@ export default {
 @media (max-width: 860px) {
   .choose{
     &__wrapper{
+      position: relative;
+    }
+    &__filterWrapper{
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      z-index: 20;
+      //transition: all 0.2s ease;
+    }
+    &__filterWrapper-active{
+      display: block;
     }
     &__filter{
-      display: none;
+      transform: translateX(-200%);
+      //transition: transform 0.6s ease-out;
+    }
+    &__filter-active{
+      transform: translateX(0);
     }
     &__block{
       width: 100%;

@@ -1,6 +1,7 @@
 <template>
   <section class='filter'>
   <div class="filter__head">
+    <div class="filter__reset" @click="resetFilters">reset</div>
     <div class="filter__title">Filter</div>
     <div class="filter__close" @click="$emit('close-filter')">&#9587;</div>
   </div>
@@ -146,6 +147,13 @@ export default {
     selectedType(newValue){
       this.$emit('type-selected',newValue)
     },
+  },
+  methods:{
+    resetFilters(){
+      this.selectedFilter = ''
+      this.selectedType = ''
+      this.selectedKind = ''
+    }
   }
 }
 </script>
@@ -153,7 +161,7 @@ export default {
 <style lang="scss" scoped>
 .filter{
   width: 263px;
-  min-height: 591px;
+  height: 100%;
   padding: 0 20px;
   background: #FFFFFF;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
@@ -162,13 +170,23 @@ export default {
     justify-content: space-between;
     align-items: center;
     height: 80px;
-    padding-left: 100px;
     padding-bottom: 20px;
   }
   &__close{
     display: none;
     justify-self: self-end;
     font-size: 10px;
+    cursor: pointer;
+  }
+  &__reset{
+    border: 0.5px solid #7e7e7e;
+    color: #7e7e7e;
+    border-radius: 6px;
+    padding:2px 5px;
+    font-size: 12px;
+    cursor: pointer;
+
+
   }
   &__form{
     display: flex;
@@ -200,7 +218,6 @@ export default {
   }
   &__price{
     margin-bottom: 50px;
-    //padding: 0 20px;
   }
   &__color-list,&__series-list{
     display: flex;

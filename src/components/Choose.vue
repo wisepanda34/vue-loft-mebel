@@ -142,9 +142,11 @@ export default {
   &__filterWrapper{
     flex:0 0 auto;
     //transition: all 0.2s ease;
+    transition: all 0.5s ease-out;
+
   }
   &__filter{
-    //transition: all 0.6s ease-out;
+    transition: all 0.6s ease-out;
   }
   &__block{
     flex:1 1 auto;
@@ -198,16 +200,24 @@ export default {
       background: rgba(0,0,0,0.5);
       z-index: 20;
       //transition: all 0.2s ease;
+      transition: all 0.6s ease-out;
+
     }
     &__filterWrapper-active{
       display: block;
+      transition: all 0.6s ease-out;
+
     }
     &__filter{
       transform: translateX(-200%);
       //transition: transform 0.6s ease-out;
+      transition: all 0.6s ease-out;
+
     }
     &__filter-active{
       transform: translateX(0);
+      transition: all 0.6s ease-out;
+      
     }
     &__block{
       width: 100%;

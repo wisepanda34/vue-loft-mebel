@@ -18,7 +18,7 @@
           <div class='cartlist__act-total'>
             The total cost: &nbsp;&nbsp;  <span>{{ this.totalCost }}&nbsp;&#36;</span>
           </div>
-          <div v-if="this.cartList.length>0">
+          <div v-if="this.cartList.length>0" @click="addProducts">
             <router-link to="/checkOut" class='cartlist__act-btn btn'>Checkout</router-link>
           </div>
 
@@ -35,7 +35,7 @@
 
 <script>
 import CartProduct from "@/components/CartProduct.vue";
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import OneCard from "@/components/OneCard.vue";
 export default {
   name: "CartList",
@@ -55,6 +55,20 @@ export default {
       //количество позиций товаров
       countNameOfProduct: 'cartList/getCountNameOfProduct'
     })
+  },
+  mounted() {
+    // console.log('cartList ',typeof(this.cartList))
+    // console.log('cartList ',this.cartList)
+  },
+  methods:{
+    ...mapActions({
+      addProductsFromCart: 'orders/addProductsFromCart'
+    }),
+    addProducts(){
+      // const productsFromCart=this.cartList
+      this.addProductsFromCart(this.cartList)
+      // console.log('cartList to orders: ',typeof(this.cartList))
+     }
   }
 }
 </script>

@@ -26,7 +26,7 @@
             <h3 class="checkOut__form_subtitle">2 Delivery</h3>
             <div class="checkOut__form_delivery">
               <label v-for="option in optionsDelivery" :key="option.value">
-                <input type="radio" :value="option.value" v-model="selectedDelivery" class="checkOut__form_radio">
+                <input type="radio" :value="option.value" v-model="selectedDelivery" class="checkOut__form_radio"/>
                 {{ option.label }}
               </label>
             </div>
@@ -36,7 +36,7 @@
             <h3 class="checkOut__form_subtitle">3 Payment</h3>
             <div class="checkOut__form_payment ">
               <label v-for="option in optionsPayment" :key="option.value">
-                <input type="radio" :value="option.value" v-model="selectedPayment" class="checkOut__form_radio">
+                <input type="radio" :value="option.value" v-model="selectedPayment" class="checkOut__form_radio"/>
                 {{ option.label }}
               </label>
             </div>
@@ -67,10 +67,9 @@ export default {
     return {
       order: {
         userData:{ name: '', surname: '',  email: '', phone:''},
-        deliveryOrder:'',
-        paymentOrder:''
+        // deliveryOrder:'',
+        // paymentOrder:''
       },
-
       loading: false,
       optionsDelivery: [
         { label: 'pickup', value: 'pickup' },
@@ -116,19 +115,24 @@ export default {
     // в момент отправления данных из формы в хранилище
 
     async handleSubmitOrder() {
-
+      console.log("submit form")
         if (this.loading) return
         this.loading = true
+        const customer = {
+          name: this.order.userData.name,
+          surname: this.order.userData.surname,
+          email: this.order.userData.email,
+          phone: this.order.userData.phone,
+          deliveryOrder: this.selectedDelivery,
+          paymentOrder: this.selectedPayment,
+        };
         try {
-          this.order.deliveryOrder=this.selectedDelivery
-          this.order.paymentOrder=this.selectedPayment
-          await this.addNewOrder(this.order)
-          console.log('order>>', this.order)
-          this.order = {
-            userData: { name: "", surname: "", email: "", phone: "" },
-            deliveryOrder: "",
-            paymentOrder: ""
-          };
+          // this.order.deliveryOrder=this.selectedDelivery
+          // this.order.paymentOrder=this.selectedPayment
+
+          await this.addNewOrder(customer)
+          console.log('order>>', customer)
+
           this.selectedDelivery = "";
           this.selectedPayment = "";
 
@@ -140,7 +144,6 @@ export default {
           this.loading = false
 
         }
-
     }
   }
 }

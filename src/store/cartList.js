@@ -2,9 +2,9 @@
 const cartList = {
     namespaced:true,
     state(){
-        const cartListData = JSON.parse(localStorage.getItem('cartListStorage')) || []
+        const cartListStorage = JSON.parse(localStorage.getItem('cartListStorage')) || []
         return{
-            cartList: cartListData,
+            cartList: cartListStorage,
         }
     },
     getters:{
@@ -52,14 +52,17 @@ const cartList = {
         ADD_TO_CART(state, payload) {
             const productIdx = state.cartList.findIndex((item) => item.id === payload.id)
             // console.log(productIdx)
+            // console.log(payload)
             const productsCopy = [...state.cartList]
 
             let product = {
                 // id: payload.id,
                 ...payload,
+
                 amount: 1,
                 // info: payload
             }
+            console.log(product)
 
             if (productIdx > -1) {
                 const amount = productsCopy[productIdx].amount + 1
@@ -69,7 +72,9 @@ const cartList = {
                 state.cartList = productsCopy
                 return
             }
+            // console.log('cartList product:',product)
             state.cartList = [...state.cartList, product]
+
         },
         REMOVE_FROM_CART(state, cardId) {
             state.cartList = state.cartList.filter(item => item.id !== cardId);
@@ -90,7 +95,6 @@ const cartList = {
                 state.cartList=state.cartList.filter(item=>item.id !==itemId)
             }
             localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
-
         }
     }
 }

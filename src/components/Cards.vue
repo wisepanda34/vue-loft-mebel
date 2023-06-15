@@ -25,6 +25,9 @@ export default {
       products: 'products/getProducts'
     })
   },
+  mounted() {
+    console.log('products:',this.products)
+  }
 }
 </script>
 

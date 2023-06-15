@@ -165,6 +165,7 @@ export default {
   padding: 0 20px;
   background: #FFFFFF;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+  transition: all 0.5s ease-out;
   &__head{
     display: flex;
     justify-content: space-between;

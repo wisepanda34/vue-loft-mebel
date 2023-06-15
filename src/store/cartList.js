@@ -38,7 +38,6 @@ const cartList = {
         },
         incrementQuantity({commit},itemId) {
             commit('INCREMENT_ONE_PIECE',itemId)
-            console.log('INCREMENT_ONE_PIECE')
             // localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
 
         },
@@ -54,8 +53,6 @@ const cartList = {
     mutations: {
         ADD_TO_CART(state, payload) {
             const productIdx = state.cartList.findIndex((item) => item.id === payload.id)
-            // console.log(productIdx)
-            // console.log(payload)
             const productsCopy = [...state.cartList]
 
             let product = {
@@ -65,17 +62,14 @@ const cartList = {
                 amount: 1,
                 // info: payload
             }
-            console.log(product)
 
             if (productIdx > -1) {
                 const amount = productsCopy[productIdx].amount + 1
-                // console.log(amount)
                 product = {...product, amount}
                 productsCopy.splice(productIdx, 1, product)
                 state.cartList = productsCopy
                 return
             }
-            // console.log('cartList product:',product)
             state.cartList = [...state.cartList, product]
 
         },

@@ -116,7 +116,6 @@ export default {
     // в момент отправления данных из формы в хранилище
 
     async handleSubmitOrder() {
-      console.log("submit form")
         if (this.loading) return
         this.loading = true
         const customer = {

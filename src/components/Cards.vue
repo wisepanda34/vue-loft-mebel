@@ -26,7 +26,7 @@ export default {
     })
   },
   mounted() {
-    console.log('products:',this.products)
+    // console.log('products:',this.products)
   }
 }
 </script>

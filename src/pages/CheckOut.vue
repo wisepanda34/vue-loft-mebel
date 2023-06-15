@@ -109,7 +109,8 @@ export default {
   methods: {
     ...mapActions({
       addNewOrder: 'orders/addNewOrder',
-      openVoiceModal:'modal/openVoiceModal'
+      openVoiceModal:'modal/openVoiceModal',
+      clearCartList: 'cartList/clearCartList'
     }),
     //это логика для исключения повторной генерации события handleSubmit
     // в момент отправления данных из формы в хранилище
@@ -131,7 +132,9 @@ export default {
           // this.order.paymentOrder=this.selectedPayment
 
           await this.addNewOrder(customer)
-          console.log('order>>', customer)
+          // console.log('order>>', customer)
+
+          this.clearCartList()
 
           this.selectedDelivery = "";
           this.selectedPayment = "";

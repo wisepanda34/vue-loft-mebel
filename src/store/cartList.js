@@ -46,6 +46,9 @@ const cartList = {
            commit('DECREMENT_ONE_PIECE',itemId)
             // localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
 
+        },
+        clearCartList({commit}){
+            commit('CLEAR_CARTlIST')
         }
     },
     mutations: {
@@ -94,6 +97,10 @@ const cartList = {
             }else{
                 state.cartList=state.cartList.filter(item=>item.id !==itemId)
             }
+            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
+        },
+        CLEAR_CARTlIST(state){
+            state.cartList=[]
             localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
         }
     }

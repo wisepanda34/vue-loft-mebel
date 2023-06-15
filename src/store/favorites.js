@@ -7,7 +7,9 @@ const favorites={
        };
    },
     getters:{
-        getFavorites: state=>state.favorites
+        getFavorites: state=>state.favorites,
+        getTotalFavorites: state=>state.favorites.length,
+
     },
     actions:{
         addToFavorites({commit, state}, newFavorite){

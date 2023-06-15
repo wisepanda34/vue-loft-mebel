@@ -36,13 +36,17 @@
         </div>
 
         <div class="header__icons">
-          <router-link to="/favoritesPage" class="flex-center">
-            <img :src="getImage('images/icons/wishlist-icon.svg')" alt="i"/>
+          <router-link to="/favoritesPage" >
+            <div class="header__icons_favorite">
+              <img :src="getImage('images/icons/wishlist-icon.svg')" alt="i"/>
+              <div v-if="totalFavorites" class="header__icons_yellow-round">{{totalFavorites}}</div>
+            </div>
+
           </router-link>
           <router-link to="/cart">
             <div class="header__icons_cart">
               <img :src="getImage('images/icons/bag.svg')" alt="i"/>
-              <div v-if="totalElements" class="header__icons_round">{{totalElements}}</div>
+              <div v-if="totalElements" class="header__icons_red-round">{{totalElements}}</div>
             </div>
           </router-link >
           <router-link to="/account" class="flex-center">
@@ -81,6 +85,7 @@ export default {
       getProduct: "products/getProduct",
       //количество всех элементов в карзине
       totalElements: 'cartList/getTotalElements',
+      totalFavorites: 'favorites/getTotalFavorites'
     }),
     searched() {
       return this.searchProduct(this.searchQuery)
@@ -231,7 +236,28 @@ export default {
       display: flex;
       align-items: center;
     }
-    &_round{
+    &_favorite{
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    &_yellow-round{
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: yellow;
+      color: #383838;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 50%;
+      top: -2px;
+      left: 15px;
+      z-index: 20;
+    }
+    &_red-round{
       position: absolute;
       width: 15px;
       height: 15px;

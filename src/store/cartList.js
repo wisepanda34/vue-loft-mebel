@@ -29,30 +29,32 @@ const cartList = {
         //это логика вызова мутации 'ADD_TO_CART' из компонента
         addToCart({ commit,state }, card) {
             commit('ADD_TO_CART', card);
+            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
         },
         removeFromCart({ commit }, cardId) {
             commit('REMOVE_FROM_CART', cardId);
+            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
         },
         incrementQuantity({commit},itemId) {
             commit('INCREMENT_ONE_PIECE',itemId)
+            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
         },
         decrementQuantity({commit},itemId) {
            commit('DECREMENT_ONE_PIECE',itemId)
+           localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
         },
         clearCartList({commit}){
             commit('CLEAR_CARTlIST')
+            localStorage.removeItem('cartListStorage');
         }
     },
     mutations: {
         ADD_TO_CART(state, payload) {
             const productIdx = state.cartList.findIndex((item) => item.id === payload.id) //ищем id продукта, который уже есть в карзине
-            const productsCopy = [...state.cartList] //
+            const productsCopy = [...state.cartList] //создаем копию
 
             //создаем переменную product и ложим в нее новый продукт и добавляем поле "количество"
-            let product = {
-                ...payload,
-                amount: 1,
-            }
+            let product = {...payload, amount: 1}
 
             //если такой продукт уже есть в карзине - увеличиваем amount этого продукта
             if (productIdx > -1) {
@@ -60,37 +62,27 @@ const cartList = {
                 product = {...product, amount}    //обновляем значение amount
                 productsCopy.splice(productIdx, 1, product) //удаляеем повторяющийся продукт
                 state.cartList = productsCopy
-
-            }else {
-                state.cartList = [...state.cartList, product]
+                return
             }
-
-            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
-
+            state.cartList = [...state.cartList, product]
         },
         REMOVE_FROM_CART(state, cardId) {
             state.cartList = state.cartList.filter(item => item.id !== cardId);
-            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
-
         },
         INCREMENT_ONE_PIECE(state,itemId){
             const product = state.cartList.find(item => item.id === itemId)
             if(product) product.amount++
-            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
-
         },
         DECREMENT_ONE_PIECE(state,itemId){
-            const product = state.cartList.find(item => item.id == itemId)
+            const product = state.cartList.find(item => item.id === itemId)
             if(product && product.amount>1) {
                 product.amount--
             }else{
                 state.cartList=state.cartList.filter(item=>item.id !==itemId)
             }
-            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
         },
         CLEAR_CARTlIST(state){
             state.cartList=[]
-            localStorage.removeItem('cartListStorage');
         }
     }
 }

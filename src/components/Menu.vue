@@ -140,12 +140,18 @@ export default {
       display: flex;
       justify-content: start;
       column-gap: 20px;
-      row-gap: 40px;
+      row-gap: 20px;
       flex-wrap: wrap;
       padding-left: 0;
     }
     &_item{
       width: 150px;
+      height: 100px;
+      padding-top: 15px;
+      &:hover{
+        background: #dfe4e5;
+        box-shadow: 0 1px 9px rgba(0, 0, 0, 0.11);
+      }
 
     }
     &_link{
@@ -249,7 +255,15 @@ export default {
 }
 @media (max-width:767px){
   .menu{
+    &__item{
+      &:hover{
+        background: initial !important;
+        box-shadow: 0 1px 9px rgba(0, 0, 0, 0);
+
+      }
+    }
     &__list{
+      min-height: 105px;
       gap: 12px;
       justify-content: space-between;
       align-items: baseline;
@@ -265,6 +279,10 @@ export default {
        display: flex;
        justify-content: center;
        align-items: center;
+       &:hover{
+         background: #dfe4e5;
+         box-shadow: 0 1px 9px rgba(0, 0, 0, 0.11);
+       }
     }
     &__title{
       font-size: 9px;

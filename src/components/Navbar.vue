@@ -4,6 +4,7 @@
     <nav class="navbar__nav menuTransform__nav">
       <router-link to="/" @click="chooseMenu">Main</router-link>
       <router-link to="/about" @click="chooseMenu">About</router-link>
+      <router-link to="/catalog" @click="chooseMenu">Catalog</router-link>
       <router-link to="/contacts" @click="chooseMenu">Contacts</router-link>
       <router-link to="/reviewsPage" @click="chooseMenu">Reviews</router-link>
 

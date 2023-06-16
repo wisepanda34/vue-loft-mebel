@@ -6,10 +6,10 @@
         <ul class="menu__list" >
           <li class="menu__item" v-for="item in menuList" :key="item.title">
             <a class="menu__link" href="#">
-              <div class='menu__icon'>
+              <div class='menu__icon flex-center'>
                 <img :src='getImage(item.icon)' alt='i' />
               </div>
-              <div class="menu__title">{{item.title}}</div>
+              <div class="menu__title flex-center">{{item.title}}</div>
             </a>
           </li>
         </ul>
@@ -119,7 +119,6 @@ export default {
     left: 0;
     width: 100%;
     max-height: 80vh;
-    //overflow-y: scroll;
     background: #fff;
     border: 1px solid rgba(230, 230, 230, 1);
     z-index: 50;
@@ -147,9 +146,14 @@ export default {
     }
     &_item{
       width: 150px;
+
     }
     &_link{
-
+      padding: 10px 0;
+      &:hover{
+        background: #94bcc0;
+        box-shadow: 0 1px 9px rgba(0, 0, 0, 0.11);
+      }
     }
     &_icon{
       img{
@@ -172,29 +176,33 @@ export default {
     overflow-x: auto;
     scrollbar-width: thin;
     scrollbar-color: #245462 lightgray;
+    margin: 5px 0 10px;
     padding:0 10px;
     &::-webkit-scrollbar {
       width: 8px;
       height: 8px;
     }
-
     &::-webkit-scrollbar-track {
       background: lightgray;
     }
-
     &::-webkit-scrollbar-thumb {
       background-color: #8ba0a2;
       border-radius: 4px;
     }
-
     &::-webkit-scrollbar-thumb:hover {
       background-color: #94bcc0;
     }
   }
   &__item{
-     display: inline-flex;
-     justify-content: center;
-     align-items: center;
+      height: 70px;
+      margin-bottom: 10px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      &:hover{
+        background: #dfe4e5;
+        box-shadow: 0 1px 9px rgba(0, 0, 0, 0.11);
+      }
   }
   &__link{
      display: flex;
@@ -208,12 +216,15 @@ export default {
       line-height: 19px;
       color: #414141;
     }
-    &:hover{
-     background: #94bcc0;
-      box-shadow: 0 1px 9px rgba(0, 0, 0, 0.11);
+
+  }
+  &__icon{
+
+    img{
+      min-height: 25px;
+      min-width: 25px;
     }
   }
-  &__icon{}
   &__title{
     font-size: 16px;
   }

@@ -3,7 +3,7 @@
   <section class='cards'>
     <div class='container'>
       <div class='cards__wrapper'>
-        <OneCard :isBtnShow="true" v-for="item in products" :key="item.id" :item="item"/>
+        <OneCard :isBtnShow="isBtnShow" v-for="item in products" :key="item.id" :item="item"/>
       </div>
     </div>
   </section>
@@ -25,9 +25,6 @@ export default {
       products: 'products/getProducts'
     })
   },
-  mounted() {
-    // console.log('products:',this.products)
-  }
 }
 </script>
 

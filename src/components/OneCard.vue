@@ -55,32 +55,8 @@ export default {
     }),
     handleAddToCartAndOpenVoiceModal(card) {
       this.addToCart(card);
-      // this.setStorage(card)
       this.openVoiceModal('That product was added to cart!');
     },
-    // setStorage(card) {
-    //   const storedData = JSON.parse(localStorage.getItem('cartDataStorage')) || [];
-    //   storedData.push(card);
-    //   this.$root.cartData = storedData; // Передаем данные в корневой компонент
-    //   localStorage.setItem('cartDataStorage', JSON.stringify(storedData));
-    // },
-
-    // setStorage(card) {
-    //   const storedData = JSON.parse(localStorage.getItem('cartDataStorage')) || [];
-    //   const existingCardIndex = storedData.findIndex(item => item.id === card.id);
-    //
-    //   if (existingCardIndex !== -1) {
-    //     // Если карточка уже существует, увеличиваем свойство amount
-    //     storedData[existingCardIndex].amount += card.amount;
-    //   } else {
-    //     // Если карточки нет в массиве, добавляем ее
-    //     storedData.push(card);
-    //   }
-    //
-    //   this.$root.cartData = storedData; // Передаем данные в корневой компонент
-    //   localStorage.setItem('cartDataStorage', JSON.stringify(storedData));
-    // },
-
     handleAddToFavorites(card, like) {
       const isFavorite = this.isCardInFavorites(card);
       if (isFavorite) {

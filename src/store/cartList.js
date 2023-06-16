@@ -29,22 +29,15 @@ const cartList = {
         //это логика вызова мутации 'ADD_TO_CART' из компонента
         addToCart({ commit,state }, card) {
             commit('ADD_TO_CART', card);
-            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
-
         },
         removeFromCart({ commit }, cardId) {
             commit('REMOVE_FROM_CART', cardId);
-
         },
         incrementQuantity({commit},itemId) {
             commit('INCREMENT_ONE_PIECE',itemId)
-            // localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
-
         },
         decrementQuantity({commit},itemId) {
            commit('DECREMENT_ONE_PIECE',itemId)
-            // localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
-
         },
         clearCartList({commit}){
             commit('CLEAR_CARTlIST')
@@ -52,25 +45,27 @@ const cartList = {
     },
     mutations: {
         ADD_TO_CART(state, payload) {
-            const productIdx = state.cartList.findIndex((item) => item.id === payload.id)
-            const productsCopy = [...state.cartList]
+            const productIdx = state.cartList.findIndex((item) => item.id === payload.id) //ищем id продукта, который уже есть в карзине
+            const productsCopy = [...state.cartList] //
 
+            //создаем переменную product и ложим в нее новый продукт и добавляем поле "количество"
             let product = {
-                // id: payload.id,
                 ...payload,
-
                 amount: 1,
-                // info: payload
             }
 
+            //если такой продукт уже есть в карзине - увеличиваем amount этого продукта
             if (productIdx > -1) {
                 const amount = productsCopy[productIdx].amount + 1
-                product = {...product, amount}
-                productsCopy.splice(productIdx, 1, product)
+                product = {...product, amount}    //обновляем значение amount
+                productsCopy.splice(productIdx, 1, product) //удаляеем повторяющийся продукт
                 state.cartList = productsCopy
-                return
+
+            }else {
+                state.cartList = [...state.cartList, product]
             }
-            state.cartList = [...state.cartList, product]
+
+            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
 
         },
         REMOVE_FROM_CART(state, cardId) {
@@ -95,9 +90,7 @@ const cartList = {
         },
         CLEAR_CARTlIST(state){
             state.cartList=[]
-            // localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
             localStorage.removeItem('cartListStorage');
-
         }
     }
 }

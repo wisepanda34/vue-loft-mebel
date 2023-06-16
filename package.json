@@ -13,6 +13,7 @@
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vue-slider-component": "^3.2.24",
+    "vue3-easy-data-table": "^1.5.45",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

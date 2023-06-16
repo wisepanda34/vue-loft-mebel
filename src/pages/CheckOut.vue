@@ -68,7 +68,15 @@ export default {
       order: {
         userData:{ name: '', surname: '',  email: '', phone:''},
         // deliveryOrder:'',
-        // paymentOrder:''
+        // paymentOrder:'',
+      },
+      customer:{
+        name: '',
+        surname: '',
+        email: '',
+        phone: '',
+        deliveryOrder: '',
+        paymentOrder: '',
       },
       loading: false,
       optionsDelivery: [
@@ -118,22 +126,22 @@ export default {
     async handleSubmitOrder() {
         if (this.loading) return
         this.loading = true
-        const customer = {
-          name: this.order.userData.name,
-          surname: this.order.userData.surname,
-          email: this.order.userData.email,
-          phone: this.order.userData.phone,
-          deliveryOrder: this.selectedDelivery,
-          paymentOrder: this.selectedPayment,
-        };
+        // const customer = {
+        //   name: this.order.userData.name,
+        //   surname: this.order.userData.surname,
+        //   email: this.order.userData.email,
+        //   phone: this.order.userData.phone,
+        //   deliveryOrder: this.selectedDelivery,
+        //   paymentOrder: this.selectedPayment,
+        // };
         try {
           // this.order.deliveryOrder=this.selectedDelivery
           // this.order.paymentOrder=this.selectedPayment
 
-          await this.addNewOrder(customer)
+          await this.addNewOrder(this.customer)
           // console.log('order>>', customer)
 
-          this.clearCartList()
+          await this.clearCartList()
 
           this.selectedDelivery = "";
           this.selectedPayment = "";

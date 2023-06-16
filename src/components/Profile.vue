@@ -32,20 +32,13 @@
         <div class='profile__orders'>
           <h4>My orders</h4>
 
-          <div class='profile__orders-grid'>
-            <div class='profile__orders-grid-product'>
-              product
-            </div>
-            <div class='profile__orders-grid-price'>
-              price
-            </div>
-            <div class='profile__orders-grid-date'>
-              date
-            </div>
-            <div class='profile__orders-grid-status'>
-              status
-            </div>
-          </div>
+          <Vue3EasyDataTable
+            :headers="headers"
+            :items="items"
+            border-cell
+          />
+
+
 
           <a class='profile__orders-btn' href='#'>See all</a>
 
@@ -57,12 +50,14 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters} from "vuex";
 import MyInput from "@/components/UI/MyInput.vue";
 import MyButton from "@/components/UI/MyButton.vue";
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+
 export default {
 name: "Profile",
-  components:{MyButton, MyInput},
+  components:{MyButton, MyInput, Vue3EasyDataTable},
   data(){
     return {
       userData:{
@@ -75,13 +70,29 @@ name: "Profile",
         house:'',
         flat:''
       },
-      loading: false
+      loading: false,
+      headers: [
+        { text: "Product", value: "product" },
+        { text: "Price", value: "price"},
+        { text: "Amount", value: "amount"},
+        // { text: "TotalPrice", value: "totalPrice"},
+        // { text: "Order date", value: "orderDate"},
+        { text: "Status", value: "process"},
+      ],
+
+      items:
+          [
+        { product: "Stephen Curry", process: "GSW", price: 30, position: 'G', amount: {"height": '6-2', "weight": 185}, lastAttended: "Davidson", country: "USA"},
+        { product: "Lebron James", process: "LAL", price: 6, position: 'F', amount: {"height": '6-9', "weight": 250}, lastAttended: "St. Vincent-St. Mary HS (OH)", country: "USA"},
+        { product: "Kevin Durant", process: "BKN", price: 7, position: 'F', amount: {"height": '6-10', "weight": 240}, lastAttended: "Texas-Austin", country: "USA"},
+      ]
     }
   },
 
   computed:{
   ...mapGetters({
-      getUserData:'user/getUserData'
+      getUserData:'user/getUserData',
+      getOrders:'orders/getOrders'
     })
   },
   mounted() {
@@ -93,6 +104,8 @@ name: "Profile",
         this.userData[key] = userValue;
       }
     });
+    const array =  [...this.getOrders]
+    console.log(array)
   },
   methods:{
     ...mapActions({
@@ -112,10 +125,6 @@ name: "Profile",
         this.loading = false
       }
     },
-
-    // getStorage() {
-    //   return JSON.parse(localStorage.getItem('userDataStorage'));
-    // },
 
     //функция отправки данных в localStorage
     setStorage(val){

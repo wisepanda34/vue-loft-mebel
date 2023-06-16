@@ -95,7 +95,9 @@ const cartList = {
         },
         CLEAR_CARTlIST(state){
             state.cartList=[]
-            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
+            // localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
+            localStorage.removeItem('cartListStorage');
+
         }
     }
 }

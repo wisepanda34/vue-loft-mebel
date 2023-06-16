@@ -122,12 +122,16 @@ export default {
     onKindSelected(kindValue){
       this.selectedKind=kindValue;
     },
-    closeFilter(){
-      this.isFilterOpen=false
-    },
     openFilter(){
       this.isFilterOpen=true
-    }
+      document.body.classList.add('no-scroll');
+    },
+    //todo scroll to down
+    closeFilter(){
+      this.isFilterOpen=false
+      document.body.classList.remove('no-scroll');
+    },
+
   }
 }
 </script>

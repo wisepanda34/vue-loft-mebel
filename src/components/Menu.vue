@@ -2,20 +2,40 @@
   <section class="menu">
     <div class="container">
       <div class="menu__wrapper">
-        <ul class="menu__list" >
 
+        <ul class="menu__list" >
           <li class="menu__item" v-for="item in menuList" :key="item.title">
-            <a class="menu__link">
+            <a class="menu__link" href="#">
               <div class='menu__icon'>
                 <img :src='getImage(item.icon)' alt='i' />
               </div>
               <div class="menu__title">{{item.title}}</div>
             </a>
           </li>
-
         </ul>
 
-        <div class="menu__points"><span>&#8285;</span></div>
+        <div class="menu__points"><span @click="openDropdownMenu">&#8285;</span></div>
+
+        <div v-if="isDropdownOpen"
+             class="menu__dropdown"
+             ref="dropdownMenu"
+             tabindex="-1"
+             @keydown.esc="closeDropdownMenu"
+             @click.self="closeDropdownMenu"
+        >
+          <ul class="menu__dropdown_list">
+            <div class="menu__dropdown_close" @click="closeDropdownMenu">close</div>
+            <li class="menu__dropdown_item" v-for="item in menuList" :key="item.title">
+              <a class="menu__dropdown_link" href="#">
+                <div class='menu__dropdown_icon flex-center'>
+                  <img :src='getImage(item.icon)' alt='i' />
+                </div>
+                <div class="menu__dropdown_title center">{{item.title}}</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
       </div>
     </div>
 
@@ -30,15 +50,55 @@ export default {
   name: "Menu",
   components:{},
   data() {
-    return {}
+    return {
+      isDropdownOpen: false,
+      windowWidth: window.innerWidth,
+    }
+  },
+  mounted() {
+    window.addEventListener("resize", this.handleWindowResize);
+    // window.addEventListener("click", this.handleOutsideClick);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleWindowResize);
+    // window.removeEventListener("click", this.handleOutsideClick);
   },
   computed:{
     ...mapGetters({
       menuList:'menuList/getMenuList'
     })
   },
+  watch:{
+    isDropdownOpen(newValue) {
+      if (newValue) {
+        this.$nextTick(() => {
+          this.$refs.dropdownMenu.focus();
+        });
+      }
+    },
+  },
   methods:{
-    getImage
+    getImage,
+    handleWindowResize() {
+      this.windowWidth = window.innerWidth;
+
+    },
+    // handleOutsideClick(event){
+    //   const dropdownMenuContainer = this.$refs.dropdownMenu
+    //   if(!dropdownMenuContainer) return
+    //   if(!dropdownMenuContainer.contains(event.target)){
+    //     this.closeDropdownMenu()
+    //   }
+    // },
+    openDropdownMenu(){
+      this.isDropdownOpen = true
+      document.body.classList.add('no-scroll');
+      console.log('isDropdownOpen = true')
+    },
+    closeDropdownMenu(){
+      this.isDropdownOpen = false
+      document.body.classList.remove('no-scroll');
+    }
   }
 }
 </script>
@@ -48,11 +108,59 @@ export default {
   padding: 10px 0;
 
   &__wrapper{
-     display: flex;
-     justify-content: space-between;
-     background: #FFFFFF;
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+    display: flex;
+    justify-content: space-between;
+    background: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+    position: relative;
+  }
+  &__dropdown{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: 80vh;
+    //overflow-y: scroll;
+    background: #fff;
+    border: 1px solid rgba(230, 230, 230, 1);
+    z-index: 50;
+    padding: 20px;
+    outline: none;
+    &_close{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: auto;
+      text-decoration: underline;
+      cursor: pointer;
+      color: #4c6062;
+      &:hover{
+        color: #68c0ee;
+      }
+    }
+    &_list{
+      display: flex;
+      justify-content: start;
+      column-gap: 20px;
+      row-gap: 40px;
+      flex-wrap: wrap;
+      padding-left: 0;
+    }
+    &_item{
+      width: 150px;
+    }
+    &_link{
 
+    }
+    &_icon{
+      img{
+        width: 30px;
+        height: 30px;
+      }
+    }
+    &_title{
+      font-size: 20px;
+    }
   }
   &__list{
     min-height: 85px;
@@ -88,14 +196,12 @@ export default {
      display: inline-flex;
      justify-content: center;
      align-items: center;
-
   }
   &__link{
      display: flex;
      gap: 10px;
      padding: 14px 10px 10px 10px;
-    border-radius: 2px;
-
+     border-radius: 2px;
      cursor: pointer;
      transition: all 0.2s ease-in;
     span{
@@ -120,6 +226,7 @@ export default {
     span{
       cursor: pointer;
       font-size: 20px;
+      padding: 10px 20px;
     }
   }
 }

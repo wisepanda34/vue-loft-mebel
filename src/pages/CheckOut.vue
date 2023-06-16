@@ -14,9 +14,9 @@
           <div class="checkOut__block">
             <h3 class="checkOut__form_subtitle">1 Your contact details</h3>
             <div class="checkOut__form_grid">
-              <div v-for="field in Object.keys(order.userData)" :class='`checkOut__form_grid_${field}`' >
+              <div v-for="field in Object.keys(userData)" :class='`checkOut__form_grid_${field}`' >
                 <label :for='`input_${field}`'>{{ field }}
-                  <my-input class="checkOut__form_input input"  :name='`input_${field}`' v-model="order.userData[field]" />
+                  <my-input class="checkOut__form_input input"  :name='`input_${field}`' v-model="userData[field]" />
                 </label>
               </div>
             </div>
@@ -65,51 +65,46 @@ export default {
   components: {DeliveryOrder, MyButton, MyInput},
   data(){
     return {
-      order: {
-        userData:{ name: '', surname: '',  email: '', phone:''},
-        // deliveryOrder:'',
-        // paymentOrder:'',
-      },
-      customer:{
-        name: '',
-        surname: '',
-        email: '',
-        phone: '',
-        deliveryOrder: '',
-        paymentOrder: '',
-      },
+      userData:{ name: '', surname: '',  email: '', phone:''},
       loading: false,
       optionsDelivery: [
         { label: 'pickup', value: 'pickup' },
         { label: 'delivery by our company', value: 'company' },
         { label: 'delivery by FedEX', value: 'FedEX' }
       ],
-      selectedDelivery: '',
+      selectedDelivery: 'pickup',
       optionsPayment:[
         { label: 'bank transfer', value: 'bank transfer' },
         { label: 'cash payment', value: 'cash payment' },
         { label: 'credit', value: 'credit' },
         { label: 'leasing', value: 'leasing' },
       ],
-      selectedPayment:'',
+      selectedPayment:'bank transfer',
+      //модель ожидаемого объекта заказа
+      order: {
+        customer:{ name: '', surname: '',  email: '', phone:'', deliveryOrder:'', paymentOrder:''},
+        orderId: null,
+        orderProducts: []
+      },
     }
   },
   computed:{
     ...mapGetters({
       getUserData:'user/getUserData',
-      getTotalSum:'cartList/getTotalSum'
+      getTotalSum:'cartList/getTotalSum',
+      getCartList: 'cartList/getCartList'
     })
   },
   mounted() {
-    const getUserDataKeys = Object.keys(this.getUserData)//name
-    const thisUserDataKeys = Object.keys(this.order.userData)
+    const getUserDataKeys = Object.keys(this.getUserData)// массив, включающий keys объекта getUserData
+    const thisUserDataKeys = Object.keys(this.userData)//массив полей из шаблона, которые мы хотим вывести на экран
 
-    getUserDataKeys.forEach(key=>{
-      if(thisUserDataKeys.includes(key)){
-        const userValue = this.getUserData[key]    //Guest
-        // ниже логика для вывода тех полей в форме, которые указаны в userData()
-        if(userValue){
-          this.order.userData[key]=userValue
+    // ниже логика для вывода тех полей в форме, которые указаны в userData()
+    getUserDataKeys.forEach(key=>{                  //перебираем массив
+      if(thisUserDataKeys.includes(key)){           //ищем совпадение по ключу
+        const userValue = this.getUserData[key]     //значение ложим в переменную
+        if(userValue){                              //если значение не пустое
+          this.userData[key]=userValue               //то ложим это значение в локальнный объект по ключу
         }
       }
     })
@@ -120,39 +115,35 @@ export default {
       openVoiceModal:'modal/openVoiceModal',
       clearCartList: 'cartList/clearCartList'
     }),
-    //это логика для исключения повторной генерации события handleSubmit
-    // в момент отправления данных из формы в хранилище
 
-    async handleSubmitOrder() {
-        if (this.loading) return
+     handleSubmitOrder() {
+        if (this.loading) return //это логика для исключения повторной генерации события handleSubmit в момент отправления данных из формы в хранилище
         this.loading = true
-        // const customer = {
-        //   name: this.order.userData.name,
-        //   surname: this.order.userData.surname,
-        //   email: this.order.userData.email,
-        //   phone: this.order.userData.phone,
-        //   deliveryOrder: this.selectedDelivery,
-        //   paymentOrder: this.selectedPayment,
-        // };
+
+        this.order.customer.name = this.userData.name
+        this.order.customer.surname = this.userData.surname
+        this.order.customer.email = this.userData.email
+        this.order.customer.phone = this.userData.phone
+        this.order.customer.deliveryOrder = this.selectedDelivery
+        this.order.customer.paymentOrder = this.selectedPayment
+        this.order.orderId = Date.now()
+        this.order.orderProducts = this.getCartList
+
         try {
-          // this.order.deliveryOrder=this.selectedDelivery
-          // this.order.paymentOrder=this.selectedPayment
 
-          await this.addNewOrder(this.customer)
-          // console.log('order>>', customer)
+          this.addNewOrder(this.order)
+          console.log('order>>', this.order)
 
-          await this.clearCartList()
+          this.clearCartList()
 
-          this.selectedDelivery = "";
-          this.selectedPayment = "";
-
-          await this.openVoiceModal('your order has been placed and sent for processing, we will contact you');
+          this.openVoiceModal('your order has been placed and sent for processing, we will contact you');
 
           this.$router.go(-1);
+
         } catch (e) {
+          console.log(e)
         } finally {
           this.loading = false
-
         }
     }
   }

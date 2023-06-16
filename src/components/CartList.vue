@@ -62,11 +62,11 @@ export default {
   },
   methods:{
     ...mapActions({
-      addProductsFromCart: 'orders/addProductsFromCart'
+      // addProductsFromCart: 'orders/addProductsFromCart'
     }),
     addProducts(){
       // const productsFromCart=this.cartList
-      this.addProductsFromCart(this.cartList)
+      // this.addProductsFromCart(this.cartList)
       // console.log('cartList to orders: ',typeof(this.cartList))
      }
   }

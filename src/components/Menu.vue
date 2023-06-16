@@ -93,7 +93,6 @@ export default {
     openDropdownMenu(){
       this.isDropdownOpen = true
       document.body.classList.add('no-scroll');
-      console.log('isDropdownOpen = true')
     },
     closeDropdownMenu(){
       this.isDropdownOpen = false

@@ -24,7 +24,7 @@ export default createStore({
   },
   actions: {
     showCtx(ctx) {
-      console.log(ctx)
+      // console.log(ctx)
     }
   },
   mutations: {

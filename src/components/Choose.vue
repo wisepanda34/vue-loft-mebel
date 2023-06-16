@@ -196,14 +196,13 @@ export default {
     }
     &__filterWrapper{
       display: none;
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
       background: rgba(0,0,0,0.5);
       z-index: 20;
-      //transition: all 0.2s ease;
       transition: all 0.6s ease-out;
 
     }
@@ -214,7 +213,6 @@ export default {
     }
     &__filter{
       transform: translateX(-200%);
-      //transition: transform 0.6s ease-out;
       transition: all 0.6s ease-out;
 
     }

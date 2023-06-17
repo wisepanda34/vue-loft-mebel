@@ -86,7 +86,7 @@ export default {
   display: flex;
   flex-direction: column;
   color: #414141;
-  margin: 0 auto 80px auto;
+  margin: 20px auto;
 
   &:hover{
     box-shadow: 0 1px 9px rgba(0, 0, 0, 0.11);
@@ -146,6 +146,11 @@ export default {
     }
     &-btn{
     }
+  }
+}
+@media (max-width: 576px) {
+  .card{
+    margin: 10px auto;
   }
 }
  .isActiveFavorite {

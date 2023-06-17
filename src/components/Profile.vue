@@ -33,6 +33,7 @@
           <h4>My orders</h4>
 
           <Vue3EasyDataTable
+            class="dataTable"
             :headers="headers"
             :items="tableItems"
             border-cell
@@ -70,18 +71,18 @@ name: "Profile",
       },
       loading: false,
       headers: [
-        { text: "Product", value: "product" },
+        { text: "#", value: "number",fixed: true, width: 30 },
+        { text: "Product", value: "product", fixed: true },
         { text: "Kind", value: "kindProduct" },
-        { text: "Date", value: "date" },
+        { text: "Date", value: "date"},
         { text: "ID order", value: "id" },
-        { text: "Amount", value: "amount"},
-        { text: "Price", value: "price"},
+        { text: "Amount", value: "amount", width: 50},
+        { text: "Price", value: "price", width: 50},
         { text: "Status", value: "status"},
       ],
       tableItems: [],
     }
   },
-
   computed:{
   ...mapGetters({
       getUserData:'user/getUserData',
@@ -97,19 +98,18 @@ name: "Profile",
         this.userData[key] = userValue;
       }
     });
-    const array =  [...this.getOrders]
-    console.log(array)
 
+    let i = 1;
     this.tableItems = this.getOrders.flatMap(order =>
-        order.orderProducts.map(product => ({
+        order.orderProducts.map((product) => ({
+          number: i++,
           product: product.titleCard,
           kindProduct: product.kindProduct,
           price: product.price,
           amount: product.amount,
           id: order.orderId,
-          date:  new Date(order.orderId).toUTCString(),
-          status: 'process'
-
+          date: new Date(order.orderId).toUTCString(),
+          status: this.getRandomStatus()
         }))
     );
   },
@@ -117,6 +117,11 @@ name: "Profile",
     ...mapActions({
       updateUserData: 'user/updateUserData'
     }),
+    getRandomStatus() {
+      const statuses = ["process", "canceled", "delivered", "paid"];
+      const randomIndex = Math.floor(Math.random() * statuses.length);
+      return statuses[randomIndex];
+    },
     //это логика для исключения повторной генерации события handleSubmit
     // в момент отправления данных из формы в хранилище
     async handleSubmit () {
@@ -141,12 +146,15 @@ name: "Profile",
 </script>
 
 <style lang="scss" scoped>
-
+.dataTable{
+  //&--easy-table-header-font-size{
+  //  font-size: 16px;
+  //}
+}
 .profile{
   &__wrapper{
     display: flex;
     flex-direction: column;
-    //grid-gap: 4%;
 
     h4{
       font-size: 16px;
@@ -159,13 +167,11 @@ name: "Profile",
     flex: 0 1 46%;
     padding-bottom: 5%;
 
-
     &-grid{
       display: grid;
       grid-template-columns:0.6fr 0.4fr 1fr;
       column-gap:10px;
       row-gap: 10px;
-
       label{
         display: block;
         font-size: 12px;
@@ -227,7 +233,6 @@ name: "Profile",
         grid-row-start: 5;
         grid-row-end: 6;
       }
-
     }
     &-btn{
       width: 101px;

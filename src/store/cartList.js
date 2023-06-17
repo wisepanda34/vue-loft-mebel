@@ -20,10 +20,6 @@ const cartList = {
                 return count + item.amount;
             },0)
         },
-        //количество позиций товаров
-        getCountNameOfProduct: state=>{
-           return state.cartList.length
-        }
     },
     actions: {
         //это логика вызова мутации 'ADD_TO_CART' из компонента
@@ -33,19 +29,17 @@ const cartList = {
         },
         removeFromCart({ commit }, cardId) {
             commit('REMOVE_FROM_CART', cardId);
-            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
+
         },
         incrementQuantity({commit},itemId) {
             commit('INCREMENT_ONE_PIECE',itemId)
-            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
         },
         decrementQuantity({commit},itemId) {
            commit('DECREMENT_ONE_PIECE',itemId)
-           localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
+
         },
         clearCartList({commit}){
             commit('CLEAR_CARTlIST')
-            localStorage.removeItem('cartListStorage');
         }
     },
     mutations: {
@@ -68,10 +62,12 @@ const cartList = {
         },
         REMOVE_FROM_CART(state, cardId) {
             state.cartList = state.cartList.filter(item => item.id !== cardId);
+            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
         },
         INCREMENT_ONE_PIECE(state,itemId){
             const product = state.cartList.find(item => item.id === itemId)
             if(product) product.amount++
+            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
         },
         DECREMENT_ONE_PIECE(state,itemId){
             const product = state.cartList.find(item => item.id === itemId)
@@ -80,9 +76,11 @@ const cartList = {
             }else{
                 state.cartList=state.cartList.filter(item=>item.id !==itemId)
             }
+            localStorage.setItem('cartListStorage', JSON.stringify(state.cartList))
         },
         CLEAR_CARTlIST(state){
             state.cartList=[]
+            localStorage.removeItem('cartListStorage');
         }
     }
 }

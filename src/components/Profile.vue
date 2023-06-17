@@ -34,11 +34,9 @@
 
           <Vue3EasyDataTable
             :headers="headers"
-            :items="items"
+            :items="tableItems"
             border-cell
           />
-
-
 
           <a class='profile__orders-btn' href='#'>See all</a>
 
@@ -73,19 +71,14 @@ name: "Profile",
       loading: false,
       headers: [
         { text: "Product", value: "product" },
-        { text: "Price", value: "price"},
+        { text: "Kind", value: "kindProduct" },
+        { text: "Date", value: "date" },
+        { text: "ID order", value: "id" },
         { text: "Amount", value: "amount"},
-        // { text: "TotalPrice", value: "totalPrice"},
-        // { text: "Order date", value: "orderDate"},
-        { text: "Status", value: "process"},
+        { text: "Price", value: "price"},
+        { text: "Status", value: "status"},
       ],
-
-      items:
-          [
-        { product: "Stephen Curry", process: "GSW", price: 30, position: 'G', amount: {"height": '6-2', "weight": 185}, lastAttended: "Davidson", country: "USA"},
-        { product: "Lebron James", process: "LAL", price: 6, position: 'F', amount: {"height": '6-9', "weight": 250}, lastAttended: "St. Vincent-St. Mary HS (OH)", country: "USA"},
-        { product: "Kevin Durant", process: "BKN", price: 7, position: 'F', amount: {"height": '6-10', "weight": 240}, lastAttended: "Texas-Austin", country: "USA"},
-      ]
+      tableItems: [],
     }
   },
 
@@ -106,6 +99,19 @@ name: "Profile",
     });
     const array =  [...this.getOrders]
     console.log(array)
+
+    this.tableItems = this.getOrders.flatMap(order =>
+        order.orderProducts.map(product => ({
+          product: product.titleCard,
+          kindProduct: product.kindProduct,
+          price: product.price,
+          amount: product.amount,
+          id: order.orderId,
+          date:  new Date(order.orderId).toUTCString(),
+          status: 'process'
+
+        }))
+    );
   },
   methods:{
     ...mapActions({
@@ -125,7 +131,6 @@ name: "Profile",
         this.loading = false
       }
     },
-
     //функция отправки данных в localStorage
     setStorage(val){
       this.$root.userData = val; // Передаем данные в корневой компонент
@@ -140,7 +145,8 @@ name: "Profile",
 .profile{
   &__wrapper{
     display: flex;
-    grid-gap: 4%;
+    flex-direction: column;
+    //grid-gap: 4%;
 
     h4{
       font-size: 16px;

@@ -4,25 +4,27 @@
       <div class='cartlist__wrapper'>
 
         <div class='cartlist__heading'>
-          <h4>Your cart</h4>
-          <h4><span>{{this.totalElements}}</span> items</h4>
+            <h4>Your cart</h4>
+            <h4 v-if="this.cartList.length>0"><span>{{this.totalElements}}</span> items</h4>
         </div>
 
         <ul class='cartlist__list' v-for="item in cartList" :key="cartList.id" >
-         <li>
-           <CartProduct :item="item" />
-         </li>
+           <li>
+             <CartProduct :item="item" />
+           </li>
         </ul>
 
-        <div class='cartlist__act'>
-          <div class='cartlist__act-total'>
-            The total cost: &nbsp;&nbsp;  <span>{{ this.totalCost }}&nbsp;&#36;</span>
-          </div>
-          <div v-if="this.cartList.length>0" @click="addProducts">
-            <router-link to="/checkOut" class='cartlist__act-btn btn'>Checkout</router-link>
-          </div>
+        <div v-if="this.cartList.length<1" class="cartlist__empty">Cart is an empty</div>
 
+        <div v-if="this.cartList.length>0" class='cartlist__act'>
+            <div class='cartlist__act-total'>
+              The total cost: &nbsp;&nbsp;  <span>{{ this.totalCost }}&nbsp;&#36;</span>
+            </div>
+            <div>
+              <router-link to="/checkOut" class='cartlist__act-btn btn'>Checkout</router-link>
+            </div>
         </div>
+
         <h4 class="">You may like</h4>
         <div class="cartlist__recommendation">
           <OneCard class="no-margin-bottom"  v-for="item in recommendList" :key="item.id" :item="item"/>
@@ -37,12 +39,14 @@
 import CartProduct from "@/components/CartProduct.vue";
 import {mapActions, mapGetters} from "vuex";
 import OneCard from "@/components/OneCard.vue";
+import cartList from "@/store/cartList";
 export default {
   name: "CartList",
   components:{OneCard, CartProduct},
   data(){
     return{
       isBtnShow:false,
+      isCartEmpty: true
     }
   },
   computed:{
@@ -53,22 +57,10 @@ export default {
       //количество всех элементов в карзине
       totalElements: 'cartList/getTotalElements',
       //количество позиций товаров
-      countNameOfProduct: 'cartList/getCountNameOfProduct'
     })
   },
-  mounted() {
-    // console.log('cartList ',typeof(this.cartList))
-    // console.log('cartList ',this.cartList)
-  },
-  methods:{
-    ...mapActions({
-      // addProductsFromCart: 'orders/addProductsFromCart'
-    }),
-    addProducts(){
-      // const productsFromCart=this.cartList
-      // this.addProductsFromCart(this.cartList)
-      // console.log('cartList to orders: ',typeof(this.cartList))
-     }
+  watch: {
+
   }
 }
 </script>
@@ -127,6 +119,13 @@ export default {
         font-size: 16px;
       }
     }
+  }
+  &__empty{
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+    padding: 100px 0 120px;
+    color: #718b8f;
   }
   &__recommendation{
     display: flex;

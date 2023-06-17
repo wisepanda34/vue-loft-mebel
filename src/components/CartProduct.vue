@@ -22,7 +22,7 @@
           </div>
       </div>
 
-      <div class='cartProduct__delete' @click.prevent="handlerRemoveProduct(item)">&#9587;</div>
+      <div class='cartProduct__delete' @click.prevent="handlerRemoveProduct(item.id)">&#9587;</div>
     </div>
   </router-link>
 </template>
@@ -47,8 +47,9 @@ export default {
       incrementQuantity:'cartList/incrementQuantity',
       decrementQuantity:'cartList/decrementQuantity'
     }),
-    handlerRemoveProduct(item) {
-      this.$store.dispatch('cartList/removeFromCart', item.id);
+    handlerRemoveProduct(id) {
+      console.log('id',id)
+      this.$store.dispatch('cartList/removeFromCart', id);
       this.openVoiceModal('Product was removed from cart!')
     },
     increment(id){
@@ -127,8 +128,6 @@ export default {
       background: #518393;
       color: #FFFFFF;
     }
-
-
   }
   &__delete{
     flex:0 0 57px;

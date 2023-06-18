@@ -44,7 +44,7 @@ export default {
       type: Object,
       default:()=>{}
     },
-    isBtnShow:Boolean
+    isBtnShow:true
   },
   methods: {
     getImage: getImage,
@@ -145,6 +145,9 @@ export default {
       align-items: center;
     }
     &-btn{
+      width: 150px;
+      margin: 10px auto 0;
+
     }
   }
 }

@@ -36,7 +36,7 @@
 
           </div>
           <div class="choose__cards">
-            <OneCard v-for="item in sortedAndFilteredProducts" :key="item.id" :item="item"/>
+            <OneCard :isBtnShow="isBtnShow" v-for="item in sortedAndFilteredProducts" :key="item.id" :item="item"/>
           </div>
 
         </div>
@@ -68,6 +68,7 @@ export default {
       selectedType:'',
       selectedKind:'',
       isFilterOpen:false,
+      isBtnShow: true
     }
   },
   watch:{

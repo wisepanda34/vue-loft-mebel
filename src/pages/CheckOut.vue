@@ -22,25 +22,17 @@
             </div>
           </div>
 
-          <div class="checkOut__block">
-            <h3 class="checkOut__form_subtitle">2 Delivery</h3>
-            <div class="checkOut__form_delivery">
-              <label v-for="option in optionsDelivery" :key="option.value">
-                <input type="radio" :value="option.value" v-model="selectedDelivery" class="checkOut__form_radio"/>
+          <div class="checkOut__block" v-for="(block, index) in blocks" :key="index">
+            <h3 class="checkOut__form_subtitle">{{index+2}} {{ block.title }}</h3>
+            <div :class="`checkOut__form_${block.type}`">
+              <label v-for="option in block.options" :key="option.value">
+                <input type="radio" :value="option.value" v-model="block.selected" class="checkOut__form_radio" />
                 {{ option.label }}
               </label>
             </div>
           </div>
 
-          <div class="checkOut__block">
-            <h3 class="checkOut__form_subtitle">3 Payment</h3>
-            <div class="checkOut__form_payment ">
-              <label v-for="option in optionsPayment" :key="option.value">
-                <input type="radio" :value="option.value" v-model="selectedPayment" class="checkOut__form_radio"/>
-                {{ option.label }}
-              </label>
-            </div>
-          </div>
+
           <my-button
               type="submit"
               class='checkOut__form_btn btn'
@@ -67,19 +59,29 @@ export default {
     return {
       userData:{ name: '', surname: '',  email: '', phone:''},
       loading: false,
-      optionsDelivery: [
-        { label: 'pickup', value: 'pickup' },
-        { label: 'delivery by our company', value: 'company' },
-        { label: 'delivery by FedEX', value: 'FedEX' }
+      blocks: [
+        {
+          title: 'Delivery',
+          type: 'delivery',
+          options: [
+            { label: 'pickup', value: 'pickup' },
+            { label: 'delivery by our company', value: 'company' },
+            { label: 'delivery by FedEX', value: 'FedEX' }
+          ],
+          selected: 'pickup'
+        },
+        {
+          title: 'Payment',
+          type: 'payment',
+          options: [
+            { label: 'bank transfer', value: 'bank transfer' },
+            { label: 'cash payment', value: 'cash payment' },
+            { label: 'credit', value: 'credit' },
+            { label: 'leasing', value: 'leasing' }
+          ],
+          selected: 'bank transfer'
+        }
       ],
-      selectedDelivery: 'pickup',
-      optionsPayment:[
-        { label: 'bank transfer', value: 'bank transfer' },
-        { label: 'cash payment', value: 'cash payment' },
-        { label: 'credit', value: 'credit' },
-        { label: 'leasing', value: 'leasing' },
-      ],
-      selectedPayment:'bank transfer',
       //модель ожидаемого объекта заказа
       order: {
         customer:{ name: '', surname: '',  email: '', phone:'', deliveryOrder:'', paymentOrder:''},

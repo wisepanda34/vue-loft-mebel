@@ -41,7 +41,6 @@ export default {
     },
     hideSelect(){
       this.areOptionsVisible = false
-
     },
   },
   mounted() {
@@ -64,6 +63,7 @@ export default {
 
 
   &__default{
+    height: 30px;
     padding: 3px 0;
   }
   &__options{

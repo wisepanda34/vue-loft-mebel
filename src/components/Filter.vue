@@ -29,6 +29,8 @@
             class="filter__select"
         />
 
+<!--        <v-select/>-->
+
     </div>
     <div class='filter__price'>
       <p class='filter__subtitle'>Price</p>
@@ -101,10 +103,11 @@
 
 <script>
 import MySelect from "@/components/UI/MySelect.vue";
+import VSelect from "@/components/UI/v-select.vue";
 
 export default {
   name: "Filter",
-  components: { MySelect },
+  components: {VSelect, MySelect },
   data() {
     return {
       selectedFilter: '',

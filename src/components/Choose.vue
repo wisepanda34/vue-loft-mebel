@@ -29,10 +29,9 @@
 <!--                :options="sortOptions"-->
 <!--            />-->
             <v-select
-                class="choose__select"
                 :selected="selectedSort"
                 :options="sortOptions"
-                @select="sortSelected"
+                @select="sorted"
             />
 
           </div>
@@ -69,7 +68,6 @@ export default {
       selectedType:'',
       selectedKind:'',
       isFilterOpen:false,
-
     }
   },
   watch:{
@@ -93,11 +91,9 @@ export default {
       if (this.selectedSort === 'ascending') {
         return [...this.products].sort((a,b)=>a.price - b.price)
       }
-
       if (this.selectedSort === 'descending') {
         return [...this.products].sort((a,b)=>b.price - a.price)
       }
-
       return this.products
     },
     sortedAndFilteredProducts() {
@@ -125,6 +121,9 @@ export default {
     },
   },
   methods:{
+    sorted(option){
+      this.selectedSort = option.value
+    },
     onFilterSelected(filterValue){
       this.selectedFilter = filterValue;
     },
@@ -138,13 +137,9 @@ export default {
       this.isFilterOpen = true
       document.body.classList.add('no-scroll');
     },
-    //todo scroll to down
     closeFilter(){
       this.isFilterOpen=false
       document.body.classList.remove('no-scroll');
-    },
-    sortSelected(option) {
-      this.selectedSort = option.value;
     },
   }
 }

@@ -23,11 +23,18 @@
         <div class="choose__block">
           <div class="choose__options">
             <my-button class="choose__btn" @click="openFilter">Filter</my-button>
-            <my-select
+<!--            <my-select-->
+<!--                class="choose__select"-->
+<!--                v-model="selectedSort"-->
+<!--                :options="sortOptions"-->
+<!--            />-->
+            <v-select
                 class="choose__select"
-                v-model="selectedSort"
+                :selected="selectedSort"
                 :options="sortOptions"
+                @select="sortSelected"
             />
+
           </div>
           <div class="choose__cards">
             <OneCard v-for="item in sortedAndFilteredProducts" :key="item.id" :item="item"/>
@@ -46,14 +53,15 @@ import MySelect from "@/components/UI/MySelect.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import {mapGetters} from "vuex";
 import OneCard from "@/components/OneCard.vue";
+import VSelect from "@/components/UI/v-select.vue";
 export default {
   name: "Choose",
-  components: {OneCard, MyButton, MySelect, Filter},
+  components: {VSelect, OneCard, MyButton, MySelect, Filter},
   data() {
     return {
       selectedSort: '',
       sortOptions:[
-        {value:'', name:'by popularity'},
+        {value:'popular', name:'by popularity'},
         {value:'descending', name:'descending price'},
         {value:'ascending', name:'ascending price'},
       ],
@@ -72,6 +80,10 @@ export default {
         });
       }
     },
+  },
+  mounted(){
+    if(this.sortOptions.length>0)
+    this.selectedSort = this.sortOptions[0].value
   },
   computed: {
     ...mapGetters({
@@ -114,16 +126,16 @@ export default {
   },
   methods:{
     onFilterSelected(filterValue){
-      this.selectedFilter=filterValue;
+      this.selectedFilter = filterValue;
     },
     onTypeSelected(typeValue){
-      this.selectedType=typeValue;
+      this.selectedType = typeValue;
     },
     onKindSelected(kindValue){
-      this.selectedKind=kindValue;
+      this.selectedKind = kindValue;
     },
     openFilter(){
-      this.isFilterOpen=true
+      this.isFilterOpen = true
       document.body.classList.add('no-scroll');
     },
     //todo scroll to down
@@ -131,7 +143,9 @@ export default {
       this.isFilterOpen=false
       document.body.classList.remove('no-scroll');
     },
-
+    sortSelected(option) {
+      this.selectedSort = option.value;
+    },
   }
 }
 </script>
@@ -145,9 +159,7 @@ export default {
   }
   &__filterWrapper{
     flex:0 0 auto;
-    //transition: all 0.2s ease;
     transition: all 0.5s ease-out;
-
   }
   &__filter{
     transition: all 0.6s ease-out;

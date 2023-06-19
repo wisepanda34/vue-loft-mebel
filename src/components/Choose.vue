@@ -3,22 +3,24 @@
     <div class="container">
       <div class="choose__wrapper">
 
-        <div  class="choose__filterWrapper"
-              :class="{'choose__filterWrapper-active' : isFilterOpen}"
-              ref="filterWrapper"
-              @click.self="closeFilter"
-              tabindex="-1"
-              @keydown.esc="closeFilter"
-        >
-          <Filter class="choose__filter"
-                  :class="{'choose__filter-active' : isFilterOpen}"
-                  @filter-selected="onFilterSelected"
-                  @type-selected="onTypeSelected"
-                  @kind-selected="onKindSelected"
-                  @close-filter="closeFilter"
+        <TransitionGroup name="slide-fade">
+          <div  v-if="isFilterOpen"
+                class="choose__filterWrapper"
+                ref="filterWrapper"
+                @click.self="closeFilter"
+                tabindex="-1"
+                @keydown.esc="closeFilter"
+          >
+            <Filter class="choose__filter"
+                    @filter-selected="onFilterSelected"
+                    @type-selected="onTypeSelected"
+                    @kind-selected="onKindSelected"
+                    @close-filter="closeFilter"
 
-          />
-        </div>
+            />
+          </div>
+        </TransitionGroup>
+
 
         <div class="choose__block">
           <div class="choose__options">
@@ -68,7 +70,7 @@ export default {
       selectedType:'',
       selectedKind:'',
       isFilterOpen:false,
-      isBtnShow: true
+      isBtnShow: true,
     }
   },
   watch:{
@@ -155,10 +157,8 @@ export default {
   }
   &__filterWrapper{
     flex:0 0 auto;
-    transition: all 0.5s ease-out;
   }
   &__filter{
-    transition: all 0.6s ease-out;
   }
   &__block{
     flex:1 1 auto;
@@ -190,6 +190,7 @@ export default {
     padding: 20px 0;
   }
 }
+
 @media (max-width: 1140px) {
   .choose{
     &__cards {
@@ -203,7 +204,7 @@ export default {
       position: relative;
     }
     &__filterWrapper{
-      display: none;
+      //display: none;
       position: fixed;
       top: 0;
       left: 0;
@@ -211,23 +212,19 @@ export default {
       height: 100vh;
       background: rgba(0,0,0,0.5);
       z-index: 20;
-      transition: all 0.6s ease-out;
 
     }
     &__filterWrapper-active{
       display: block;
-      transition: all 0.6s ease-out;
 
     }
     &__filter{
-      transform: translateX(-200%);
-      transition: all 0.6s ease-out;
+      //transform: translateX(-200%);
 
     }
     &__filter-active{
       transform: translateX(0);
-      transition: all 0.6s ease-out;
-      
+
     }
     &__block{
       width: 100%;
@@ -242,6 +239,19 @@ export default {
     &__cards {
       justify-content: space-around;
     }
+  }
+  .slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  .slide-fade-enter-from,
+  .slide-fade-leave-to {
+    transform: translateX(-50px);
+    opacity: 0;
   }
 }
 @media (max-width: 576px) {

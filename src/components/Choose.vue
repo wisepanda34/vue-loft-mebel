@@ -21,6 +21,10 @@
           </div>
         </TransitionGroup>
 
+        <aside class="choose__aside">
+          <Filter />
+
+        </aside>
 
         <div class="choose__block">
           <div class="choose__options">
@@ -158,8 +162,6 @@ export default {
   &__filterWrapper{
     flex:0 0 auto;
   }
-  &__filter{
-  }
   &__block{
     flex:1 1 auto;
   }
@@ -179,6 +181,9 @@ export default {
     &:hover{
       background: #e0dfdf;
     }
+  }
+  &__aside{
+
   }
   &__select{
     text-align: center;
@@ -203,8 +208,10 @@ export default {
     &__wrapper{
       position: relative;
     }
+    &__aside{
+      display: none;
+    }
     &__filterWrapper{
-      //display: none;
       position: fixed;
       top: 0;
       left: 0;
@@ -212,19 +219,6 @@ export default {
       height: 100vh;
       background: rgba(0,0,0,0.5);
       z-index: 20;
-
-    }
-    &__filterWrapper-active{
-      display: block;
-
-    }
-    &__filter{
-      //transform: translateX(-200%);
-
-    }
-    &__filter-active{
-      transform: translateX(0);
-
     }
     &__block{
       width: 100%;
@@ -243,11 +237,9 @@ export default {
   .slide-fade-enter-active {
     transition: all 0.3s ease-out;
   }
-
   .slide-fade-leave-active {
     transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
   }
-
   .slide-fade-enter-from,
   .slide-fade-leave-to {
     transform: translateX(-50px);

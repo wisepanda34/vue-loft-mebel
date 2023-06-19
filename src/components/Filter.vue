@@ -29,8 +29,6 @@
             class="filter__select"
         />
 
-<!--        <v-select/>-->
-
     </div>
     <div class='filter__price'>
       <p class='filter__subtitle'>Price</p>
@@ -171,14 +169,16 @@ export default {
   transition: all 0.5s ease-out;
   &__head{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: 80px;
     padding-bottom: 20px;
   }
+  &__title{
+    margin: 0 80px 0 55px;
+  }
   &__close{
     display: none;
-    justify-self: self-end;
     font-size: 10px;
     cursor: pointer;
   }

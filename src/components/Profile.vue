@@ -5,6 +5,18 @@
 
         <div class='profile__personal '>
           <h4>Personal data</h4>
+
+<!--          <Form @submit="onSubmit">-->
+
+<!--            <p><field type="email" name="email" :rules="validateEmail"/></p>-->
+<!--            <ErrorMessage name="email" />-->
+
+<!--           <p> <field type="text" name="nameUser" :rules="validateUserName"/></p>-->
+<!--            <ErrorMessage name="nameUser" />-->
+
+<!--            <button>Sign up for newsletter</button>-->
+<!--          </Form>-->
+
           <form
               @submit.prevent="handleSubmit"
               class='profile__form'
@@ -53,10 +65,10 @@ import { mapActions, mapGetters} from "vuex";
 import MyInput from "@/components/UI/MyInput.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import Vue3EasyDataTable from 'vue3-easy-data-table';
-
+import { Form, Field, ErrorMessage } from 'vee-validate';
 export default {
 name: "Profile",
-  components:{MyButton, MyInput, Vue3EasyDataTable},
+  components:{MyButton, MyInput, Vue3EasyDataTable,Form, Field, ErrorMessage },
   data(){
     return {
       userData:{
@@ -141,6 +153,46 @@ name: "Profile",
       this.$root.userData = val; // Передаем данные в корневой компонент
       localStorage.setItem('userDataStorage',JSON.stringify(val))
     },
+    // onSubmit(values) {
+    //   console.log(JSON.stringify(values, null, 2));
+    // },
+    // validateEmail(value) {
+    //   // if the field is empty
+    //   if (!value) {
+    //
+    //     console.log('value is empty')
+    //
+    //     return 'This field is required';
+    //   }
+    //   // if the field is not a valid email
+    //   const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    //   if (!regex.test(value)) {
+    //     console.log('value is an incorrect')
+    //     return 'This field must be a valid email';
+    //   }
+    //   // All is good
+    //   console.log('All is good')
+    //   return true;
+    // },
+    // validateUserName(value) {
+    //   // if the field is empty
+    //   if (!value) {
+    //
+    //     console.log('This field is required')
+    //
+    //     return 'This field is required';
+    //   }
+    //   // if the field is not a valid userName
+    //   const regex = /^[a-zA-Z0-9_-]{3,16}$/i;
+    //
+    //   if (!regex.test(value)) {
+    //     console.log('value is an incorrect')
+    //     return 'This field must be a valid userName';
+    //   }
+    //   // All is good
+    //   console.log('All is good')
+    //   return true;
+    // },
   }
 }
 </script>

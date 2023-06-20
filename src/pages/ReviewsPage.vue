@@ -83,9 +83,7 @@ export default {
         });
 
         const newComments = await res.json();
-        console.log('newComments>>',newComments)
         await this.addCommentsToApiComments(newComments.comments)
-        console.log('newComments.comments>>',newComments.comments)
       } catch (error) {
         console.log(error);
       }finally {

@@ -2,11 +2,11 @@
   <div class="navbar header__navbar menuTransform__navbar">
 
     <nav class="navbar__nav menuTransform__nav">
-      <router-link to="/" @click="chooseMenu">Main</router-link>
-      <router-link to="/about" @click="chooseMenu">About</router-link>
-      <router-link to="/catalog" @click="chooseMenu">Catalog</router-link>
-      <router-link to="/contacts" @click="chooseMenu">Contacts</router-link>
-      <router-link to="/reviewsPage" @click="chooseMenu">Reviews</router-link>
+      <router-link to="/" @click="chooseMenu" :class="{active:isActive('/')}">Main</router-link>
+      <router-link to="/about" @click="chooseMenu" :class="{active:isActive('/about')}">About</router-link>
+      <router-link to="/catalog" @click="chooseMenu" :class="{active:isActive('/catalog')}">Catalog</router-link>
+      <router-link to="/contacts" @click="chooseMenu" :class="{active:isActive('/contacts')}">Contacts</router-link>
+      <router-link to="/reviewsPage" @click="chooseMenu" :class="{active:isActive('/reviewsPage')}">Reviews</router-link>
 
     </nav>
 
@@ -15,7 +15,7 @@
         <img :src="getImage('images/icons/phone-black.svg')" alt="i"/>
         <span>+1 (964) 89 99 119</span>
       </a>
-      <router-link to="/deliveryPage" @click="chooseMenu" class='navbar__delivery-deliv flex' >
+      <router-link to="/deliveryPage" @click="chooseMenu" class='navbar__delivery-deliv flex' :class="{active:isActive('/deliveryPage')}">
         <img :src="getImage('images/icons/delivery-icon-black.svg')" alt="i"/>
         <span>Delivery</span>
       </router-link>
@@ -34,10 +34,15 @@ export default {
     getImage,
     chooseMenu(){
       this.$emit('close-menuTransform')
-    }
+    },
+    // проверка перехода по роуту, содержащемуся в конкретном route-link
+    isActive(route){
+      return this.$route.path === route
+    },
   }
 }
 </script>
+
 
 <style lang="scss" scoped>
 .navbar{
@@ -54,6 +59,9 @@ export default {
     display: flex;
     gap: 20px;
   }
+}
+.active {
+  color: #5f909d;
 }
 @media (max-width: 767px) {
     .navbar{

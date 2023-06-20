@@ -25,6 +25,7 @@
               <router-link class="header__search_link"
                            :to="`/product/${item.id}`"
                            @click="closeSearch"
+
               >
                 <div class="header__search_pic">
                   <img :src="getImage(item.img)" alt="img">
@@ -37,19 +38,19 @@
 
         <div class="header__icons">
           <router-link to="/favoritesPage" >
-            <div class="header__icons_favorite">
+            <div class="header__icons_favorite" :class="{active:isActive('/favoritesPage')}">
               <img :src="getImage('images/icons/wishlist-icon.svg')" alt="i"/>
               <div v-if="totalFavorites" class="header__icons_yellow-round">{{totalFavorites}}</div>
             </div>
 
           </router-link>
-          <router-link to="/cart">
-            <div class="header__icons_cart">
+          <router-link to="/cart" >
+            <div class="header__icons_cart" :class="{active:isActive('/cart')}">
               <img :src="getImage('images/icons/bag.svg')" alt="i"/>
               <div v-if="totalElements" class="header__icons_red-round">{{totalElements}}</div>
             </div>
           </router-link >
-          <router-link to="/account" class="flex-center">
+          <router-link to="/account" class="header__icons_account flex-center" :class="{active:isActive('/account')}">
             <img :src="getImage('images/icons/profile-icon.svg')" alt="i"/>
           </router-link>
         </div>
@@ -122,6 +123,9 @@ export default {
     },
     closeSearch(){
       this.searchQuery=''
+    },
+    isActive(route){
+      return this.$route.path === route
     }
   }
 }
@@ -273,9 +277,23 @@ export default {
       left: 9px;
       z-index: 20;
     }
+    &_account{
+      position: relative;
+    }
   }
   &__menuTransform{
     display: none;
+  }
+}
+.header .active{
+  &:after{
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #5f909d;
   }
 }
 @media (max-width:992px){

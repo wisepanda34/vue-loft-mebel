@@ -23,7 +23,7 @@ export default {
   },
   computed:{
     isProductPage(){
-      return this.$route.path.includes('product')
+      return this.$route.path.includes('product') || this.$route.path.includes('*')
     }
   },
   methods:{

@@ -1,9 +1,14 @@
 <template>
   <div class="error">
     <div class="container">
-      <h1 class="error__title">404</h1>
-      <h4 class="error__subtitle">an error occurred or the page does not exist</h4>
-      <router-link to="/" class="error__goHome">Go to home page</router-link>
+      <div class="error__wrapper">
+        <div class="error__content">
+          <h1 class="error__title">404</h1>
+          <h4 class="error__subtitle">an error occurred or the page does not exist</h4>
+        </div>
+
+        <router-link to="/" class="error__goHome">Go to home page</router-link>
+      </div>
     </div>
   </div>
 
@@ -18,19 +23,22 @@ export default {
 
 <style lang="scss" scoped>
 .error{
-  max-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: center;
+
+  &__wrapper{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    padding: 50px 0;
+  }
   &__title{
-    font-size: 80px;
-    margin-bottom: 20px;
+    font-size: 120px;
+    margin: 20px 0;
     color: #f8748d;
   }
   &__subtitle{
     color: #6e242e;
-    margin-bottom: 120px;
   }
   &__goHome{
     color: #4c6062;

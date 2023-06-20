@@ -134,7 +134,6 @@ export default {
         try {
 
           this.addNewOrder(this.order)
-          console.log('order>>', this.order)
 
           this.clearCartList()
 

@@ -63,7 +63,7 @@ const routes = [
     component: ReviewsPage
   },
   {
-    path: '/*',
+    path: '/:catchAll(.*)',
     component: ErrorPage,
   },
 ]

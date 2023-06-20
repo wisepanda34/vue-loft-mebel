@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 import {mapActions} from "vuex";
 
 export default {
   name: "Layout",
-  components: {Footer, Header},
+  components: { Footer, Header},
   created() {
     //получение данных из localStorage и передача этих данных в store/user.js/userData.
     const storedUserData = JSON.parse(localStorage.getItem("userDataStorage"));

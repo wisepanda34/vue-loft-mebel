@@ -6,7 +6,7 @@
 <script>
 import BaseModal from "@/components/UI/BaseModal.vue";
 import storageMixin from "@/mixins/storageMixin";
-import Layout from "@/components/Layout.vue";
+import Layout from "@/layout/Layout.vue";
 
 
   export default {

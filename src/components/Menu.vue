@@ -119,11 +119,28 @@ export default {
     left: 0;
     width: 100%;
     max-height: 80vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #245462 lightgray;
     background: #fff;
     border: 1px solid rgba(230, 230, 230, 1);
     z-index: 50;
     padding: 20px;
     outline: none;
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      background: lightgray;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #8ba0a2;
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #94bcc0;
+    }
     &_close{
       position: absolute;
       top: 10px;
@@ -139,20 +156,18 @@ export default {
     &_list{
       display: flex;
       justify-content: start;
-      column-gap: 20px;
-      row-gap: 20px;
+      gap: 20px;
       flex-wrap: wrap;
       padding-left: 0;
     }
     &_item{
       width: 150px;
-      height: 100px;
-      padding-top: 15px;
+      min-height: 100px;
+      padding-top: 10px;
       &:hover{
         background: #dfe4e5;
         box-shadow: 0 1px 9px rgba(0, 0, 0, 0.11);
       }
-
     }
     &_link{
       padding: 10px 0;
@@ -168,6 +183,7 @@ export default {
       }
     }
     &_title{
+      margin-top: 10px;
       font-size: 20px;
     }
   }
@@ -249,17 +265,33 @@ export default {
 @media (max-width:992px){
   .menu{
     &__list{
-       gap:35px;
+      gap:35px;
+    }
+    &__dropdown{
+      &_item{
+        width: 120px;
+        min-height: 80px;
+        gap: 10px;
+      }
+      &_icon{
+        img{
+          width: 25px;
+          height: 25px;
+        }
+      }
+      &_title{
+        font-size: 14px;
+      }
     }
   }
 }
+
 @media (max-width:767px){
   .menu{
     &__item{
       &:hover{
         background: initial !important;
         box-shadow: 0 1px 9px rgba(0, 0, 0, 0);
-
       }
     }
     &__list{

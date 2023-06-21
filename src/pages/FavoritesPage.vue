@@ -6,10 +6,11 @@
 
 
         <h3 >Your favorites</h3>
-        <h4><span>{{favorites.length}}</span> items</h4>
+        <h4 v-show="favorites.length !==0"><span>{{favorites.length}}</span> items</h4>
 
+        <h2 v-show="favorites.length===0" class="favoritesList__empty">Favorites list is currently empty</h2>
 
-        <div class="favoritesList__cards">
+        <div  class="favoritesList__cards">
           <OneCard v-for="item in favorites" :key="item.id" :item="item"/>
         </div>
 
@@ -43,6 +44,13 @@ export default {
     flex-direction: column;
     padding: 20px 0;
   }
+  &__empty{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 100px 0 120px;
+    color: #718b8f;
+  }
   &__cards{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -63,6 +71,14 @@ export default {
     }
   }
 }
+@media (max-width: 767px) {
+  .favoritesList {
+    &__empty{
+      font-size: 1rem;
+    }
+  }
+}
+
 @media (max-width: 550px) {
   .favoritesList {
     &__cards {

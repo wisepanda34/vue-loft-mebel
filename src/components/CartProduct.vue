@@ -158,7 +158,7 @@ export default {
       font-size: 12px;
     }
     &__info{
-      display: none;
+      flex-wrap: wrap;
     }
     &__delete{
       flex:0 0 30px;

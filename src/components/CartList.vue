@@ -14,7 +14,7 @@
            </li>
         </ul>
 
-        <div v-if="this.cartList.length<1" class="cartlist__empty">Cart is an empty</div>
+        <div v-if="this.cartList.length<1" class="cartlist__empty">The cart is currently empty</div>
 
         <div v-if="this.cartList.length>0" class='cartlist__act'>
             <div class='cartlist__act-total'>
@@ -122,7 +122,7 @@ export default {
   }
   &__empty{
     text-align: center;
-    font-size: 2em;
+    font-size: 2rem;
     font-weight: 700;
     padding: 100px 0 120px;
     color: #718b8f;
@@ -161,10 +161,12 @@ export default {
     &__list{
       gap: 10px;
     }
+    &__empty{
+      font-size: 1rem;
+    }
     &__heading{
       padding: 10px 0;
       font-size: 12px;
-
     }
     &__act{
       flex-direction: column;
